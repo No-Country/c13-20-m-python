@@ -1,10 +1,10 @@
 //componente de vista del landing
-import NavBar from "../components/NavBar";
+import construction from "../assets/under-construction.png";
 
 export default function Landing() {
   return (
-    <div>
-      <NavBar />
+    <div className="p-0 w-screen -mx-20 -my-10">
+      <img src={construction} alt="under-construction" />
     </div>
   );
 }
