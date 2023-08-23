@@ -1,12 +1,23 @@
 import logo from "../assets/nuestro-logo.png";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    // formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
   return (
     <div>
-      <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="bg-gray-50 dark:bg-gray-900 -mt-4">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a
             href="#"
@@ -19,7 +30,14 @@ export default function LoginForm() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Ingresa a tu Cuenta
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form
+                className="space-y-4 md:space-y-6"
+                action="#"
+                onSubmit={handleSubmit((data) => {
+                  console.log(data);
+                  navigate("/home");
+                })}
+              >
                 <div>
                   <label
                     htmlFor="email"
@@ -29,6 +47,7 @@ export default function LoginForm() {
                   </label>
                   <input
                     type="email"
+                    {...register("email")}
                     name="email"
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -45,6 +64,7 @@ export default function LoginForm() {
                   </label>
                   <input
                     type="password"
+                    {...register("password")}
                     name="password"
                     id="password"
                     placeholder="••••••••"
@@ -59,6 +79,7 @@ export default function LoginForm() {
                         id="remember"
                         aria-describedby="remember"
                         type="checkbox"
+                        {...register("checkbox")}
                         className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                         required=""
                       ></input>
@@ -74,26 +95,25 @@ export default function LoginForm() {
                   </div>
                   <a
                     onClick={() => navigate("/home")}
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 cursor-pointer"
                   >
                     Olvidé mi contraseña
                   </a>
                 </div>
 
                 <button
-                  onClick={() => navigate("/home")}
                   type="submit"
                   className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  Sign in
+                  Ingresar
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Don’t have an account yet?{" "}
+                  No tenés cuenta?{" "}
                   <a
-                    onClick={() => navigate("/home")}
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    onClick={() => navigate("/sign-up")}
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500 cursor-pointer"
                   >
-                    Sign up
+                    Registrate
                   </a>
                 </p>
               </form>
