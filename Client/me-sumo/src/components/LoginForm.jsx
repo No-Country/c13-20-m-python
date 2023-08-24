@@ -35,7 +35,7 @@ export default function LoginForm() {
                 action="#"
                 onSubmit={handleSubmit((data) => {
                   console.log(data);
-                  navigate("/home");
+                  navigate("/welcome");
                 })}
               >
                 <div>
@@ -94,7 +94,7 @@ export default function LoginForm() {
                     </div>
                   </div>
                   <a
-                    onClick={() => navigate("/home")}
+                    onClick={() => navigate("/welcome")}
                     className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 cursor-pointer"
                   >
                     Olvidé mi contraseña
