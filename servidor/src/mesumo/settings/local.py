@@ -11,8 +11,12 @@ ALLOWED_HOSTS = []
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': parser.get('default', 'name'),
+        'USER': parser.get('default', 'user'),
+        'PASSWORD': parser.get('default', 'password'),
+        'HOST': parser.get('default', 'host'),
+        'PORT': parser.get('default', 'port'),
     }
 }
 

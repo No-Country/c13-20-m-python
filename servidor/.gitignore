@@ -28,7 +28,8 @@ pydock/.envz
 # Docker env file
 .env
 
-.conf
+*.conf
+*.json
 
 src/mesumo/settings/credentials/*.conf
 src/mesumo/settings/credentials/*.json

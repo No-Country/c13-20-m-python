@@ -13,7 +13,7 @@ class RegisterApi(views.APIView):
 
         serializer.instance = create_user(user_dc=data)
 
-        return response.Response(data=serializer.data)
+        return response.Response(data={"message": "user registered", "data": serializer.data})
     
 class LoginApi(views.APIView):
     
@@ -32,6 +32,8 @@ class LoginApi(views.APIView):
         token = create_token(user_id=user.id)
 
         resp = response.Response()
+
+        resp.data = {"message": "successful login"}
 
         resp.set_cookie(key="jwt", value=token, httponly=True)
 
