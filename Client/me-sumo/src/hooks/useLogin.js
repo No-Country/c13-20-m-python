@@ -1,12 +1,8 @@
 // archivo para la lógica del login de usuarios
-// archivo para la lógica del login de usuarios
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL_LOGIN } from "../Config/api";
-import { useForm } from "react-hook-form";
-import { joiResolver } from "@hookform/resolvers/joi";
-import loginSchema from "../validations/login";
 
 const useLogin = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -39,29 +35,11 @@ const useLogin = () => {
       });
   };
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    mode: "onChange",
-    resolver: joiResolver(loginSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
-
   return {
     isLogin,
     handleLogin,
     handlePassword,
     showPassword,
-    register,
-    handleSubmit,
-    setValue,
-    errors,
   };
 };
 
