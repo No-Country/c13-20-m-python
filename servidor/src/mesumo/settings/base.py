@@ -17,7 +17,7 @@ parser.read(credentials_file)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = parser.get('keys', 'SECRETKEY')
-print(SECRET_KEY)
+
 
 JWT_SECRET = parser.get('keys', 'JWT_SECRET')
 
