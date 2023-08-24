@@ -1,2 +1,34 @@
 venv
 *.pyc
+*.env
+# PYTHON
+*.pyc
+.pyc
+
+# DJANGO
+*.log
+*.pot
+*.pyo
+*.db
+__pycache__/
+db.sqlite3
+media
+/venv
+__pycache__
+#OdynAPI/staticfiles/
+
+# Environment files
+pydock/.envz
+
+# VISUAL STUDIO cODE
+.vscode
+# PYCHARM
+.idea/
+
+# Docker env file
+.env
+
+.conf
+
+src/mesumo/settings/credentials/*.conf
+src/mesumo/settings/credentials/*.json

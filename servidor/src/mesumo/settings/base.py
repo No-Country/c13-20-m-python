@@ -5,14 +5,21 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Configuración credenciales
+credentials_file = os.path.join(BASE_DIR, "settings", "credentials", "access.conf")
+parser = configparser.ConfigParser()
+parser.read(credentials_file)
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9u$@1&5_(!1n1akvjtr4@ffmqvnbqqts#t#530h_(0z@kq^k@n'
+SECRET_KEY = parser.get('keys', 'SECRETKEY')
+print(SECRET_KEY)
 
-JWT_SECRET = "jwtsecretprueba"
+JWT_SECRET = parser.get('keys', 'JWT_SECRET')
 
 # Application definition
 

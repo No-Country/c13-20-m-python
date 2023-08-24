@@ -25,6 +25,7 @@ def register_user(request):
             return JsonResponse({'error': 'Error al registrar usuario: {}'.format(str(e))}, status=400)
 
 
+
 @api_view(['POST'])
 @csrf_exempt
 def login_user(request):
