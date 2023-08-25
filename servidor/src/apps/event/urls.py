@@ -3,6 +3,6 @@ from .eventapi import EventViewSet
 
 router = routers.DefaultRouter()
 
-router.register('api/events', EventViewSet, 'events')
+router.register('events', EventViewSet, 'events')
 
 urlpatterns = router.urls
