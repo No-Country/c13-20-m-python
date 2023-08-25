@@ -2,8 +2,8 @@ import "./App.css";
 import { Provider } from "react-redux";
 import { store } from "../src/redux/store";
 import { Route, Routes } from "react-router-dom";
-import LoginForm from "./components/LoginForm";
-import SignUpForm from "./components/SignUpForm";
+import LoginForm from "./views/LoginForm";
+import SignUp from "./views/SignUpForm";
 import Landing from "./views/Landing";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <div className="w-full">
         <Routes>
           <Route path="/" element={<LoginForm />} />
-          <Route path="/sign-up" element={<SignUpForm />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route path="/home" element={<Landing />} />
         </Routes>
       </div>
