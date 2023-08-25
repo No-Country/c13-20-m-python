@@ -4,7 +4,6 @@ from django.db import models
 
 # class EventManager()
 
-
 class Event(models.Model):
     # eventHost = models.ForeignKey(Host, on_delete = models.CASCADE) # Puse host pero puede ser ORGANIZADOR o como se haya llamado 
     name = models.CharField(max_length = 200)
