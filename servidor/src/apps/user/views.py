@@ -50,6 +50,7 @@ class UserApi(views.APIView):
 
         return response.Response(serializer.data)
 
+
 class LogoutApi(views.APIView):
     authentication_classes = (authentication.CustomUserAuthentication, )
     permission_classes = (permissions.IsAuthenticated, )
