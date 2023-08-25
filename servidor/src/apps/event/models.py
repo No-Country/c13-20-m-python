@@ -1,4 +1,5 @@
 from django.db import models
+from apps.user.models import User
 
 # Create your models here.
 
@@ -6,8 +7,7 @@ from django.db import models
 
 
 class Event(models.Model):
-    # id del evento ya incluido en el model
-    # eventHost = models.ForeignKey(Host, on_delete = models.CASCADE) # Puse host pero puede ser ORGANIZADOR o como se haya llamado 
+    eventHost = models.ForeignKey(User, on_delete = models.CASCADE) # Puse host pero puede ser ORGANIZADOR o como se haya llamado 
     name = models.CharField(max_length = 200)
     description = models.TextField() 
     capacity = models.PositiveIntegerField(default = 0)
