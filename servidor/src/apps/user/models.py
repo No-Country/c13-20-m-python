@@ -51,6 +51,20 @@ class User(AbstractUser):
     date_joined = models.DateTimeField(default=timezone.now)
     age = models.IntegerField(null=True, default=None)
     password = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+
+
+    GENDER_CHOICES = [
+        ('M', 'Mujer'),
+        ('H', 'Hombre'),
+    ]
+
+    gender = models.CharField(
+        max_length=1,
+        choices=GENDER_CHOICES,
+        null=True,
+        blank=True,
+    )
 
     objects = UserManager()
 
