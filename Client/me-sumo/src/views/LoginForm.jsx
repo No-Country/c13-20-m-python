@@ -27,7 +27,7 @@ export default function LoginForm() {
         <img
           src={loginImg}
           alt="img-login"
-          className="h-5/6 mt-14 ml-48 mr-0 rounded-2xl"
+          className="h-4/5 mt-16 ml-48 mr-0 rounded-2xl hidden md:block"
         />
         <div className="flex flex-col items-center justify-center ml-0 mr-48 py-8 w-full md:h-screen lg:py-0">
           <a
@@ -36,13 +36,13 @@ export default function LoginForm() {
           >
             <img className="w-45 h-15 mr-2" src={logo} alt="logo"></img>
           </a>
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8 h-full w-full">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Ingresa a tu Cuenta
+          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 min-w-[350px]">
+            <div className="p-4 md:space-y-6 sm:p-8">
+              <h1 className="text-xl font-bold leading-tight  tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                Fromulario de Registro
               </h1>
               <form
-                className="space-y-4 md:space-y-6"
+                className="space-y-2 md:space-y-4"
                 action="#"
                 onSubmit={handleSubmit((data) => {
                   console.log(data);
