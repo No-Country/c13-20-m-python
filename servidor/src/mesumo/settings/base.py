@@ -5,13 +5,6 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Configuración credenciales
-credentials_file = os.path.join(BASE_DIR, "settings", "credentials", "access.conf")
-parser = configparser.ConfigParser()
-parser.read(credentials_file)
-
-
-JWT_SECRET = parser.get('keys', 'JWT_SECRET')
 
 
 DJANGO_APPS = [

@@ -1,6 +1,14 @@
 from .base import *
 import dj_database_url
 
+
+# Configuración credenciales
+credentials_file = os.path.join(BASE_DIR, "settings", "credentials", "access.conf")
+parser = configparser.ConfigParser()
+parser.read(credentials_file)
+
+JWT_SECRET = parser.get('keys', 'JWT_SECRET')
+
 SECRET_KEY = parser.get('keys', 'SECRETKEY')
 
 DEBUG = True
