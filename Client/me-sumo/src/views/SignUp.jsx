@@ -5,6 +5,7 @@ import InputMail from "../components/Login-SignUp/InputMail";
 import InputPassword from "../components/Login-SignUp/InputPassword";
 import InputTerms from "../components/Login-SignUp/InputTerms";
 import LoginButton from "../components/Login-SignUp/LoginButton";
+import signUpImg from "../assets/sign-up-image.png";
 
 export default function SignUpForm() {
   const navigate = useNavigate();
@@ -14,40 +15,57 @@ export default function SignUpForm() {
   } = useForm();
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="w-4/5 max-w-screen-sm p-4">
-        <h1 className="text-xl font-bold text-center mb-4">
+    <div className="items-center">
+      <div>
+        <h1 className="text-2xl font-bold p-9 items-center justify-center">
           Formulario de Registro
         </h1>
-        <form
-          className="space-y-2"
-          action="#"
-          onSubmit={handleSubmit((data) => {
-            console.log(data);
-            navigate("/home");
-          })}
-        >
-          <div>
-            <InputName />
-          </div>
-          <div>
-            <InputMail />
-          </div>
-          <div>
-            <label htmlFor="password" className="text-sm font-medium">
-              Password
-            </label>
-            <InputPassword />
-          </div>
-          <div>
-            <label htmlFor="password" className="text-sm font-medium">
-              Confirmar Password
-            </label>
-            <InputPassword />
-          </div>
-          <InputTerms />
-          <LoginButton text="Registrarme" />
-        </form>
+      </div>
+      <div className="flex justify-center h-screen gap-8">
+        <div className="text-center">
+          <img
+            src={signUpImg}
+            alt="img-login"
+            className="h-96 mt-2 ml-48 mr-0 rounded-2xl hidden md:block"
+          />
+        </div>
+        <div className="w-3/5 max-w-screen-sm p-4 md:h-screen lg:py-0">
+          <form
+            className="space-y-2 w-4/6"
+            action="#"
+            onSubmit={handleSubmit((data) => {
+              console.log(data);
+              navigate("/home");
+            })}
+          >
+            <div>
+              <InputName />
+            </div>
+            <div>
+              <InputMail />
+            </div>
+            <div>
+              <label
+                htmlFor="password"
+                className="flex ml-1 mb-1.5 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Password
+              </label>
+              <InputPassword />
+            </div>
+            <div>
+              <label
+                htmlFor="password"
+                className="flex ml-1 mb-1.5 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Confirmar Password
+              </label>
+              <InputPassword />
+            </div>
+            <InputTerms />
+            <LoginButton text="Registrarme" />
+          </form>
+        </div>
       </div>
     </div>
   );
