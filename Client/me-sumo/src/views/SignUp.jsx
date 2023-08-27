@@ -6,6 +6,7 @@ import InputPassword from "../components/Login-SignUp/InputPassword";
 import InputTerms from "../components/Login-SignUp/InputTerms";
 import LoginButton from "../components/Login-SignUp/LoginButton";
 import signUpImg from "../assets/sign-up-image.png";
+import GoogleLoginButton from "../components/Login-SignUp/GoogleLoginButton";
 
 export default function SignUpForm() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function SignUpForm() {
   return (
     <div className="items-center">
       <div>
-        <h1 className="text-2xl font-bold p-9 items-center justify-center">
+        <h1 className="text-2xl font-bold p-5 items-center justify-center">
           Formulario de Registro
         </h1>
       </div>
@@ -26,7 +27,7 @@ export default function SignUpForm() {
           <img
             src={signUpImg}
             alt="img-login"
-            className="h-96 mt-2 ml-48 mr-0 rounded-2xl hidden md:block"
+            className="h-4/6 mt-2 ml-48 mr-0 rounded-2xl hidden md:block"
           />
         </div>
         <div className="w-3/5 max-w-screen-sm p-4 md:h-screen lg:py-0">
@@ -64,6 +65,7 @@ export default function SignUpForm() {
             </div>
             <InputTerms />
             <LoginButton text="Registrarme" />
+            <GoogleLoginButton />
           </form>
         </div>
       </div>

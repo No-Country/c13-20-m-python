@@ -8,6 +8,7 @@ import RememberUser from "../components/Login-SignUp/RememberUser";
 import LoginButton from "../components/Login-SignUp/LoginButton";
 import RegisterLink from "../components/Login-SignUp/RegisterLink";
 import ForgotPassLink from "../components/Login-SignUp/ForgotPassLink";
+import GoogleLoginButton from "../components/Login-SignUp/GoogleLoginButton";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ export default function LoginForm() {
         <img
           src={loginImg}
           alt="img-login"
-          className="h-4/5 mt-14 ml-48 mr-0 rounded-2xl hidden md:block"
+          className="h-fit mt-24 ml-48 mr-0 rounded-2xl hidden md:block"
         />
         <div className="flex flex-col items-center justify-center ml-0 mr-48 py-8 w-full md:h-screen lg:py-0">
           <a
@@ -66,6 +67,7 @@ export default function LoginForm() {
                   <ForgotPassLink />
                 </div>
                 <LoginButton text="Ingresar" />
+                <GoogleLoginButton />
                 <RegisterLink />
               </form>
             </div>
