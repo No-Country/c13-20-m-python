@@ -17,7 +17,7 @@ const images = [{
 
 export default function CarouselWithContent() {
   return (
-    <Carousel className="rounded-xl">
+    <Carousel loop={true} className="rounded-xl">
       {images.map((image, index) => (
         <div key={index} className="relative w-full">
           <div className="relative h-0 pb-[56.25%]">
