@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL_LOGIN } from "../Config/api";
+import { API_URL_LOGIN } from "../config/api";
 
 const useLogin = () => {
   const [isLogin, setIsLogin] = useState(false);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { API_URL_ORGANIZATOR } from "../Config/api";
+import { API_URL_ORGANIZATOR } from "../config/api";
 
 const useCharacters = () => {
   const [organizator, setOrganizator] = useState([]);
