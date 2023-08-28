@@ -1,9 +1,8 @@
 import logo from "../assets/nuestro-logo.png";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import useLogin from "../hooks/useLogin";
 import loginImg from "../assets/login-image.png";
-import InputMail from "../components/Login-SignUp/InputMail";
-import InputPassword from "../components/Login-SignUp/InputPassword";
+import Input from "../components/Shared/Input";
 import RememberUser from "../components/Login-SignUp/RememberUser";
 import LoginButton from "../components/Login-SignUp/LoginButton";
 import RegisterLink from "../components/Login-SignUp/RegisterLink";
@@ -11,16 +10,13 @@ import ForgotPassLink from "../components/Login-SignUp/ForgotPassLink";
 import GoogleLoginButton from "../components/Login-SignUp/GoogleLoginButton";
 
 export default function LoginForm() {
-  const navigate = useNavigate();
   const {
     handleSubmit,
-    // formState: { errors },
-  } = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
+    register,
+    formState: { errors },
+  } = useForm();
+
+  const { handleLogin } = useLogin();
 
   return (
     <div className="flex -mt-10">
@@ -46,21 +42,28 @@ export default function LoginForm() {
                 className="space-y-4 md:space-y-6"
                 action="#"
                 onSubmit={handleSubmit((data) => {
-                  console.log(data);
-                  navigate("/welcome");
+                  handleLogin(data);
                 })}
               >
                 <div>
-                  <InputMail />
+                  <Input
+                    labelText="Email"
+                    type="text"
+                    placeholder="Escriba su email"
+                    name="email"
+                    register={register}
+                    error={errors.email?.message}
+                  />
                 </div>
                 <div>
-                  <label
-                    htmlFor="password"
-                    className="flex ml-1 mb-1.5 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Password
-                  </label>
-                  <InputPassword />
+                  <Input
+                    labelText="Password"
+                    type="password"
+                    placeholder="Escriba su contraseña"
+                    name="password"
+                    register={register}
+                    error={errors.password?.message}
+                  />
                 </div>
                 <div className="flex items-center justify-between">
                   <RememberUser />
