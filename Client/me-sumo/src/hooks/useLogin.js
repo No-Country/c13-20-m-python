@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL_LOGIN } from "../Config/api";
+import { API_URL_LOGIN } from "../config/api";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout, isLogged } from "../redux/sliceLogin";
 
