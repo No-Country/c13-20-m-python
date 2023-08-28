@@ -1,21 +1,32 @@
 import "./App.css";
 import { Provider } from "react-redux";
 import { store } from "../src/redux/store";
-import { Route, Routes } from "react-router-dom";
-import LoginForm from "./components/LoginForm";
-import SignUpForm from "./components/SignUpForm";
-import Onboarding from "./components/OnBoarding";
-import Landing from "./views/Landing";
+import { Route, Routes, useLocation } from "react-router-dom";
 
+import LoginForm from "./views/LoginForm";
+import Home from "./views/Home";
+import SignUp from "./views/SignUp";
+import Landing from "./views/Landing";
+import NavBar from "./views/NavBar";
+import UserProfile from "./views/UserProfile";
+import CreateEvent from "./views/CreateEvent";
+import Onboarding from "./views/OnBoarding";
 function App() {
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/login";
+
   return (
     <Provider store={store}>
       <div className="w-full">
+        {!isLoginPage && <NavBar />}
         <Routes>
-          <Route path="/" element={<LoginForm />} />
-          <Route path="/sign-up" element={<SignUpForm />} />
-          <Route path="/home" element={<Landing />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<LoginForm />} />
           <Route path="/welcome" element={<Onboarding />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/create-event" element={<CreateEvent />} />
         </Routes>
       </div>
     </Provider>

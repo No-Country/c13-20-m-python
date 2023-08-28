@@ -1,32 +1,26 @@
 from .base import *
+import dj_database_url
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
+# Configuración credenciales
+credentials_file = os.path.join(BASE_DIR, "settings", "credentials", "access.conf")
+parser = configparser.ConfigParser()
+parser.read(credentials_file)
+
+JWT_SECRET = parser.get('keys', 'JWT_SECRET')
+
+SECRET_KEY = parser.get('keys', 'SECRETKEY')
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
+database_url = parser.get('default', 'database_url')
+DATABASES["default"] = dj_database_url.parse(database_url)
 
-#FIREBASE AUTHENTICATION
 
-import firebase_admin
-from firebase_admin import credentials
 
-cred_path = os.path.join(BASE_DIR, 'settings', 'credentials', 'firebase-credentials.json')
-# Ruta al archivo JSON de credenciales descargado desde Firebase
-
-cred = credentials.Certificate(cred_path)
-
-# Inicializa la aplicación Firebase
-firebase_admin.initialize_app(cred)

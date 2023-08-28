@@ -4,7 +4,8 @@ from django.utils import timezone
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, first_name:str, last_name:str, email:str, username:str, password:str = None, is_staff=False, is_superuser=False, age=None) -> "User":
+    def create_user(self, first_name:str, last_name:str, email:str, username:str, password:str = None, 
+                    is_staff=False, is_superuser=False, age=None, phone_number = None) -> "User":
         if not email:
             raise ValueError("User must have an email")
         if not username:
@@ -22,6 +23,7 @@ class UserManager(BaseUserManager):
         user.is_staff = is_staff
         user.is_superuser = is_superuser
         user.age = age
+        user.phone_number = phone_number
         user.save()
 
         return user
@@ -49,6 +51,20 @@ class User(AbstractUser):
     date_joined = models.DateTimeField(default=timezone.now)
     age = models.IntegerField(null=True, default=None)
     password = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+
+
+    GENDER_CHOICES = [
+        ('M', 'Mujer'),
+        ('H', 'Hombre'),
+    ]
+
+    gender = models.CharField(
+        max_length=1,
+        choices=GENDER_CHOICES,
+        null=True,
+        blank=True,
+    )
 
     objects = UserManager()
 
