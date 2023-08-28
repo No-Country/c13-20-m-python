@@ -11,8 +11,6 @@ const useLogin = () => {
   const isLogin = useSelector(isLogged);
   const dispatch = useDispatch();
 
-  console.log(isLogin);
-
   useEffect(() => {
     if (isLogin) {
       navigate("/home");
@@ -29,9 +27,8 @@ const useLogin = () => {
         password: password,
       });
       const { message } = data;
-      console.log(message);
+
       if (message === "successful login") {
-        console.log(message);
         dispatch(login());
       }
     } catch (error) {

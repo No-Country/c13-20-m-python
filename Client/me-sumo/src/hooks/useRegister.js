@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL_REGISTER } from "../Config/api";
+import { API_URL_REGISTER } from "../config/api";
 
 const useRegister = () => {
   const [isRegister, setIsRegister] = useState(false);
@@ -25,7 +25,6 @@ const useRegister = () => {
         password: password,
       })
       .then(({ data }) => {
-        console.log(data);
         const { user } = data;
         if (user) {
           setIsRegister(true);
@@ -35,7 +34,6 @@ const useRegister = () => {
       .catch((error) => {
         if (error.response) {
           console.log("Response Data:", error.response.data);
-          console.log("Response Status:", error.response.status);
         }
       });
   };
