@@ -47,7 +47,7 @@ export default function LoginForm() {
                 action="#"
                 onSubmit={handleSubmit((data) => {
                   console.log(data);
-                  navigate("/home");
+                  navigate("/welcome");
                 })}
               >
                 <div>
