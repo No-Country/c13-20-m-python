@@ -11,30 +11,36 @@ export default function Onboarding() {
   // } = useForm();
 
   return (
-<div>
-  <section className="bg-gray-50 dark:bg-gray-900 h-screen rounded">
+<div className="p-0 sm:p-2 w-full">
+  <section className="p-0 sm:p-2 bg-gray-50 dark:bg-gray-900 h-screen rounded">
     <div className='my-8'>
-      <h1 className="py-3 font-bold leading-tight tracking-tight text-gray-900 md:text-5xl text-2xl dark:text-white md:py-8 md:my-14">
+      <h1 className="py-3 font-bold leading-tight tracking-tight text-gray-900 md:text-5xl text-2xl dark:text-white  md:py-8 md:my-14">
         Bienvenido a Me sumo
       </h1>
       <h3 className="text-m font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white md:my-6">
-        Primero Elegi tu Rol
+        ¿Que querés hacer?
       </h3>
     </div>
-    <div className="flex flex-col md:flex-row md:p-4 md:space-y-0 md:space-x-4 sm:p-8">
-      <div className="cursor-pointer bg-white rounded-lg shadow dark:border md:mt-0 md:flex-1 dark:bg-gray-800 dark:border-gray-700 mb-4 md:mb-0 m-4">
-        <div onClick={() => navigate("/home")} className="flex justify-center p-2">
-          <img src={organizador} alt="" className="w-7/12 h-auto rounded" />
+    <div className="flex flex-col lg:flex-row">
+    <div className="cursor-pointer bg-white rounded-lg shadow dark:border pb-3 mt-2 md:mt-0 dark:bg-gray-800 dark:border-gray-700  lg:max-w-md  m-auto">
+        <div onClick={() => navigate("/home")} className="flex justify-center">
+          <img src={organizador} alt="Planificacion de un evento" className="w-full h-auto rounded" />
         </div>
-        <button className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+        <div className="flex justify-center p-2">
+        <p className="text-base">Acá vas a poder crear y planificar tu evento. Podrás gestionar entradas, lugar, fecha y mucho más!</p>
+        </div>
+        <button className="text-xl font-bold leading-tight tracking-tight text-gray-900 lg:text-2xl dark:text-white">
           Quiero Organizar un Evento
         </button>
       </div>
-      <div className="cursor-pointer m-4 bg-white rounded-lg shadow dark:border md:mt-0 md:flex-1 dark:bg-gray-800 dark:border-gray-700">
-        <div onClick={() => navigate("/home")} className="flex justify-center p-2">
-          <img src={asistente} alt="" className="w-7/12 h-auto rounded" />
+      <div className="cursor-pointer bg-white rounded-lg shadow dark:border pb-3 mt-2 md:mt-0 dark:bg-gray-800 dark:border-gray-700  lg:max-w-md  m-auto">
+        <div onClick={() => navigate("/home")} className=" flex justify-center">
+          <img src={asistente} alt="Personas festejando" className="w-full h-auto rounded" />
         </div>
-        <button className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+        <div className="flex justify-center p-2">
+        <p className="text-sm lg:text-base">Acá vas a poder conocer, y elegir los mejores eventos, de todo tipo, en tu región, o donde quieras ir!</p>
+        </div>
+        <button className="text-xl font-bold leading-tight tracking-tight text-gray-900 lg:text-2xl dark:text-white">
           Quiero Participar de un evento
         </button>
       </div>
