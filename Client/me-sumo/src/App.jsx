@@ -6,7 +6,6 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import LoginForm from "./views/LoginForm";
 import Home from "./views/Home";
 import SignUp from "./views/SignUp";
-import Landing from "./views/Landing";
 import NavBar from "./views/NavBar";
 import UserProfile from "./views/UserProfile";
 import CreateEvent from "./views/CreateEvent";
@@ -20,7 +19,7 @@ function App() {
       <div className="w-full">
         {!isLoginPage && <NavBar />}
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/sign-up" element={<SignUp />} />

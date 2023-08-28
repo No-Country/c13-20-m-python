@@ -1,45 +1,56 @@
-// archivo para la lógica del login de usuarios
-import { useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL_LOGIN } from "../Config/api";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout, isLogged } from "../redux/sliceLogin";
 
 const useLogin = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const handlePassword = () => {
-    if (!showPassword) {
-      setShowPassword(true);
-    } else {
-      setShowPassword(false);
-    }
-  };
+  const isLogin = useSelector(isLogged);
+  const dispatch = useDispatch();
 
-  const handleLogin = (userData) => {
+  console.log(isLogin);
+
+  useEffect(() => {
+    if (isLogin) {
+      navigate("/home");
+    }
+  }, [isLogin, navigate]);
+
+  const handleLogin = async (userData) => {
     const { email, password } = userData;
     const URL = API_URL_LOGIN;
 
-    axios
-      .post(URL, {
+    try {
+      const { data } = await axios.post(URL, {
         email: email,
         password: password,
-      })
-      .then(({ data }) => {
-        const { access } = data;
-        if (access) {
-          setIsLogin(true);
-          navigate("/home");
-        }
       });
+      const { message } = data;
+      console.log(message);
+      if (message === "successful login") {
+        console.log(message);
+        dispatch(login());
+      }
+    } catch (error) {
+      dispatch(logout());
+      if (error.response) {
+        alert("Password Incorrecto");
+        console.log("Response Data:", error.response.data);
+      }
+    }
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    alert("Te deslogueaste correctamente");
   };
 
   return {
-    isLogin,
     handleLogin,
-    handlePassword,
-    showPassword,
+    handleLogout,
   };
 };
 
