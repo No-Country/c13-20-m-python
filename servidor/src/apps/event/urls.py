@@ -1,7 +1,5 @@
 from rest_framework import routers
-#from .eventapi import EventViewSet
-from .views import EventViewSet
-
+from .eventapi import EventViewSet
 
 router = routers.DefaultRouter()
 
