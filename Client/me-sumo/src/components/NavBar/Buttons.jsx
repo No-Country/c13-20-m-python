@@ -4,7 +4,7 @@ import MyAccountButton from "./MyAccountButton";
 
 export default function Buttons() {
   return (
-    <div className="flex gap-5">
+    <div className="flex lg:gap-5">
       <div className="btn join-item">
         <CreateEventButton />
       </div>
