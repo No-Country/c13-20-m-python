@@ -13,8 +13,7 @@ DJANGO_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
+    'django.contrib.staticfiles'
 ]
 
 
@@ -24,7 +23,8 @@ LOCAL_APPS = [
 ]
 
 THIRD_APPS = [
-    
+    'rest_framework',
+    'drf_yasg'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_APPS
