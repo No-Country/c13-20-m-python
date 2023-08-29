@@ -25,7 +25,6 @@ LOCAL_APPS = [
 ]
 
 THIRD_APPS = [
-    'rest_framework',
     'drf_yasg'
 ]
 
@@ -87,7 +86,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
