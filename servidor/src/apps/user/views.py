@@ -1,6 +1,8 @@
 from rest_framework import views,response,exceptions,permissions
-from .serializer import UserSerializer
+from .serializer import UserSerializer, UserRegistrationSerializer, UserLoginSerializer
 from .services import create_user, user_email_selector, create_token
+from django.shortcuts import get_object_or_404
+from .models import User
 from . import authentication
 
 class RegisterApi(views.APIView):
