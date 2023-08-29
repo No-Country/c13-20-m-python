@@ -11,6 +11,8 @@ import NavBar from "./views/NavBar";
 import UserProfile from "./views/UserProfile";
 import CreateEvent from "./views/CreateEvent";
 import Onboarding from "./views/OnBoarding";
+import Interests from "./views/Interests";
+
 function App() {
   const location = useLocation();
   const isLoginPage = location.pathname === "/login";
@@ -27,6 +29,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/user-profile" element={<UserProfile />} />
           <Route path="/create-event" element={<CreateEvent />} />
+          <Route path="/interests" element={<Interests />} />
         </Routes>
       </div>
     </Provider>

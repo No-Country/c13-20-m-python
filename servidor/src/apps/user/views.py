@@ -1,10 +1,11 @@
-from rest_framework import views,response,exceptions,permissions, status
+from rest_framework import views,response,permissions, status
 from .serializer import UserRegistrationSerializer, UserLoginSerializer, UserSerializer
 from .services import create_token
-from django.shortcuts import get_object_or_404
 from .models import User
 from . import authentication
+from drf_yasg.utils import swagger_auto_schema
 
+@swagger_auto_schema(request_body=UserRegistrationSerializer)
 class RegisterView(views.APIView):
 
     def post(self, request):
