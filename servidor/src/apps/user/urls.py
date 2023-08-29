@@ -10,4 +10,3 @@ urlpatterns = [
     path('me/', UserApi.as_view(), name="me"),
     path('logout/', LogoutView.as_view(), name="logout")
 ]
-
