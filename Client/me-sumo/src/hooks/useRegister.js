@@ -28,7 +28,7 @@ const useRegister = () => {
         const { user } = data;
         if (user) {
           setIsRegister(true);
-          navigate("/login");
+          navigate("/on-boarding");
         }
       })
       .catch((error) => {

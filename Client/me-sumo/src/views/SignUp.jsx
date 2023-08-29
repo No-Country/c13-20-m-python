@@ -36,7 +36,7 @@ export default function SignUpForm() {
             action="#"
             onSubmit={handleSubmit((data) => {
               handleRegister(data);
-            })}
+                          })}
           >
             <div>
               <Input
