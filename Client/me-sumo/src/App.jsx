@@ -2,8 +2,6 @@ import "./App.css";
 import { Provider } from "react-redux";
 import { store } from "../src/redux/store";
 import { Route, Routes } from "react-router-dom";
-import SignUpForm from "./components/SignUpForm";
-import Landing from "./views/Landing";
 import Interests from "./views/Interests";
 import {useLocation} from "react-router-dom"
 
