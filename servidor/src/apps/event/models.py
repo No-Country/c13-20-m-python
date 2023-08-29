@@ -4,8 +4,14 @@ from django.db import models
 
 # class EventManager()
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    #agregar otros campos
+
 class Event(models.Model):
     # eventHost = models.ForeignKey(Host, on_delete = models.CASCADE) # Puse host pero puede ser ORGANIZADOR o como se haya llamado 
+    Category = models.ManyToManyField(Category)
     name = models.CharField(max_length = 200)
     description = models.TextField() 
     capacity = models.PositiveIntegerField(default = 0)
@@ -18,3 +24,5 @@ class Event(models.Model):
     #  el upload to hay que setearlo a un path existente donde se van a guardar las imagenes
     location = models.CharField(max_length = 200 ) #location field
     #dsafds
+
+
