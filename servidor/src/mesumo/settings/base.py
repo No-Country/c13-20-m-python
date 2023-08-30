@@ -16,7 +16,6 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-
 ]
 
 
@@ -55,6 +54,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
