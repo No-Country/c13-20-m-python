@@ -15,3 +15,9 @@ class EventSerializers(serializers.ModelSerializer):
         validated_data['eventHost'] = self.context['request'].user
         event = Event.objects.create(**validated_data)
         return event
+
+class EventDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        exclude = ['created_at']
+        read_only_fields = ('id','eventHost')
