@@ -8,23 +8,23 @@ export default function Checks() {
             <div className="">
               <img
                 src={check_circle}
-                className="h-auto m-1"
+                className="h-auto m-1 pl-8 md:pl-12"
               />
-              <p className="text-left">Informacion <br/> Basica</p>
+              <p className="text-center">Informacion Basica </p>
             </div>
-            <div className="">. . . . . . .</div>
+            <div className=""> . . . . . . . . . . . . . </div>
             <div className="">
               <img
                 src={check_circle}
-                className="h-auto m-1"
+                className="h-auto m-1 pl-4"
               />
               <p className="text-left">Entradas <br /> </p>
             </div >
-            <div className=""><p>. . . . . . .</p></div>
+            <div className=""><p> . . . . . . . . . . . . . </p></div>
             <div className="">
               <img
                 src={check_circle}
-                className="h-auto  m-1"
+                className="h-auto  m-1 pl-4"
               />
               <p className="text-left">Publicar <br /></p>
             </div>
