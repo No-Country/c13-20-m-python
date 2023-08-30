@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form"
 import Input from "../components/Shared/Input";
-import InputTerms from "../components/Login-SignUp/InputTerms";
+import check_circle from "../assets/icons/check_circle.svg"
 import { Button } from "@material-tailwind/react";
 // import construction from "../assets/under-construction.png";
 
@@ -13,32 +13,46 @@ export default function CreateEvent() {
       } = useForm();
       const categorias = ["Fiesta", "Evento", "Religioso", "Musica", "Arte", "Tecnologia"];
       return (
-        <div className="items-center">
+        <div className="">
           <div>
-            <h1 className="text-2xl font-bold p-5 items-center justify-center">
-                  Informacion Basica
+            <h1 className="text-2xl font-bold items-center justify-center">
+                  Crear un nuevo Evento
             </h1>
           </div>
-          <div>
-          <svg
-          xmlns="../../../assets/icons/check_circle.svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className="h-5 w-5"
-        >
-          <title>Check</title>
-            </svg>hola
-          </div>
-          <div className="flex justify-center w-full h-screen ">
+
+          <div className="flex justify-center w-full h-auto ">
             <div className="w-full max-w-screen-md xl:max-w-screen-lg p-4 h-screen lg:py-0">
+          <div className="flex justify-center items-center flex-row p-4">
+            <div className="">
+              <img
+                src={check_circle}
+                className="h-auto m-1"
+              />
+              <p className="text-left">Informacion <br/> Basica</p>
+            </div>
+            <div className="">. . . . . . .</div>
+            <div className="">
+              <img
+                src={check_circle}
+                className="h-auto m-1"
+              />
+              <p className="text-left">Entradas <br /> </p>
+            </div >
+            <div className=""><p>. . . . . . .</p></div>
+            <div className="">
+              <img
+                src={check_circle}
+                className="h-auto  m-1"
+              />
+              <p className="text-left">Publicar <br /></p>
+            </div>
+          </div>
               <form
                 className="space-y-1 w-full"
                 action="#"
                 onSubmit={handleSubmit(() => {
                   //handleRegister(data);
-                              })}
+                })}
               >
                 <div>
                   <Input
@@ -60,8 +74,8 @@ export default function CreateEvent() {
 //                    error={errors.email?.message}
                   />
                 </div>
-    
                 <div>
+                  <label           className="flex mb-2 ml-1 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
                 <select
           required={true}
           { ...register('categoria') }
@@ -73,26 +87,40 @@ export default function CreateEvent() {
             ))}
           </select>
                 </div>
-    
-                <div>
+<div className="flex flex-col md:flex-row w-full">
+  <div className="md:w-1/2 md:pr-2">
+    <Input
+      labelText="Fecha de Inicio"
+      type="datetime-local"
+      name="fecha-inicio"
+      register={register}
+      // error={errors.userName?.message}
+    />
+  </div>
+  <div className="md:w-1/2 md:pl-2">
+    <Input
+      labelText="Fecha de Fin"
+      type="datetime-local"
+      name="fecha-fin"
+      register={register}
+      // error={errors.userName?.message}
+    />
+  </div>
+</div>
+<div>
                   <Input
-                    labelText="Fecha de Inicio"
-                    type="datetime-local"
-                    name="fecha-inicio"
+                    labelText="Imagen de Portada"
+                    type="file"
+                    placeholder="Seleccione una imagen de Portada"
+                    name="name"
                     register={register}
-                    // error={errors.userName?.message}
-                  />
-                                    <Input
-                    labelText="Fecha de Fin"
-                    type="datetime-local"
-                    name="fecha-inicio"
-                    register={register}
-                    // error={errors.userName?.message}
+//                    error={errors.email?.message}
                   />
                 </div>
-                <InputTerms />
-                <Button title="Cancelar">Cancelar</Button>
-                <Button title="Registrarme">Crear Evento</Button>
+                <div className="bg-gray-50 absolute bottom-0 left-0 right-0 flex justify-center p-4">
+  <Button variant="outlined" className="m-2" title="Cancelar">Cancelar</Button>
+  <Button title="Crear Evento" className="m-2">Continuar → </Button>
+</div>
               </form>
             </div>
           </div>
