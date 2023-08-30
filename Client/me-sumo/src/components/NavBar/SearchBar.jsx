@@ -3,33 +3,38 @@ import "material-symbols";
 
 //eslint-disable-next-line
 export default function SearchBar({ onSearch }) {
-  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
+
+  const cities = ["Tandil", "Olavarria", "Rosario", "Buenos Aires", "Tucuman"];
 
   const handleChange = (event) => {
-    setName(event.target.value);
+    setLocation(event.target.value);
   };
 
   const handleSearch = (event) => {
     event.preventDefault();
-    onSearch(name);
-    setName("");
+    onSearch(location);
+    setLocation("");
   };
 
   return (
     <div className="flex">
-      <div>
-        <select className="select select-bordered join-item text-center h-10 shadow">
-          <option>Eventos</option>
-          <option>Organizadores</option>
-        </select>
-      </div>
       <div className="flex border-solid border-gray-600">
         <input
           type="search"
           onChange={handleChange}
-          placeholder="Ingresa Nombre"
-          className="w-96 h-10 p-2 border-solid border-gray-600 shadow"
+          value={location}
+          list={location.length >= 3 ? "cities" : null}
+          placeholder="Busca los eventos mas cercanos"
+          className="w-96 h-10 p-2 border-solid border-gray-600 shadow appearance-none"
         />
+        <div>
+          <datalist id="cities">
+            {cities.map((city, index) => (
+              <option key={index} value={city} />
+            ))}
+          </datalist>
+        </div>
         <button
           onClick={handleSearch}
           className="material-symbols-outlined h-10 w-auto ml-1 text-3xl "

@@ -1,9 +1,12 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { CLIENT_ID } from "../../services/Google";
+import useLogin from "../../hooks/useLogin";
 
 export default function GoogleLoginButton() {
+  const { handleGoogleLogin } = useLogin();
+
   const onSuccess = (response) => {
-    console.log(response);
+    handleGoogleLogin(response);
   };
 
   const onFailure = (response) => {
@@ -19,6 +22,7 @@ export default function GoogleLoginButton() {
       cookiePolicy={"single_host_origin"}
       isSignedIn={true}
       auto_select={true}
+      clasName="w-"
     />
   );
 }
