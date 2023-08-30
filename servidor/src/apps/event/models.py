@@ -6,11 +6,13 @@ from apps.user.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-
     #agregar otros campos
+    
+    def __str__(self):
+        return self.name
 
 class Event(models.Model):
-    Category = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category)
     eventHost = models.ForeignKey(User, on_delete = models.CASCADE)
     name = models.CharField(max_length = 200)
     description = models.TextField() 
@@ -24,4 +26,5 @@ class Event(models.Model):
     #  el upload to hay que setearlo a un path existente donde se van a guardar las imagenes
     location = models.CharField(max_length = 200 ) #location field
 
-
+    def __str__(self):
+        return self.name

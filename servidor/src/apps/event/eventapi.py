@@ -10,7 +10,7 @@ class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializers
 
     authentication_classes = (authentication.CustomUserAuthentication, )
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = (permissions.AllowAny,)
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
