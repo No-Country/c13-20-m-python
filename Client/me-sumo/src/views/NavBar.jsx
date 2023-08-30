@@ -1,10 +1,10 @@
 import SearchBar from "../components/NavBar/SearchBar";
 import logo from "../assets/nuestro-logo.png";
-import useOrganizator from "../hooks/useOrganizator";
+import useSearch from "../hooks/useSearch";
 import Buttons from "../components/NavBar/Buttons";
 
 export default function NavBar() {
-  const { onSearch } = useOrganizator();
+  const { onSearch } = useSearch();
 
   return (
     <div className="flex justify-between">
