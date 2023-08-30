@@ -22,7 +22,7 @@ export default function GoogleLoginButton() {
       cookiePolicy={"single_host_origin"}
       isSignedIn={true}
       auto_select={true}
-      clasName="w-"
+      clasName="h-"
     />
   );
 }
