@@ -17,20 +17,13 @@ ALLOWED_HOSTS = []
 
 
 #sqlite3 local
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else:
-    #postgres produccion
-    database_url = parser.get('default', 'database_url') 
-    DATABASES = {
-        'default': dj_database_url.parse(database_url)
-    }
 
+
+    #postgres produccion
+database_url = parser.get('default', 'database_url') 
+DATABASES = {
+    'default': dj_database_url.parse(database_url)
+}
 
 
 
