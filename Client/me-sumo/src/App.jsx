@@ -3,17 +3,19 @@ import { Provider } from "react-redux";
 import { store } from "../src/redux/store";
 import { Route, Routes } from "react-router-dom";
 import LoginForm from "./views/LoginForm";
-import SignUp from "./views/SignUpForm";
+import SignUp from "./views/SignUp";
 import Landing from "./views/Landing";
+import Event from "./views/Event";
 
 function App() {
   return (
     <Provider store={store}>
-      <div className="w-full">
+      <div className='w-full'>
         <Routes>
-          <Route path="/" element={<LoginForm />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/home" element={<Landing />} />
+          <Route path='/' element={<LoginForm />} />
+          <Route path='/sign-up' element={<SignUp />} />
+          <Route path='/home' element={<Landing />} />
+          <Route path='/event' element={<Event />} />
         </Routes>
       </div>
     </Provider>
