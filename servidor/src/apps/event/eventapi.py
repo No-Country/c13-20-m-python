@@ -6,10 +6,7 @@ from apps.user import authentication
 class EventViewSet(viewsets.ModelViewSet):
     
     queryset = Event.objects.all()
-    permission_classes = [permissions.AllowAny]
     serializer_class = EventSerializers
 
     authentication_classes = (authentication.CustomUserAuthentication, )
     permission_classes = (permissions.IsAuthenticated, )
-
-
