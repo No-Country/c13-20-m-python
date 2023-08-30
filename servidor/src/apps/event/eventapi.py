@@ -12,10 +12,6 @@ class EventViewSet(viewsets.ModelViewSet):
     authentication_classes = (authentication.CustomUserAuthentication, )
     permission_classes = (permissions.IsAuthenticated, )
 
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = self.get_serializer(queryset, many=True)
-        return response.Response(serializer.data)
 
 
 class EventDetailView(views.APIView):
