@@ -40,6 +40,10 @@ const useLogin = () => {
     }
   };
 
+  const handleGoogleLogin = (response) => {
+    if (response.credential) dispatch(login());
+  };
+
   const handleLogout = () => {
     dispatch(logout());
     alert("Te deslogueaste correctamente");
@@ -48,6 +52,7 @@ const useLogin = () => {
   return {
     handleLogin,
     handleLogout,
+    handleGoogleLogin,
   };
 };
 
