@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useLogin from "../hooks/useLogin";
 import loginImg from "../assets/login-image.png";
 import Input from "../components/Shared/Input";
+import ForgotPassModal from "../components/Login-SignUp/ForgotPassModal";
 import RememberUser from "../components/Login-SignUp/RememberUser";
 import LoginButton from "../components/Login-SignUp/LoginButton";
 import RegisterLink from "../components/Login-SignUp/RegisterLink";
@@ -16,15 +17,16 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm();
 
-  const { handleLogin } = useLogin();
+  const { handleLogin, isModalOpen, handleCloseModal, handleOpenModal } =
+    useLogin();
 
   return (
     <div className="flex -mt-10">
-      <section className="flex bg-gray-50 dark:bg-gray-900 -mt w-screen rounded-xl">
+      <section className="flex bg-gray-50 dark:bg-gray-900 -mt w-full rounded-xl">
         <img
           src={loginImg}
           alt="img-login"
-          className="h-fit mt-24 ml-48 mr-0 rounded-2xl hidden md:block"
+          className="h-fit mt-20 ml-48 mr-0 rounded-2xl hidden md:block"
         />
         <div className="flex flex-col items-center justify-center ml-0 mr-48 py-8 w-full md:h-screen lg:py-0">
           <a
@@ -67,16 +69,19 @@ export default function LoginForm() {
                 </div>
                 <div className="flex items-center justify-between">
                   <RememberUser />
-                  <ForgotPassLink />
+                  <ForgotPassLink handleOpenModal={handleOpenModal} />
                 </div>
-                <LoginButton text="Ingresar" />
-                <GoogleLoginButton />
+                <div className="flex items-center justify-between mb-12">
+                  <LoginButton text="Ingresar" />
+                  <GoogleLoginButton />
+                </div>
                 <RegisterLink />
               </form>
             </div>
           </div>
         </div>
       </section>
+      {isModalOpen && <ForgotPassModal onClose={handleCloseModal} />}
     </div>
   );
 }

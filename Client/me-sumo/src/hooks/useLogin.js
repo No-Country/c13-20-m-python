@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL_LOGIN } from "../config/api";
@@ -7,6 +7,7 @@ import { login, logout, isLogged } from "../redux/sliceLogin";
 
 const useLogin = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isLogin = useSelector(isLogged);
   const dispatch = useDispatch();
@@ -49,10 +50,20 @@ const useLogin = () => {
     alert("Te deslogueaste correctamente");
   };
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return {
     handleLogin,
     handleLogout,
     handleGoogleLogin,
+    handleOpenModal,
+    handleCloseModal,
+    isModalOpen,
   };
 };
 

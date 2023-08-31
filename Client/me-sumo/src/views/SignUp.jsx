@@ -27,7 +27,7 @@ export default function SignUpForm() {
           <img
             src={signUpImg}
             alt="img-login"
-            className="h-4/6 mt-2 ml-48 mr-0 rounded-2xl hidden md:block"
+            className="h-full ml-48 mr-0 rounded-2xl hidden md:block"
           />
         </div>
         <div className="w-3/5 max-w-screen-sm p-4 md:h-screen lg:py-0">
@@ -36,9 +36,9 @@ export default function SignUpForm() {
             action="#"
             onSubmit={handleSubmit((data) => {
               handleRegister(data);
-                          })}
+            })}
           >
-            <div>
+            <div className="mb-0">
               <Input
                 labelText="Nombre"
                 type="text"
@@ -104,8 +104,10 @@ export default function SignUpForm() {
               />
             </div>
             <InputTerms />
-            <LoginButton text="Registrarme" />
-            <GoogleLoginButton />
+            <div className="flex items-center justify-between mt-12 mb-12">
+              <LoginButton text="Registrarme" />
+              <GoogleLoginButton />
+            </div>
           </form>
         </div>
       </div>
