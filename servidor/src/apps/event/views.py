@@ -11,17 +11,7 @@ class EventView(views.APIView):
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
     filterset_fields  = ('location','date','eventHost__username')
 
-    def post(self,request):
-        serializer = EventSerializer(data=request.data, context={'request': request})
-        if serializer.is_valid():            
-            event = serializer.save()
-            return response.Response({
-                'message': 'Se creo el evento correctamente',
-                'user': EventSerializer(event).data
-            }, status=status.HTTP_201_CREATED)
-        else:
-            return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+    # METODO GET / listamos eventos
     def get(self, request):
         event = Event.objects.all()
         
@@ -37,8 +27,22 @@ class EventView(views.APIView):
         if eventHost_username:
             event = event.filter(eventHost__username=eventHost_username)
         
-        serializer = EventSerializer(event, many=True)
-        return response.Response(serializer.data)    
+        event_serializer = EventSerializer(event, many=True)
+        return response.Response(event_serializer.data)   
+
+
+    def post(self,request):
+        serializer = EventSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():            
+            event = serializer.save()
+            return response.Response({
+                'message': 'Se creo el evento correctamente',
+                'user': EventSerializer(event).data
+            }, status=status.HTTP_201_CREATED)
+        else:
+            return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+ 
 
 class EventDetailView(views.APIView):    
     def get(self, request, pk):        
