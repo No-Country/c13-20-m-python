@@ -9,7 +9,7 @@ class EventSerializers(serializers.ModelSerializer):
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')
         read_only_fields = ('created_at','eventHost',) 
 
-    def create(self, validated_data):
+    def create(self, validated_data):        
         validated_data['eventHost'] = self.context['request'].user
 
         # Obtén las categorías a partir de los IDs proporcionados en el request
@@ -19,7 +19,8 @@ class EventSerializers(serializers.ModelSerializer):
 
         # Asigna las categorías utilizando el método 'set()'
         event.categories.set(category)
-        return event
+        return event     
+
 
 class EventDetailSerializer(serializers.ModelSerializer):
     class Meta:
