@@ -5,7 +5,13 @@ import "material-symbols";
 export default function SearchBar({ onSearch }) {
   const [location, setLocation] = useState("");
 
-  const cities = ["Tandil", "Olavarria", "Rosario", "Buenos Aires", "Tucuman"];
+  const cities = [
+    "Tandil, Buenos Aires",
+    "Olavarria",
+    "Rosario",
+    "Buenos Aires",
+    "Tucuman",
+  ];
 
   const handleChange = (event) => {
     setLocation(event.target.value);
@@ -28,13 +34,13 @@ export default function SearchBar({ onSearch }) {
           placeholder="Busca los eventos mas cercanos"
           className="w-96 h-10 p-2 border-solid border-gray-600 shadow appearance-none"
         />
-        <div>
-          <datalist id="cities">
-            {cities.map((city, index) => (
-              <option key={index} value={city} />
-            ))}
-          </datalist>
-        </div>
+
+        <datalist id="cities" className=" appearance-none bg-deep-orange-800">
+          {cities.map((city, index) => (
+            <option key={index} value={city} className="bg-deep-orange-700" />
+          ))}
+        </datalist>
+
         <button
           onClick={handleSearch}
           className="material-symbols-outlined h-10 w-auto ml-1 text-3xl "
