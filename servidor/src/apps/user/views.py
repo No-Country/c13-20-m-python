@@ -1,33 +1,43 @@
-from rest_framework import views,response,exceptions,permissions
-from .serializer import UserSerializer
-from .services import create_user, user_email_selector, create_token
+from rest_framework import views,response,permissions, status
+from .serializer import UserRegistrationSerializer, UserLoginSerializer, UserSerializer
+from .services import create_token
+from .models import User
 from . import authentication
+from drf_yasg.utils import swagger_auto_schema
 
-class RegisterApi(views.APIView):
+@swagger_auto_schema(request_body=UserRegistrationSerializer)
+class RegisterView(views.APIView):
 
     def post(self, request):
-        serializer = UserSerializer(data=request.data)
+        serializer = UserRegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            return response.Response({
+                'message': 'Registration successful',
+                'user': UserRegistrationSerializer(user).data  # Devuelve los datos del usuario recién creado
+            }, status=status.HTTP_201_CREATED)
+
+        else:
+            return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LoginView(views.APIView):
+    
+    def post(self, request):
+        serializer = UserLoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        
+        
+        email = serializer.validated_data["email"]
+        password = serializer.validated_data["password"]
 
-        data = serializer.validated_data
-
-        serializer.instance = create_user(user_dc=data)
-
-        return response.Response(data={"message": "user registered", "data": serializer.data})
-    
-class LoginApi(views.APIView):
-    
-    def post(self, request):
-        email = request.data["email"]
-        password = request.data["password"]
-
-        user = user_email_selector(email)
+        user = User.objects.filter(email=email).first()
 
         if user is None:
-            raise exceptions.AuthenticationFailed("Invalid Credentials")
-        
+            return response.Response({'error': 'Invalid Credentials'}, status=status.HTTP_404_NOT_FOUND)
+
         if not user.check_password(raw_password=password):
-            raise exceptions.AuthenticationFailed("Invalid Credentials")
+            return response.Response({'error': 'Invalid Credentials'}, status=status.HTTP_404_NOT_FOUND)
 
         token = create_token(user_id=user.id)
 
@@ -51,7 +61,7 @@ class UserApi(views.APIView):
         return response.Response(serializer.data)
 
 
-class LogoutApi(views.APIView):
+class LogoutView(views.APIView):
     authentication_classes = (authentication.CustomUserAuthentication, )
     permission_classes = (permissions.IsAuthenticated, )
 

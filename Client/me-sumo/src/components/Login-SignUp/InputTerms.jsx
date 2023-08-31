@@ -12,7 +12,7 @@ export default function InputTerms() {
     },
   });
   return (
-    <div className="flex items-start">
+    <div className="flex items-start mb-2">
       <div className="flex items-center h-5">
         <input
           id="terms"
@@ -20,7 +20,7 @@ export default function InputTerms() {
           type="checkbox"
           {...register("checkbox")}
           className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-          required="true"
+          required={true}
         ></input>
       </div>
       <div className="ml-3 text-sm">
