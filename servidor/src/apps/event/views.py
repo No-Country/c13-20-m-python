@@ -1,5 +1,6 @@
 from .models import Event
-from rest_framework import permissions,response, views, status, filters, generics
+from rest_framework import permissions, views, status, filters, generics
+from rest_framework.response import Response
 from .serializer import EventSerializer, EventDetailSerializer
 from apps.user import authentication
 from django_filters.rest_framework import DjangoFilterBackend
@@ -28,28 +29,58 @@ class EventView(views.APIView):
             event = event.filter(eventHost__username=eventHost_username)
         
         event_serializer = EventSerializer(event, many=True)
-        return response.Response(event_serializer.data)   
+        return Response(event_serializer.data)   
 
-
+    # METODO POST / Creamos evento
     def post(self,request):
         serializer = EventSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():            
             event = serializer.save()
-            return response.Response({
-                'message': 'Se creo el evento correctamente',
+            return Response({
+                'message': 'Se creo el evento correctamente!',
                 'user': EventSerializer(event).data
             }, status=status.HTTP_201_CREATED)
         else:
-            return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
- 
 
-class EventDetailView(views.APIView):    
-    def get(self, request, pk):        
+class EventDetailView(views.APIView):   
+     
+    #  METODO GET / Encontramos evento por id
+    def get(self, request, pk): 
+        
         try:
-            event = Event.objects.get(pk=pk)
-        except Event.DoesNotExist:
-            return response.Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+            pk = int(pk)
+            event = Event.objects.get(id=pk)
 
-        serializer = EventDetailSerializer(event)
-        return response.Response(serializer.data)   
+        except Event.DoesNotExist:
+            return Response({"error": "Evento no encontrado"}, status=status.HTTP_404_NOT_FOUND)
+            
+        except ValueError:
+            return Response({'error': 'ID de usuario no válido'}, status=status.HTTP_400_BAD_REQUEST)
+
+        event_serializer = EventDetailSerializer(event)
+        return Response(event_serializer.data)   
+        
+    # METODO PUT / Actualizamos evento
+    def put(self, request, pk):
+        
+        pk = int(pk)
+        event = Event.objects.get(id = pk) 
+
+        # Deserializamos y convertimos en objeto event 
+        event_deserializer = EventDetailSerializer(event, data = request.data)
+    
+        if event_deserializer.is_valid():
+            event_deserializer.save()
+            return Response({
+            'message': 'Evento modificado correctamente!',
+            'event': EventDetailSerializer(event).data
+        }, status=status.HTTP_200_OK)   
+                
+
+    # METODO DELETE / Eliminamos evento
+    def delete(self, request, pk):
+        event = Event.objects.get(id = pk)
+        event.delete()
+        return Response({'message: Evento eliminado correctamente!'}, status= status.HTTP_200_OK)
