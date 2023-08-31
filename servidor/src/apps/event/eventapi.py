@@ -20,3 +20,27 @@ class EventDetailView(views.APIView):
 
         serializer = EventDetailSerializer(event)
         return response.Response(serializer.data)
+
+    def put(self, request, pk):
+        try:
+            event = Event.objects.get(pk=pk)
+        except Event.DoesNotExist:
+            return response.Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = EventDetailSerializer(event, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return response.Response({"detail": "Event updated successfully"})
+        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, pk):
+        try:
+            event = Event.objects.get(pk=pk)
+        except Event.DoesNotExist:
+            return response.Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = EventDetailSerializer(event, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return response.Response({"detail": "Event updated successfully"})
+        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
