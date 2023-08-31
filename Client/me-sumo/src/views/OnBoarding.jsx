@@ -10,6 +10,11 @@ export default function Onboarding() {
   //   // formState: { errors },
   // } = useForm();
 
+  const handleParticipateButtonClick = () => {
+    navigate('/interests');
+  };
+
+
   return (
 <div className="p-0 sm:p-2 w-full">
   <section className="p-0 sm:p-2 bg-gray-50 dark:bg-gray-900 h-screen rounded">
@@ -40,7 +45,10 @@ export default function Onboarding() {
         <div className="flex justify-center p-2">
         <p className="text-sm lg:text-base">Acá vas a poder conocer, y elegir los mejores eventos, de todo tipo, en tu región, o donde quieras ir!</p>
         </div>
-        <button className="text-xl font-bold leading-tight tracking-tight text-gray-900 lg:text-2xl dark:text-white">
+        <button
+          className="text-xl font-bold leading-tight tracking-tight text-gray-900 lg:text-2xl dark:text-white"
+          onClick={handleParticipateButtonClick}
+        >
           Quiero Participar de un evento
         </button>
       </div>

@@ -10,9 +10,6 @@ const InterestSelector = ({ interests, selectedInterests, toggleInterest, showAl
   <div className='w-1440 h-1024 mx-auto p-4'>
   <div className="flex justify-between items-center"></div>
     <div className='mt-2 mb-4 text-left'>
-     <Typography variant="h1" font="poppins" weight="bold">
-        MeSumo
-        </Typography>
         <Typography variant="h4" font="poppins" weight="semibold" className="mt-4 mb-2 text=sm">
         Paso 2: Intereses
       </Typography>
