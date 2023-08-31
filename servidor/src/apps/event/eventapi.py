@@ -11,12 +11,17 @@ class EventViewSet(viewsets.ModelViewSet):
     authentication_classes = (authentication.CustomUserAuthentication, )
     permission_classes = (permissions.IsAuthenticated, )
 
+
+#viewset tiene preferencia antes que apiview en las rutas
+#esta clase esta de más
 class EventDetailView(views.APIView):
     def get(self, request, pk):
         try:
             event = Event.objects.get(pk=pk)
         except Event.DoesNotExist:
-            return response.Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+            return response.Response({"detail": "Event not fouasdfsadfnd"}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = EventDetailSerializer(event)
+        print('asdfsadf')
         return response.Response(serializer.data)
+
