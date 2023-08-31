@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useInterestSelector from '../hooks/useInterestSelector';
 import InterestSelector from '../components/Interests/InterestSelector';
+
 import { MdOutlineSportsBasketball, MdRestaurant, MdSportsEsports } from 'react-icons/md';
 import { AiFillSignal } from "react-icons/ai";
 import { PiMusicNotesFill } from "react-icons/pi";
@@ -43,9 +44,11 @@ const categoryIcons = {
     Otros: BiDuplicate,
   };
 
-const InterestsPage = () => {
-  const { selectedInterests, toggleInterest, showAlert, handleNextButtonClick } = useInterestSelector(interests);
+  
 
+  const InterestsPage = () => {
+    const { selectedInterests, toggleInterest, showAlert, handleNextButtonClick, handlePrevButtonClick} = useInterestSelector(interests);
+  
   return (
         <div>
       {/* Sección de Alerta */}
@@ -70,7 +73,7 @@ const InterestsPage = () => {
       </div>
       
       <div className="mt-4 flex justify-end space-x-2">
-        <Button color="black" buttonType="filled" size="small" rounded block={false} ripple="light" className="hover:bg-gray-900 active:bg-gray-900">
+        <Button color="black" buttonType="filled" size="small" rounded block={false} ripple="light" onClick={handlePrevButtonClick} className="hover:bg-gray-900 active:bg-gray-900">
           Anterior
         </Button>
         <Button color="black" buttonType="filled" size="small" rounded block={false} ripple="light" onClick={handleNextButtonClick} className="hover:bg-gray-900 active:bg-gray-900">

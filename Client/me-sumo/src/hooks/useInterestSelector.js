@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const useInterestSelector = (interests) => { 
+  const navigate = useNavigate();
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [currentInterestIndex, setCurrentInterestIndex] = useState(0);
   const [showAlert, setShowAlert] = useState(false); // Estado para mostrar la alerta
@@ -26,13 +28,16 @@ const useInterestSelector = (interests) => {
     }
   };
 
+  const handlePrevButtonClick = () => {
+    navigate("/on-boarding");
+  };
+  
   const handleNextButtonClick = () => {
     if (selectedInterests.length === 0) {
       // Mostrar la alerta si no hay intereses seleccionados
       setShowAlert(true);
     } else {
-      // Navegar al siguiente paso
-      // Agrega aquí la lógica para navegar al siguiente paso
+      navigate("/successful");
     }
   };
 
@@ -44,8 +49,10 @@ const useInterestSelector = (interests) => {
     goToNextInterest,
     showAlert,
     handleNextButtonClick,
+    handlePrevButtonClick,
   };
 };
 
 export default useInterestSelector;
+
 

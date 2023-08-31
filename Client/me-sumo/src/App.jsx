@@ -12,6 +12,7 @@ import UserProfile from "./views/UserProfile";
 import CreateEvent from "./views/CreateEvent";
 import Onboarding from "./views/OnBoarding";
 import Interests from "./views/Interests";
+import Successful from "./components/Interests/Successful";
 
 function App() {
   const location = useLocation();
@@ -30,6 +31,8 @@ function App() {
           <Route path="/user-profile" element={<UserProfile />} />
           <Route path="/create-event" element={<CreateEvent />} />
           <Route path="/interests" element={<Interests />} />
+          <Route path="/successful" element={<Successful />} />
+
         </Routes>
       </div>
     </Provider>
