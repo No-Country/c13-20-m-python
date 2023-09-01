@@ -1,11 +1,6 @@
 from rest_framework import routers
-<<<<<<< HEAD
-from .views import EventViewSet, EventDetailView
-from django.urls import path, include
-=======
 from .views import EventView, EventDetailView, EventCategoryView
 from django.urls import path
->>>>>>> cd8e9ba34c7c9a52e7a64752c9acb54348b3e30d
 
 router = routers.DefaultRouter()
 
