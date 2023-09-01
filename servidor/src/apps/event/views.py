@@ -38,7 +38,7 @@ class EventView(views.APIView):
         if serializer.is_valid():            
             event = serializer.save()
             return Response({
-                'message': 'Se creo el evento correctamente!',
+                'message': 'Event was created successfully!',
                 'user': EventSerializer(event).data
             }, status=status.HTTP_201_CREATED)
         else:
@@ -58,7 +58,7 @@ class EventDetailView(views.APIView):
             return Response({"error": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
             
         except ValueError:
-            return Response({'error': 'ID de usuario no válido'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'ID user not valid'}, status=status.HTTP_400_BAD_REQUEST)
 
         event_serializer = EventDetailSerializer(event)
         return Response(event_serializer.data)   
