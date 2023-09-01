@@ -21,7 +21,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'apps.user',
-    'apps.event'
+    'apps.event',
 ]
 
 THIRD_APPS = [
