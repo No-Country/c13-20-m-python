@@ -49,4 +49,3 @@ class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["email", "username", "image", "first_name", "last_name", "username", "age", "password", "phone_number"]
-        
