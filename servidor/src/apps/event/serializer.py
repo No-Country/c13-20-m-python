@@ -10,22 +10,28 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class EventSerializer(serializers.ModelSerializer):
     
-    categories = CategorySerializer(many=True)
+    #categories = CategorySerializer(many=True)
     
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')
         read_only_fields = ('created_at','eventHost',) 
 
-    def create(self, validated_data):        
+    def create(self, validated_data):
         validated_data['eventHost'] = self.context['request'].user
+<<<<<<< HEAD
         # Toma categorias a partir de IDs que vienen del request
         categories = validated_data.pop('categories', [])  
         category_ids = [category['id'] for category in categories]      
+=======
+        # Toma las categorías a partir de los IDs que vienen del request
+        category_ids = validated_data.pop('categories', [])  # Obtén la lista de IDs directamente
+
+>>>>>>> main
         event = Event.objects.create(**validated_data)
         event.categories.set(category_ids)
         event.save()
-        return event        
+        return event
 
 
 # Evento detalle sin categorias con id y nombre

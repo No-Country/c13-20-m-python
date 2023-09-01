@@ -1,5 +1,5 @@
 from rest_framework import views,response,permissions, status
-from .serializer import UserRegistrationSerializer, UserLoginSerializer, UserSerializer
+from .serializer import UserRegistrationSerializer, UserLoginSerializer, UserSerializer, UserDetailSerializer
 from .services import create_token
 from .models import User
 from . import authentication
@@ -72,3 +72,67 @@ class LogoutView(views.APIView):
         resp.data = {"message": "successful logout"}
 
         return resp
+
+
+
+class UserDetailView(views.APIView):
+    authentication_classes = (authentication.CustomUserAuthentication, )
+    permission_classes = (permissions.IsAuthenticated, )
+
+    def get(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return response.Response({"detail": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Verifica si el usuario que intenta obtener es el mismo que el usuario autenticado
+        if user != request.user:
+            return response.Response({"detail": "You don't have permission to access this user"}, status=status.HTTP_403_FORBIDDEN)
+
+        serializer = UserDetailSerializer(user)
+        return response.Response(serializer.data)
+
+    def put(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return response.Response({"detail": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Verifica si el usuario que intenta actualizar es el mismo que el usuario autenticado
+        if user != request.user:
+            return response.Response({"detail": "You don't have permission to update this user"}, status=status.HTTP_403_FORBIDDEN)
+
+        serializer = UserDetailSerializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return response.Response({"detail": "User updated successfully"})
+        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return response.Response({"detail": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Verifica si el usuario que intenta actualizar es el mismo que el usuario autenticado
+        if user != request.user:
+            return response.Response({"detail": "You don't have permission to update this user"}, status=status.HTTP_403_FORBIDDEN)
+
+        serializer = UserDetailSerializer(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return response.Response({"detail": "User updated successfully"})
+        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return response.Response({"detail": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Verifica si el usuario que intenta eliminar es el mismo que el usuario autenticado
+        if user != request.user:
+            return response.Response({"detail": "You don't have permission to delete this user"}, status=status.HTTP_403_FORBIDDEN)
+
+        user.delete()
+        return response.Response({"detail": "User deleted successfully"})

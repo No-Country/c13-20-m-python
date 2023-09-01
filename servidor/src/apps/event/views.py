@@ -38,7 +38,7 @@ class EventView(views.APIView):
         if serializer.is_valid():            
             event = serializer.save()
             return Response({
-                'message': 'Se creo el evento correctamente!',
+                'message': 'Event was created successfully!',
                 'user': EventSerializer(event).data
             }, status=status.HTTP_201_CREATED)
         else:
@@ -55,10 +55,10 @@ class EventDetailView(views.APIView):
             event = Event.objects.get(id=pk)
 
         except Event.DoesNotExist:
-            return Response({"error": "Evento no encontrado"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"error": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
             
         except ValueError:
-            return Response({'error': 'ID de usuario no válido'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'ID user not valid'}, status=status.HTTP_400_BAD_REQUEST)
 
         event_serializer = EventDetailSerializer(event)
         return Response(event_serializer.data)   
@@ -75,16 +75,27 @@ class EventDetailView(views.APIView):
         if event_deserializer.is_valid():
             event_deserializer.save()
             return Response({
-            'message': 'Evento modificado correctamente!',
+            'message': 'Event updated successfully!',
             'event': EventDetailSerializer(event).data
         }, status=status.HTTP_200_OK)   
                 
+    def patch(self, request, pk):
+        try:
+            event = Event.objects.get(pk=pk)
+        except Event.DoesNotExist:
+            return Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = EventDetailSerializer(event, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"detail": "Event updated successfully"})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # METODO DELETE / Eliminamos evento
     def delete(self, request, pk):
         event = Event.objects.get(id = pk)
         event.delete()
-        return Response({'message: Evento eliminado correctamente!'}, status= status.HTTP_200_OK)
+        return Response({'message: Event successfully removed!'}, status= status.HTTP_200_OK)
     
     
 # APIVIEW POR CATEGORIAS FILTRO

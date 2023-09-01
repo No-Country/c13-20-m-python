@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 //eslint-disable-next-line
 const useInterestSelector = (interests) => {
   const navigate = useNavigate();
+
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [currentInterestIndex, setCurrentInterestIndex] = useState(0);
   const [showAlert, setShowAlert] = useState(false); // Estado para mostrar la alerta
