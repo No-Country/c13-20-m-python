@@ -123,3 +123,16 @@ class UserDetailView(views.APIView):
             serializer.save()
             return response.Response({"detail": "User updated successfully"})
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return response.Response({"detail": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Verifica si el usuario que intenta eliminar es el mismo que el usuario autenticado
+        if user != request.user:
+            return response.Response({"detail": "You don't have permission to delete this user"}, status=status.HTTP_403_FORBIDDEN)
+
+        user.delete()
+        return response.Response({"detail": "User deleted successfully"})

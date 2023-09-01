@@ -44,3 +44,12 @@ class EventDetailView(views.APIView):
             serializer.save()
             return response.Response({"detail": "Event updated successfully"})
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        try:
+            event = Event.objects.get(pk=pk)
+        except Event.DoesNotExist:
+            return response.Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        event.delete()
+        return response.Response({"detail": "Event deleted successfully"})
