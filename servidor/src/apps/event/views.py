@@ -97,12 +97,11 @@ class EventCategoryView(views.APIView):
         #Cambiar a lower para mas disponibilidad en la ruta y que no salte errores
         category_name_lower = category_name.lower()
         
-        try:
+        #try:
            # pk = int(pk)
-            category = get_object_or_404(Category, name=category_name)
+           #este get object devuelve por si solo un response not found
+        category = get_object_or_404(Category, name=category_name)
 
-        except ValueError:
-            return Response({'error': 'ID de evento no válido'}, status=status.HTTP_400_BAD_REQUEST)
         
         events = Event.objects.filter(categories__name=category)
         events_serializer = EventSerializer(events, many=True)
