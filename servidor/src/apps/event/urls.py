@@ -1,12 +1,11 @@
 from rest_framework import routers
-from .eventapi import EventViewSet, EventDetailView
-from django.urls import path, include
+from .views import EventView, EventDetailView, EventCategoryView
+from django.urls import path
 
 router = routers.DefaultRouter()
 
-router.register('events', EventViewSet, 'events')
-
 urlpatterns = [
-    path('', include(router.urls)),
-    path('events/<int:pk>/', EventDetailView.as_view(), name="event_detail")
+    path('events/', EventView.as_view(), name='events' ),
+    path('events/<pk>/', EventDetailView.as_view(), name="event_detail"),
+    path('events/category/<str:category_name>', EventCategoryView.as_view(), name='event_category')
 ]
