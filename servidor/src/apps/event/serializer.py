@@ -1,7 +1,17 @@
 from rest_framework import serializers
-from .models import Event
+from .models import Event, Category
+
+# Categoria Seriliazer
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name']
+
 
 class EventSerializer(serializers.ModelSerializer):
+    
+    categories = CategorySerializer(many=True)
+    
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')
@@ -16,7 +26,10 @@ class EventSerializer(serializers.ModelSerializer):
         event.save()
         return event        
 
+
+# Evento detalle sin categorias con id y nombre
 class EventDetailSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Event
         exclude = ['created_at']

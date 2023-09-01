@@ -1,9 +1,10 @@
-from .models import Event
+from .models import Event, Category
 from rest_framework import permissions, views, status, filters, generics
 from rest_framework.response import Response
 from .serializer import EventSerializer, EventDetailSerializer
 from apps.user import authentication
 from django_filters.rest_framework import DjangoFilterBackend
+from django.shortcuts import get_object_or_404
 
 
 class EventView(views.APIView):
@@ -84,3 +85,28 @@ class EventDetailView(views.APIView):
         event = Event.objects.get(id = pk)
         event.delete()
         return Response({'message: Evento eliminado correctamente!'}, status= status.HTTP_200_OK)
+    
+    
+# APIVIEW POR CATEGORIAS FILTRO
+class EventCategoryView(views.APIView):
+    
+    # METODO GET / Obtenemos la categoria y filtramos
+    def get(self, request, category_name):
+        
+        
+        #Cambiar a lower para mas disponibilidad en la ruta y que no salte errores
+        category_name_lower = category_name.lower()
+        
+        try:
+           # pk = int(pk)
+            category = get_object_or_404(Category, name=category_name)
+
+        except ValueError:
+            return Response({'error': 'ID de evento no válido'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        events = Event.objects.filter(categories__name=category)
+        events_serializer = EventSerializer(events, many=True)
+           
+        return Response(events_serializer.data)
+     
+            
