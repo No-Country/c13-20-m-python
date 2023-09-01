@@ -10,6 +10,7 @@ cryptography==41.0.3
 dj-database-url==2.1.0
 Django==3.2.20
 django-cors-headers==4.1.0
+django-filter==23.2
 djangorestframework==3.14.0
 drf-yasg==1.21.7
 google-api-core==1.34.0

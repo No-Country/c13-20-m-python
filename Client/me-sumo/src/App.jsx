@@ -13,6 +13,7 @@ import CreateEvent from "./views/CreateEvent";
 import Onboarding from "./views/OnBoarding";
 import Interests from "./views/Interests";
 import Successful from "./components/Interests/Successful";
+import Event from "./views/Event";
 
 function App() {
   const location = useLocation();
@@ -20,19 +21,19 @@ function App() {
 
   return (
     <Provider store={store}>
-      <div className="w-full">
+      <div className='w-full'>
         {!isLoginPage && <NavBar />}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/on-boarding" element={<Onboarding />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/user-profile" element={<UserProfile />} />
-          <Route path="/create-event" element={<CreateEvent />} />
-          <Route path="/interests" element={<Interests />} />
-          <Route path="/successful" element={<Successful />} />
-
+          <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/login' element={<LoginForm />} />
+          <Route path='/on-boarding' element={<Onboarding />} />
+          <Route path='/sign-up' element={<SignUp />} />
+          <Route path='/user-profile' element={<UserProfile />} />
+          <Route path='/create-event' element={<CreateEvent />} />
+          <Route path='/interests' element={<Interests />} />
+          <Route path='/successful' element={<Successful />} />
+          <Route path='/event' element={<Event />} />
         </Routes>
       </div>
     </Provider>
