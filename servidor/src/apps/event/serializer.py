@@ -11,7 +11,6 @@ class CategorySerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     
     #categories = CategorySerializer(many=True)
-    
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')
