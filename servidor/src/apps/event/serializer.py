@@ -10,7 +10,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class EventSerializer(serializers.ModelSerializer):
     
-    categories = CategorySerializer(many=True)
+    #categories = CategorySerializer(many=True)
     
     class Meta:
         model = Event
@@ -23,7 +23,6 @@ class EventSerializer(serializers.ModelSerializer):
         category = validated_data.pop('categories', [])        
         event = Event.objects.create(**validated_data)
         event.categories.set(category)
-        event.save()
         return event        
 
 
