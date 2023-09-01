@@ -20,9 +20,10 @@ class EventSerializer(serializers.ModelSerializer):
     def create(self, validated_data):        
         validated_data['eventHost'] = self.context['request'].user
         # Toma categorias a partir de IDs que vienen del request
-        category = validated_data.pop('categories', [])        
+        categories = validated_data.pop('categories', [])  
+        category_ids = [category['id'] for category in categories]      
         event = Event.objects.create(**validated_data)
-        event.categories.set(category)
+        event.categories.set(category_ids)
         event.save()
         return event        
 
