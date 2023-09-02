@@ -4,7 +4,6 @@ const initialState = {
   isLoggedIn: false,
   token: null, // Agrega el campo token
 };
-
 export const userHandler = createSlice({
   name: "user",
   initialState,
@@ -23,7 +22,7 @@ export const userHandler = createSlice({
 });
 
 export const isLogged = (state) => state.user.isLoggedIn;
-export const getToken = (state) => state.user.token;
+export const getToken = (state) => state?.user?.token;
 
 export const { login, logout, setAuthToken } = userHandler.actions;
 
