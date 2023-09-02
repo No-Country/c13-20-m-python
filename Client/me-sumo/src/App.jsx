@@ -21,19 +21,19 @@ function App() {
 
   return (
     <Provider store={store}>
-      <div className='w-full'>
+      <div className="w-full">
         {!isLoginPage && <NavBar />}
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/home' element={<Home />} />
-          <Route path='/login' element={<LoginForm />} />
-          <Route path='/on-boarding' element={<Onboarding />} />
-          <Route path='/sign-up' element={<SignUp />} />
-          <Route path='/user-profile' element={<UserProfile />} />
-          <Route path='/create-event' element={<CreateEvent />} />
-          <Route path='/interests' element={<Interests />} />
-          <Route path='/successful' element={<Successful />} />
-          <Route path='/event' element={<Event />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/on-boarding" element={<Onboarding />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/create-event" element={<CreateEvent />} />
+          <Route path="/interests" element={<Interests />} />
+          <Route path="/successful" element={<Successful />} />
+          <Route path="/event" element={<Event />} />
         </Routes>
       </div>
     </Provider>
