@@ -45,7 +45,7 @@ class LoginView(views.APIView):
 
         resp.data = {"message": "successful login", "token": token}
 
-        resp.set_cookie(key="jwt", value=token, httponly=True)
+        #resp.set_cookie(key="jwt", value=token, httponly=True)
 
         return resp
 
@@ -57,9 +57,8 @@ class UserApi(views.APIView):
     def get(self, request):
         user = request.user
         serializer = UserSerializer(user)
-        token = request.COOKIES.get('jwt')
 
-        return response.Response({"data": serializer.data, "token": token})
+        return response.Response({"data": serializer.data})
 
 
 class LogoutView(views.APIView):
