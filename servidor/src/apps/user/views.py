@@ -57,8 +57,9 @@ class UserApi(views.APIView):
     def get(self, request):
         user = request.user
         serializer = UserSerializer(user)
+        token = request.COOKIES.get('jwt')
 
-        return response.Response(serializer.data)
+        return response.Response({"data": serializer.data, "token": token})
 
 
 class LogoutView(views.APIView):
