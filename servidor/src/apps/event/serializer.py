@@ -33,4 +33,3 @@ class EventDetailSerializer(serializers.ModelSerializer):
         model = Event
         exclude = ['created_at']
         read_only_fields = ('id','eventHost')
-
