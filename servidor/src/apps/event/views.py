@@ -9,14 +9,15 @@ from django.shortcuts import get_object_or_404
 
 
 class EventView(views.APIView):
-    #authentication_classes = (authentication.CustomUserAuthentication, )
-    #permission_classes = (permissions.IsAuthenticated, ) 
+    authentication_classes = (authentication.CustomUserAuthentication, )
+    permission_classes = (permissions.IsAuthenticated, ) 
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
     filterset_fields  = ('location','date','eventHost__username')
 
     # METODO GET / listamos eventos
     def get(self, request):
         event = Event.objects.all()
+        print(request)
         
         location = request.query_params.get('location')
         if location:
@@ -48,8 +49,8 @@ class EventView(views.APIView):
 
 class EventDetailView(views.APIView):   
     
-    #authentication_classes = (authentication.CustomUserAuthentication, )
-    #permission_classes = (permissions.IsAuthenticated, )
+    authentication_classes = (authentication.CustomUserAuthentication, )
+    permission_classes = (permissions.IsAuthenticated, )
 
     #  METODO GET / Encontramos evento por id
     def get(self, request, pk): 

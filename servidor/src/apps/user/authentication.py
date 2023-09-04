@@ -8,7 +8,7 @@ class CustomUserAuthentication(authentication.BaseAuthentication):
 
     def authenticate(self, request):
         token = request.COOKIES.get("jwt")
-        
+        print(request.COOKIES)
         print(token)
 
         if not token:
@@ -22,3 +22,4 @@ class CustomUserAuthentication(authentication.BaseAuthentication):
         user = User.objects.filter(id=payload["id"]).first()
 
         return (user, None)
+        user = User.objects.filter()
