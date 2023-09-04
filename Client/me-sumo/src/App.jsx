@@ -22,9 +22,10 @@ function App() {
 
   return (
     <Provider store={store}>
-      <div className='w-full'>
+      <div className="w-full">
         {!isLoginPage && <NavBar />}
         <Routes>
+ Front/Interests
           <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />
           <Route path='/login' element={<LoginForm />} />

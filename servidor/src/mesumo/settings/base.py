@@ -21,7 +21,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'apps.user',
-    'apps.event'
+    'apps.event',
 ]
 
 THIRD_APPS = [
@@ -99,3 +99,7 @@ AUTH_USER_MODEL = "user.User"
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'

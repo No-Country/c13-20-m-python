@@ -1,9 +1,15 @@
 from rest_framework import serializers
-from .models import Event,User, Category
+from .models import Event, Category
 
-class EventSerializers(serializers.ModelSerializer):
-    
+# Categoria Seriliazer
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name']
 
+
+class EventSerializer(serializers.ModelSerializer):
+     
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')
@@ -11,17 +17,18 @@ class EventSerializers(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data['eventHost'] = self.context['request'].user
+        # Toma las categorías a partir de los IDs que vienen del request
+        category_ids = validated_data.pop('categories', [])  # Obtén la lista de IDs directamente
 
-        # Obtén las categorías a partir de los IDs proporcionados en el request
-        category = validated_data.pop('categories', [])
-        
         event = Event.objects.create(**validated_data)
-
-        # Asigna las categorías utilizando el método 'set()'
-        event.categories.set(category)
+        event.categories.set(category_ids)
+        event.save()
         return event
 
+
+# Evento detalle sin categorias con id y nombre
 class EventDetailSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Event
         exclude = ['created_at']
