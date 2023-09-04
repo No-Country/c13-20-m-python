@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoggedIn: false,
+  token: null, // Agrega el campo token
 };
 
 export const userHandler = createSlice({
@@ -13,13 +14,17 @@ export const userHandler = createSlice({
     },
     logout: (state) => {
       state.isLoggedIn = false;
+      state.token = null;
+    },
+    setAuthToken: (state, action) => {
+      state.token = action.payload;
     },
   },
 });
 
 export const isLogged = (state) => state.user.isLoggedIn;
-console.log(isLogged);
+export const getToken = (state) => state.user.token;
 
-export const { login, logout } = userHandler.actions;
+export const { login, logout, setAuthToken } = userHandler.actions;
 
 export default userHandler.reducer;

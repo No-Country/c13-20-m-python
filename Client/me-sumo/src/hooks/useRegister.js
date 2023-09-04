@@ -1,10 +1,11 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL_REGISTER } from "../config/api";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/sliceLogin";
 
 const useRegister = () => {
-  const [isRegister, setIsRegister] = useState(false);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ const useRegister = () => {
       .then(({ data }) => {
         const { user } = data;
         if (user) {
-          setIsRegister(true);
+          dispatch(login());
           navigate("/on-boarding");
         }
       })
@@ -39,7 +40,6 @@ const useRegister = () => {
   };
 
   return {
-    isRegister,
     handleRegister,
   };
 };
