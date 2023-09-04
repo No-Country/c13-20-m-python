@@ -13,7 +13,7 @@ import CreateEvent from "./views/CreateEvent";
 import Onboarding from "./views/OnBoarding";
 import Interests1 from "./views/Interests/Interests1";
 import Interests2 from "./views/Interests/Interests2";
-import Successful from "./components/Interests/Successful";
+import Successful from "./views/Interests/Successful";
 import Event from "./views/Event";
 
 function App() {
