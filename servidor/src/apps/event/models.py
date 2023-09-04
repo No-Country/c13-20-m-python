@@ -10,7 +10,7 @@ class Category(models.Model):
 
 class Event(models.Model):
     categories = models.ManyToManyField(Category)
-    eventHost = models.ForeignKey(User, on_delete = models.CASCADE)
+    eventHost = models.ForeignKey(User, on_delete = models.CASCADE, default=19)
     name = models.CharField(max_length = 200)
     description = models.TextField() 
     capacity = models.PositiveIntegerField(default = 0)

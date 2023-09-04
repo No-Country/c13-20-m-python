@@ -7,10 +7,19 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['id', 'name']
 
+class EventListSerializer(serializers.ModelSerializer):
+
+    categories = CategorySerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Event
+        fields = ('id', 'eventHost', 'name', 'description', 'capacity', 'date', 'created_at', 'virtual', 'state', 'ticketPrice', 'event_images', 'categories', 'location')
+        read_only_fields = ('created_at', 'eventHost',)
+
+
 
 class EventSerializer(serializers.ModelSerializer):
     
-    #categories = CategorySerializer(many=True)
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')

@@ -1,7 +1,7 @@
 from .models import Event, Category
 from rest_framework import permissions, views, status, filters, generics
 from rest_framework.response import Response
-from .serializer import EventSerializer, EventDetailSerializer
+from .serializer import EventSerializer, EventDetailSerializer, EventListSerializer
 from apps.user import authentication
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
@@ -29,7 +29,7 @@ class EventView(views.APIView):
         if eventHost_username:
             event = event.filter(eventHost__username=eventHost_username)
         
-        event_serializer = EventSerializer(event, many=True)
+        event_serializer = EventListSerializer(event, many=True)
         return Response(event_serializer.data)   
 
     # METODO POST / Creamos evento
@@ -60,7 +60,7 @@ class EventDetailView(views.APIView):
         except ValueError:
             return Response({'error': 'ID user not valid'}, status=status.HTTP_400_BAD_REQUEST)
 
-        event_serializer = EventDetailSerializer(event)
+        event_serializer = EventListSerializer(event)
         return Response(event_serializer.data)   
         
     # METODO PUT / Actualizamos evento
