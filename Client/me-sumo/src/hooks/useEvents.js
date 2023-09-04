@@ -8,13 +8,14 @@ const handleCreateEvent = async (newEvent, user) => {
 
   const token = getToken(user);
   console.log("token", token);
+  // eslint-disable-next-line no-unused-vars
   const axiosConfig = {
     headers: {
-      Authorization: `Bearer ${token}`,
+      acccess: `Bearer ${token}`,
     },
   };
   try {
-    const { data } = await axios.post(URL, newEvent, axiosConfig);
+    const { data } = await axios.post(URL, newEvent);
     console.log(data);
   } catch (error) {
     if (error.response) {

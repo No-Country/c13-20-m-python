@@ -4,7 +4,6 @@ import Input from "../components/Shared/Input";
 import { Button } from "@material-tailwind/react";
 import Checks from "../components/Shared/checks";
 import handleCreateEvent from "../hooks/useEvents";
-// import construction from "../assets/under-construction.png";
 
 export default function CreateEvent() {
   const user = useSelector((state) => state);
@@ -18,13 +17,13 @@ export default function CreateEvent() {
       categories: [],
       name: "",
       description: "",
-      capacity: "",
+      capacity: 0,
       date: "",
       virtual: false,
       state: true,
       ticketPrice: 0,
       event_images: "",
-      location: "",
+      location: "Tandil, Buenos Aires",
     },
   });
   const categorias = [
@@ -84,14 +83,13 @@ export default function CreateEvent() {
               </label>
               <select
                 required={true}
-                {...register("categories")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 {categorias.map((cat, index) => (
                   <option
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     key={index}
-                    value={cat}
+                    value={[cat]}
                   >
                     {cat}
                   </option>
