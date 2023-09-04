@@ -1,30 +1,32 @@
 import axios from "axios";
 import { API_URL_EVENTS } from "../config/api";
 import { getToken } from "../redux/sliceLogin";
+import { useSelector } from "react-redux";
 
-const useRegister = () => {
-  const handleLocations = async () => {
+const useLocations = () => {
+  const token = useSelector(getToken);
+
+  const handleEventsLocations = async () => {
     const URL = API_URL_EVENTS;
-    const token = getToken();
-
-    const axiosConfig = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
 
     try {
-      const response = await axios.get(URL, axiosConfig);
+      const response = await axios.get(URL, {
+        headers: {
+          jwt: token,
+          withCredentials: true,
+        },
+      });
       const { data } = response;
       const allLocations = data.map((location) => location.location);
+      console.log(allLocations);
       return allLocations;
     } catch (error) {
-      console.error("Error al obtener ubicaciones:", error);
+      console.error(error.message);
       throw error;
     }
   };
 
-  return { handleLocations };
+  return { handleEventsLocations };
 };
 
-export default useRegister;
+export default useLocations;

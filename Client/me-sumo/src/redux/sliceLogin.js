@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoggedIn: false,
-  token: null, // Agrega el campo token
+  token: null,
 };
 
 export const userHandler = createSlice({
