@@ -35,7 +35,7 @@ class EventView(views.APIView):
 
     # METODO POST / Creamos evento
     def post(self,request):
-        serializer = EventSerializer(data=request.data, context={'request': request})
+        serializer = EventSerializer(data=request.data)# ,context={'request': request})
         if serializer.is_valid():            
             event = serializer.save()
             return Response({
