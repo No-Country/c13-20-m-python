@@ -12,7 +12,7 @@ import { FaPalette } from "react-icons/fa";
 import { MdTheaterComedy } from "react-icons/md";
 import { MdScience } from "react-icons/md";
 import { GiHealthNormal } from "react-icons/gi";
-import { AiFillSignal } from "react-icons/ai"; 
+import { AiFillSignal } from "react-icons/ai";
 
 
 // Definición de intereses y sus categorías
