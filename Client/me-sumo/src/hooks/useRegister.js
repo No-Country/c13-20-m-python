@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL_REGISTER } from "../config/api";
 import { useDispatch } from "react-redux";
-import { login } from "../redux/sliceLogin";
+import { login, setAuthToken } from "../redux/sliceLogin";
 
 const useRegister = () => {
   const dispatch = useDispatch();
@@ -12,6 +12,7 @@ const useRegister = () => {
   const handleRegister = async (userData) => {
     const { name, lastName, userName, email, password, confirmPassword } =
       userData;
+
     const URL = API_URL_REGISTER;
 
     if (password !== confirmPassword)
@@ -26,8 +27,10 @@ const useRegister = () => {
         password: password,
       })
       .then(({ data }) => {
-        const { user } = data;
-        if (user) {
+        const { user, token } = data;
+
+        if (user && token) {
+          dispatch(setAuthToken(token));
           dispatch(login());
           navigate("/on-boarding");
         }

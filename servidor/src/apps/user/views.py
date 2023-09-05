@@ -12,9 +12,11 @@ class RegisterView(views.APIView):
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+            token = create_token(user_id=user.id)
             return response.Response({
                 'message': 'Registration successful',
-                'user': UserRegistrationSerializer(user).data  # Devuelve los datos del usuario recién creado
+                'user': UserRegistrationSerializer(user).data,  # Devuelve los datos del usuario recién creado
+                'token': token
             }, status=status.HTTP_201_CREATED)
 
         else:

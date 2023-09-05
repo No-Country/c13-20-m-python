@@ -14,7 +14,6 @@ import Onboarding from "./views/OnBoarding";
 import Interests1 from "./views/Interests/Interests1";
 import Interests2 from "./views/Interests/Interests2";
 import Successful from "./views/Interests/Successful";
-import Event from "./views/Event";
 
 function App() {
   const location = useLocation();
@@ -36,7 +35,6 @@ function App() {
           <Route path='/interests1' element={<Interests1 />} />
           <Route path='/interests2' element={<Interests2 />} />
           <Route path='/successful' element={<Successful />} />
-          <Route path='/event' element={<Event />} />
         </Routes>
       </div>
     </Provider>
