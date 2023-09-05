@@ -1,12 +1,30 @@
-import axios from "axios";
-import { API_URL_EVENTS } from "../config/api";
 import { getToken } from "../redux/sliceLogin";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { API_URL_EVENTS } from "../config/api";
 import { setEvents } from "../redux/sliceEvents";
 
 const useEvents = () => {
   const token = useSelector(getToken);
   const dispatch = useDispatch();
+
+  const handleCreateEvent = async (newEvent) => {
+    try {
+      const { data } = await axios.post(API_URL_EVENTS, newEvent, {
+        headers: {
+          // "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(data);
+    } catch (error) {
+      if (error.response) {
+        console.log("tkn", token);
+        alert("error!");
+        console.log("Response Data:", error.response.data);
+      }
+    }
+  };
 
   const handleDataEvents = async () => {
     const URL = API_URL_EVENTS;
@@ -29,7 +47,7 @@ const useEvents = () => {
     }
   };
 
-  return { handleDataEvents };
+  return { handleDataEvents, handleCreateEvent };
 };
 
 export default useEvents;
