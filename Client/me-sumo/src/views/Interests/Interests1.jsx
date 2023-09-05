@@ -58,7 +58,7 @@ const Interest1 = () => {
         <div className='mt-2 mb-4 text-left'>
 
           {/* Título */}
-          <Typography variant="h4" font="poppins" weight="semibold" className="mt-4 mb-2 text-sm">
+          <Typography variant="h4" font="poppins" weight="semibold" className="mt-4 mb-2 text=sm">
             Paso 1: Ubicación
           </Typography>
 
@@ -68,6 +68,11 @@ const Interest1 = () => {
               className="bg-black p-1 text-center text-xs font-medium leading-none text-primary-100 rounded-full" style={{ width: "50%" }}
             ></div>
           </div>
+
+           {/* Descripción */}
+           <Typography variant="caption" font="poppins" className="mt-4 mb-6 text-sm">
+              Selecciona la ubicación de los eventos que te gustaria ver:
+            </Typography>
 
           {/* Input de busquedad */}
           <form className="space-y-2" onSubmit={handleSubmit(handleMap)}>
