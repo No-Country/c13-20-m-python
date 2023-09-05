@@ -1,5 +1,5 @@
 from .models import Event, Category
-from rest_framework import permissions, views, status, filters, generics
+from rest_framework import permissions, views, status, filters
 from rest_framework.response import Response
 from .serializer import EventSerializer, EventDetailSerializer, EventListSerializer, CategorySerializer
 from apps.user import authentication
@@ -9,13 +9,13 @@ from django.shortcuts import get_object_or_404
 
 class EventView(views.APIView):
     authentication_classes = (authentication.CustomUserAuthentication, )
-    permission_classes = (permissions.IsAuthenticated, ) 
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, ) 
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
     filterset_fields  = ('location','date','eventHost__username')
 
     # METODO GET / listamos eventos
     def get(self, request):
-        event = Event.objects.all()
+        event = Event.objects.filter(state=True)
         
         location = request.query_params.get('location')
         if location:
@@ -34,6 +34,7 @@ class EventView(views.APIView):
 
     # METODO POST / Creamos evento
     def post(self,request):
+        
         serializer = EventSerializer(data=request.data, context={'request': request})
         
         if serializer.is_valid():            
