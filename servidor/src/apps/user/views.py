@@ -74,7 +74,6 @@ class LogoutView(views.APIView):
         return resp
 
 
-
 class UserDetailView(views.APIView):
     authentication_classes = (authentication.CustomUserAuthentication, )
     permission_classes = (permissions.IsAuthenticated, )

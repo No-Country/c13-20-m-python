@@ -18,7 +18,7 @@ class EventSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
 
         validated_data['eventHost'] = self.context['request'].user
-        
+
         # Toma las categorías a partir de los IDs que vienen del request
         category_ids = validated_data.pop('categories', [])  # Obtén la lista de IDs directamente
 
