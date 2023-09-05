@@ -1,12 +1,14 @@
 import axios from "axios";
 import { API_URL_EVENTS } from "../config/api";
 import { getToken } from "../redux/sliceLogin";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setEvents } from "../redux/sliceEvents";
 
-const useLocations = () => {
+const useEvents = () => {
   const token = useSelector(getToken);
+  const dispatch = useDispatch();
 
-  const handleEventsLocations = async () => {
+  const handleDataEvents = async () => {
     const URL = API_URL_EVENTS;
 
     try {
@@ -18,18 +20,16 @@ const useLocations = () => {
 
       const { data } = response;
 
-      console.log(response);
+      dispatch(setEvents(data));
 
-      const allLocations = data.map((location) => location.location);
-
-      return allLocations;
+      // const allLocations = data.map((location) => location.location);
     } catch (error) {
       console.error(error.message);
       throw error;
     }
   };
 
-  return { handleEventsLocations };
+  return { handleDataEvents };
 };
 
-export default useLocations;
+export default useEvents;

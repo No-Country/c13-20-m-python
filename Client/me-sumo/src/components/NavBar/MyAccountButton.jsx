@@ -4,10 +4,10 @@ import useEvens from "../../hooks/useEvents";
 
 export default function MyAccountButton() {
   //const navigate = useNavigate();
-  const { handleEventsLocations } = useEvens();
+  const { handleDataEvents } = useEvens();
   return (
     <button
-      onClick={handleEventsLocations}
+      onClick={handleDataEvents}
       className="w-9 h-9 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
     >
       <img
