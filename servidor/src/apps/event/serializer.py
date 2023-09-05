@@ -26,7 +26,7 @@ class EventSerializer(serializers.ModelSerializer):
         categories = [get_object_or_404(Category, id=category_id) for category_id in category_ids]
 
         event = Event.objects.create(**validated_data)
-        event.categories.set(category_ids)
+        event.categories.set(categories)
         event.save()
         return event
 
