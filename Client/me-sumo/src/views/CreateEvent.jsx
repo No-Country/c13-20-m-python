@@ -1,20 +1,27 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { Button } from "@material-tailwind/react";
 import { useSelector } from "react-redux";
 import Input from "../components/Shared/Input";
-import { Button } from "@material-tailwind/react";
 import Checks from "../components/Shared/checks";
 import handleCreateEvent from "../hooks/useEvents";
+import { getToken } from "../redux/sliceLogin";
+import eventSchema from "../validations/event.js";
 
 export default function CreateEvent() {
-  const user = useSelector((state) => state);
+  const token = useSelector(getToken);
 
   const {
     handleSubmit,
     register,
-    //formState: { errors },
+    setValue,
+    formState: { errors },
   } = useForm({
+    mode: "onChange",
+    // resolver: joiResolver(eventSchema),
     defaultValues: {
-      categories: [],
+      categories: [1],
       name: "",
       description: "",
       capacity: 0,
@@ -22,10 +29,14 @@ export default function CreateEvent() {
       virtual: false,
       state: true,
       ticketPrice: 0,
-      event_images: "",
+      event_images: "c13-20-m-python/servidor/src/images/messi.jpg",
       location: "Tandil, Buenos Aires",
     },
   });
+  // const handleImageChange = (e) => {
+  //   let newData = { ...data };
+  //   newData["image_url"] = e.target.files[0];
+  // };
   const categorias = [
     "Fiesta",
     "Evento",
@@ -48,7 +59,7 @@ export default function CreateEvent() {
             className="space-y-1 w-full mb-4"
             action="#"
             onSubmit={handleSubmit((newEvent) => {
-              handleCreateEvent(newEvent, user);
+              handleCreateEvent(newEvent, token);
             })}
           >
             <div>
@@ -58,7 +69,7 @@ export default function CreateEvent() {
                 placeholder="Escriba el nombre del evento"
                 name="name"
                 register={register}
-                //                    error={errors.email?.message}
+                error={errors.name?.message}
               />
               <label className="m-0 p-0 flex mb-2 ml-1 text-sm font-small text-gray-600 dark:text-white">
                 Escriba el nombre del evento
@@ -71,7 +82,7 @@ export default function CreateEvent() {
                 placeholder="Añada una breve descripción"
                 name="description"
                 register={register}
-                //                    error={errors.email?.message}
+                error={errors.description?.message}
               />
               <label className="m-0 p-0 flex mb-2 ml-1 text-sm font-small text-gray-600 dark:text-white">
                 Añada una breve descripción
@@ -106,29 +117,32 @@ export default function CreateEvent() {
                   type="datetime-local"
                   name="date"
                   register={register}
-                  // error={errors.userName?.message}
+                  error={errors.date?.message}
                 />
               </div>
-              <div className="md:w-1/2 md:pl-2">
+              {/* <div className="md:w-1/2 md:pl-2">
                 <Input
                   labelText="Fecha de Fin"
                   type="datetime-local"
                   name="date-end"
-                  register={register}
+                  // register={register}
                   // error={errors.userName?.message}
                 />
-              </div>
+              </div> */}
             </div>
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <Input
                 labelText="Imagen de Portada"
                 type="file"
+                accept="image/jpeg,image/png,image/gif"
                 placeholder="Seleccione una imagen de Portada"
                 name="event_images"
-                register={register}
-                //                    error={errors.email?.message}
+                onChange={(e) =>
+                  e.map((c) => setValue("event_images", [c.value]))
+                }
+                //error={errors.email?.message}
               />
-            </div>
+            </div> */}
             <div className="bg-gray-50 sticky bottom-0 left-0 right-0 flex justify-center p-4">
               <Button variant="outlined" className="m-2" title="Cancelar">
                 Cancelar
