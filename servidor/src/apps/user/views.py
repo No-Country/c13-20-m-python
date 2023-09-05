@@ -45,8 +45,6 @@ class LoginView(views.APIView):
 
         resp.data = {"message": "successful login", "token": token}
 
-        #resp.set_cookie(key="jwt", value=token, httponly=True)
-
         return resp
 
 class UserApi(views.APIView):

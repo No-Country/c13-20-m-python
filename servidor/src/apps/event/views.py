@@ -6,6 +6,7 @@ from .serializer import EventSerializer, EventDetailSerializer
 from apps.user import authentication
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
+from rest_framework.permissions import AllowAny
 
 
 class EventView(views.APIView):
@@ -36,12 +37,12 @@ class EventView(views.APIView):
 
     # METODO POST / Creamos evento
     def post(self,request):
-        serializer = EventSerializer(data=request.data, context={'request': request})
+        serializer = EventSerializer(data=request.data , context={'request': request})
         if serializer.is_valid():            
             event = serializer.save()
             return Response({
                 'message': 'Event was created successfully!',
-                'user': EventSerializer(event).data
+                'event': EventSerializer(event).data
             }, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
