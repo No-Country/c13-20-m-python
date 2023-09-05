@@ -26,11 +26,7 @@ class EventListSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
-<<<<<<< HEAD
-     
-=======
     
->>>>>>> leonel
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')
