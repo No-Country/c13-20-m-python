@@ -1,29 +1,33 @@
 import { useForm } from "react-hook-form";
-import { joiResolver } from "@hookform/resolvers/joi";
+// import { joiResolver } from "@hookform/resolvers/joi";
 import { Button } from "@material-tailwind/react";
 import Input from "../components/Shared/Input";
 import Checks from "../components/Shared/checks";
-import handleCreateEvent from "../hooks/useEvents";
+import useEvents from "../hooks/useEvents";
 
 export default function CreateEvent() {
+  let formData = new FormData();
+  formData.append("categories", JSON.stringify([1]));
+
+  const { handleCreateEvent } = useEvents();
   const {
     handleSubmit,
     register,
-    setValue,
+    // setValue,
     formState: { errors },
   } = useForm({
     mode: "onChange",
     // resolver: joiResolver(eventSchema),
     defaultValues: {
-      categories: [1],
       name: "",
+      categories: [1],
       description: "",
       capacity: 0,
       date: "",
       virtual: false,
       state: true,
       ticketPrice: 0,
-      event_images: "c13-20-m-python/servidor/src/images/messi.jpg",
+      event_images: "messi.jpg",
       location: "Tandil, Buenos Aires",
     },
   });
@@ -31,14 +35,14 @@ export default function CreateEvent() {
   //   let newData = { ...data };
   //   newData["image_url"] = e.target.files[0];
   // };
-  const categorias = [
-    "Fiesta",
-    "Evento",
-    "Religioso",
-    "Musica",
-    "Arte",
-    "Tecnologia",
-  ];
+  // const categorias = [
+  //   "Fiesta",
+  //   "Evento",
+  //   "Religioso",
+  //   "Musica",
+  //   "Arte",
+  //   "Tecnologia",
+  // ];
   return (
     <div className="">
       <div>
@@ -86,7 +90,7 @@ export default function CreateEvent() {
               <label className="flex mb-2 ml-1 text-sm font-medium text-gray-900 dark:text-white">
                 Categoría
               </label>
-              <select
+              {/* <select
                 required={true}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
@@ -99,7 +103,7 @@ export default function CreateEvent() {
                     {cat}
                   </option>
                 ))}
-              </select>
+              </select> */}
               <label className="flex mb-2 ml-1 text-sm font-small text-gray-600 dark:text-white">
                 Elija una categoria
               </label>
@@ -124,19 +128,20 @@ export default function CreateEvent() {
                 />
               </div> */}
             </div>
-            {/* <div className="mb-3">
+            <div className="mb-3">
               <Input
                 labelText="Imagen de Portada"
                 type="file"
                 accept="image/jpeg,image/png,image/gif"
                 placeholder="Seleccione una imagen de Portada"
                 name="event_images"
-                onChange={(e) =>
-                  e.map((c) => setValue("event_images", [c.value]))
-                }
+                register={register}
+                // onChange={(e) =>
+                //   e.map((c) => setValue("event_images", [c.value]))
+                // }
                 //error={errors.email?.message}
               />
-            </div> */}
+            </div>
             <div className="bg-gray-50 sticky bottom-0 left-0 right-0 flex justify-center p-4">
               <Button variant="outlined" className="m-2" title="Cancelar">
                 Cancelar

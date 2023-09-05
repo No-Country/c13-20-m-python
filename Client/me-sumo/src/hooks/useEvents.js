@@ -3,21 +3,17 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { API_URL_EVENTS } from "../config/api";
 
-const useLocations = () => {
+const useEvents = () => {
   const token = useSelector(getToken);
 
   const handleCreateEvent = async (newEvent) => {
-    const URL = API_URL_EVENTS;
-
-    console.log("token", token);
-    // eslint-disable-next-line no-unused-vars
-    const axiosConfig = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
     try {
-      const { data } = await axios.post(URL, axiosConfig, newEvent);
+      const { data } = await axios.post(API_URL_EVENTS, newEvent, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(data);
     } catch (error) {
       if (error.response) {
@@ -54,4 +50,4 @@ const useLocations = () => {
   return { handleEventsLocations, handleCreateEvent };
 };
 
-export { useLocations };
+export default useEvents;
