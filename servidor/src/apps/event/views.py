@@ -1,10 +1,12 @@
 from .models import Event, Category
-from rest_framework import permissions, views, status, filters, generics
+from rest_framework import permissions, views, status, filters, viewsets
+from apps.user.models import User
 from rest_framework.response import Response
 from .serializer import EventSerializer, EventDetailSerializer
 from apps.user import authentication
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
+from rest_framework.permissions import AllowAny
 
 
 class EventView(views.APIView):
@@ -16,6 +18,7 @@ class EventView(views.APIView):
     # METODO GET / listamos eventos
     def get(self, request):
         event = Event.objects.all()
+        print(request)
         
         location = request.query_params.get('location')
         if location:
@@ -34,28 +37,28 @@ class EventView(views.APIView):
 
     # METODO POST / Creamos evento
     def post(self,request):
-        serializer = EventSerializer(data=request.data, context={'request': request})
+        serializer = EventSerializer(data=request.data , context={'request': request})
         if serializer.is_valid():            
             event = serializer.save()
             return Response({
                 'message': 'Event was created successfully!',
-                'user': EventSerializer(event).data
+                'event': EventSerializer(event).data
             }, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
 class EventDetailView(views.APIView):   
-     
+    
+    authentication_classes = (authentication.CustomUserAuthentication, )
+    permission_classes = (permissions.IsAuthenticated, )
+
     #  METODO GET / Encontramos evento por id
     def get(self, request, pk): 
-        
         try:
-            pk = int(pk)
-            event = Event.objects.get(id=pk)
-
+            event = Event.objects.get(pk=pk)
         except Event.DoesNotExist:
-            return Response({"error": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
             
         except ValueError:
             return Response({'error': 'ID user not valid'}, status=status.HTTP_400_BAD_REQUEST)
@@ -65,13 +68,17 @@ class EventDetailView(views.APIView):
         
     # METODO PUT / Actualizamos evento
     def put(self, request, pk):
-        
-        pk = int(pk)
-        event = Event.objects.get(id = pk) 
+        try:
+            event = Event.objects.get(pk=pk)
+        except Event.DoesNotExist:
+            return Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        if request.user.id != event.eventHost.id:
+            return Response({"detail": "Forbidden"}, status=status.HTTP_403_FORBIDDEN)
 
         # Deserializamos y convertimos en objeto event 
         event_deserializer = EventDetailSerializer(event, data = request.data)
-    
+
         if event_deserializer.is_valid():
             event_deserializer.save()
             return Response({
@@ -84,6 +91,9 @@ class EventDetailView(views.APIView):
             event = Event.objects.get(pk=pk)
         except Event.DoesNotExist:
             return Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if request.user.id != event.eventHost.id:
+            return Response({"detail": "Forbidden"}, status=status.HTTP_403_FORBIDDEN)
 
         serializer = EventDetailSerializer(event, data=request.data, partial=True)
         if serializer.is_valid():
@@ -91,9 +101,15 @@ class EventDetailView(views.APIView):
             return Response({"detail": "Event updated successfully"})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    # METODO DELETE / Eliminamos evento
     def delete(self, request, pk):
-        event = Event.objects.get(id = pk)
+        try:
+            event = Event.objects.get(pk=pk)
+        except Event.DoesNotExist:
+            return Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if request.user.id != event.eventHost.id:
+            return Response({"detail": "Forbidden"}, status=status.HTTP_403_FORBIDDEN)
+    
         event.delete()
         return Response({'message: Event successfully removed!'}, status= status.HTTP_200_OK)
     

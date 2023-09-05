@@ -1,22 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL_LOGIN } from "../config/api";
 import { useSelector, useDispatch } from "react-redux";
-import { login, logout, isLogged } from "../redux/sliceLogin";
+import { login, logout, isLogged, setAuthToken } from "../redux/sliceLogin";
 
 const useLogin = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  //eslint-disable-next-line
   const isLogin = useSelector(isLogged);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (isLogin) {
-      navigate("/home");
-    }
-  }, [isLogin, navigate]);
+  const redirectLogin = (navigate) => {
+    navigate("/home");
+  };
 
   const handleLogin = async (userData) => {
     const { email, password } = userData;
@@ -27,10 +25,13 @@ const useLogin = () => {
         email: email,
         password: password,
       });
-      const { message } = data;
+      const { message, token } = data;
 
-      if (message === "successful login") {
+      if (message === "successful login" && token) {
+        dispatch(setAuthToken(token));
+
         dispatch(login());
+        redirectLogin(navigate);
       }
     } catch (error) {
       dispatch(logout());
@@ -42,7 +43,13 @@ const useLogin = () => {
   };
 
   const handleGoogleLogin = (response) => {
-    if (response.credential) dispatch(login());
+    console.log(response);
+    if (response.credential) {
+      dispatch(setAuthToken(response.credential));
+
+      dispatch(login());
+      redirectLogin(navigate);
+    }
   };
 
   const handleLogout = () => {

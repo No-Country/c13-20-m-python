@@ -61,7 +61,7 @@ export default function Onboarding() {
               className="text-xl font-bold leading-tight tracking-tight text-gray-900 lg:text-2xl dark:text-white"
               onClick={() => {
                 console.log("Hola");
-                navigate("/interests");
+                navigate("/interests1");
               }}
             >
               Quiero Participar de un evento

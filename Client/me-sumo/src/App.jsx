@@ -11,8 +11,9 @@ import NavBar from "./views/NavBar";
 import UserProfile from "./views/UserProfile";
 import CreateEvent from "./views/CreateEvent";
 import Onboarding from "./views/OnBoarding";
-import Interests from "./views/Interests";
-import Successful from "./components/Interests/Successful";
+import Interests1 from "./views/Interests/Interests1";
+import Interests2 from "./views/Interests/Interests2";
+import Successful from "./views/Interests/Successful";
 import Event from "./views/Event";
 
 function App() {
@@ -21,9 +22,10 @@ function App() {
 
   return (
     <Provider store={store}>
-      <div className='w-full'>
+      <div className="w-full">
         {!isLoginPage && <NavBar />}
         <Routes>
+ Front/Interests
           <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />
           <Route path='/login' element={<LoginForm />} />
@@ -31,7 +33,8 @@ function App() {
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/user-profile' element={<UserProfile />} />
           <Route path='/create-event' element={<CreateEvent />} />
-          <Route path='/interests' element={<Interests />} />
+          <Route path='/interests1' element={<Interests1 />} />
+          <Route path='/interests2' element={<Interests2 />} />
           <Route path='/successful' element={<Successful />} />
           <Route path='/event' element={<Event />} />
         </Routes>

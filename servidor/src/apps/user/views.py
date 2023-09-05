@@ -12,9 +12,11 @@ class RegisterView(views.APIView):
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+            token = create_token(user_id=user.id)
             return response.Response({
                 'message': 'Registration successful',
-                'user': UserRegistrationSerializer(user).data  # Devuelve los datos del usuario recién creado
+                'user': UserRegistrationSerializer(user).data,  # Devuelve los datos del usuario recién creado
+                'token': token
             }, status=status.HTTP_201_CREATED)
 
         else:
@@ -43,9 +45,7 @@ class LoginView(views.APIView):
 
         resp = response.Response()
 
-        resp.data = {"message": "successful login"}
-
-        resp.set_cookie(key="jwt", value=token, httponly=True)
+        resp.data = {"message": "successful login", "token": token}
 
         return resp
 
@@ -58,7 +58,7 @@ class UserApi(views.APIView):
         user = request.user
         serializer = UserSerializer(user)
 
-        return response.Response(serializer.data)
+        return response.Response({"data": serializer.data})
 
 
 class LogoutView(views.APIView):
