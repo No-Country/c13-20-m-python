@@ -1,7 +1,7 @@
 from .models import Event, Category
 from rest_framework import permissions, views, status, filters, generics
 from rest_framework.response import Response
-from .serializer import EventSerializer, EventDetailSerializer, EventListSerializer
+from .serializer import EventSerializer, EventDetailSerializer, EventListSerializer, CategorySerializer
 from apps.user import authentication
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
@@ -35,6 +35,8 @@ class EventView(views.APIView):
     # METODO POST / Creamos evento
     def post(self,request):
         serializer = EventSerializer(data=request.data, context={'request': request})
+        
+     
         if serializer.is_valid():            
             event = serializer.save()
             return Response({
@@ -46,7 +48,8 @@ class EventView(views.APIView):
     
 
 class EventDetailView(views.APIView):   
-     
+    authentication_classes = (authentication.CustomUserAuthentication, )
+    permission_classes = (permissions.IsAuthenticated, ) 
     #  METODO GET / Encontramos evento por id
     def get(self, request, pk): 
         
@@ -100,6 +103,9 @@ class EventDetailView(views.APIView):
     
 # APIVIEW POR CATEGORIAS FILTRO
 class EventCategoryView(views.APIView):
+
+    #authentication_classes = (authentication.CustomUserAuthentication, )
+    #permission_classes = (permissions.IsAuthenticated, ) 
     
     # METODO GET / Obtenemos la categoria y filtramos
     def get(self, request, category_name):
@@ -115,8 +121,16 @@ class EventCategoryView(views.APIView):
 
         
         events = Event.objects.filter(categories__name=category)
-        events_serializer = EventSerializer(events, many=True)
+        events_serializer = EventListSerializer(events, many=True)
            
         return Response(events_serializer.data)
      
+            
+class CategoryView(views.APIView):
+    
+    def get(self, request):
+        cateogories = Category.objects.all()
+        categories_serializer = CategorySerializer(cateogories, many=True)
+        
+        return Response(categories_serializer.data)    
             
