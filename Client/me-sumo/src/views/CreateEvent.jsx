@@ -34,9 +34,11 @@ export default function CreateEvent() {
     },
   });
   const navigate = useNavigate();
-  function useClick() {
-    console.log("chau");
-    navigate("/");
+  function useToHome() {
+    const result = window.confirm("¿Quiere volver a la pagina de incio?");
+    if (result) {
+      navigate("/");
+    }
   }
   useEffect(() => {});
 
@@ -192,7 +194,7 @@ export default function CreateEvent() {
             <div className="bg-gray-50 sticky bottom-0 left-0 right-0 flex justify-center p-4">
               <Button
                 variant="outlined"
-                onClick={useClick}
+                onClick={useToHome}
                 className="m-2"
                 title="Cancelar"
               >

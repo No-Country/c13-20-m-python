@@ -10,7 +10,7 @@ const useEvents = () => {
     try {
       const { data } = await axios.post(API_URL_EVENTS, newEvent, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          // "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       });

@@ -11,7 +11,7 @@ const eventSchema = Joi.object({
       "string.empty": "Name is required",
     })
     .required(),
-  date: Joi.string(),
+  date: Joi.date(),
   description: Joi.string()
     .min(5)
     .max(100)
