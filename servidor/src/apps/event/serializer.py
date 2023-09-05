@@ -1,12 +1,13 @@
 from rest_framework import serializers
-from .models import Event, Category
+from .category import Category
+from .models import Event
 from apps.user.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User 
-        fields = ['id', 'first_name']
+        fields = ['id', 'username']
 
 # Categoria Seriliazer
 class CategorySerializer(serializers.ModelSerializer):
