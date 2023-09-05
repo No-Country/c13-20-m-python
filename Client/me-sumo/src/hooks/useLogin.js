@@ -3,13 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL_LOGIN } from "../config/api";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  login,
-  logout,
-  isLogged,
-  setAuthToken,
-  setAuthId,
-} from "../redux/sliceLogin";
+import { login, logout, isLogged, setAuthToken } from "../redux/sliceLogin";
 
 const useLogin = () => {
   const navigate = useNavigate();
@@ -31,11 +25,11 @@ const useLogin = () => {
         email: email,
         password: password,
       });
-      const { message, token, id } = data;
+      const { message, token } = data;
 
-      if (message === "successful login" && token && id) {
+      if (message === "successful login" && token) {
         dispatch(setAuthToken(token));
-        dispatch(setAuthId(id));
+
         dispatch(login());
         redirectLogin(navigate);
       }
@@ -52,7 +46,7 @@ const useLogin = () => {
     console.log(response);
     if (response.credential) {
       dispatch(setAuthToken(response.credential));
-      dispatch(setAuthId(999));
+
       dispatch(login());
       redirectLogin(navigate);
     }
