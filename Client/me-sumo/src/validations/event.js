@@ -1,7 +1,6 @@
 import Joi from "joi";
 
 const eventSchema = Joi.object({
-  eventHost: Joi.number(),
   name: Joi.string()
     .min(3)
     .max(20)
@@ -25,10 +24,8 @@ const eventSchema = Joi.object({
   state: Joi.boolean(),
   capacity: Joi.number(),
   ticketPrice: Joi.number(),
-  event_images: Joi.string(),
+  event_images: Joi.any(),
   location: Joi.string(),
-  categories: Joi.array()
-    .min(1)
-    .messages({ "string.empty": "At least one Category is required" }),
+  categories: Joi.any(),
 });
 export default eventSchema;

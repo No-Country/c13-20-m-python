@@ -1,48 +1,61 @@
-import { useForm } from "react-hook-form";
-// import { joiResolver } from "@hookform/resolvers/joi";
+import { useForm, useController } from "react-hook-form";
+import { joiResolver } from "@hookform/resolvers/joi";
 import { Button } from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import Select from "react-select";
+
 import Input from "../components/Shared/Input";
 import Checks from "../components/Shared/checks";
 import useEvents from "../hooks/useEvents";
-
+import eventSchema from "../validations/event";
 export default function CreateEvent() {
-  let formData = new FormData();
-  formData.append("categories", JSON.stringify([1]));
-
   const { handleCreateEvent } = useEvents();
   const {
     handleSubmit,
     register,
     // setValue,
     formState: { errors },
+    control,
   } = useForm({
     mode: "onChange",
-    // resolver: joiResolver(eventSchema),
+    resolver: joiResolver(eventSchema),
     defaultValues: {
       name: "",
-      categories: [1],
+      categories: [],
       description: "",
       capacity: 0,
       date: "",
       virtual: false,
       state: true,
       ticketPrice: 0,
-      event_images: "messi.jpg",
+      event_images: null,
       location: "Tandil, Buenos Aires",
     },
   });
-  // const handleImageChange = (e) => {
-  //   let newData = { ...data };
-  //   newData["image_url"] = e.target.files[0];
-  // };
-  // const categorias = [
-  //   "Fiesta",
-  //   "Evento",
-  //   "Religioso",
-  //   "Musica",
-  //   "Arte",
-  //   "Tecnologia",
-  // ];
+  const navigate = useNavigate();
+  function useClick() {
+    console.log("chau");
+    navigate("/");
+  }
+  useEffect(() => {});
+
+  const categorias = [
+    "Fiesta",
+    "Evento",
+    "Religioso",
+    "Musica",
+    "Arte",
+    "Tecnologia",
+  ];
+  const options = categorias.map((cat, index) => ({
+    value: index,
+    label: `${cat}`,
+  }));
+  const {
+    field: { value: category, onChange: categoriesOnChange },
+  } = useController({ name: "categories", control });
+
   return (
     <div className="">
       <div>
@@ -92,18 +105,55 @@ export default function CreateEvent() {
               </label>
               {/* <select
                 required={true}
+                {...register("categories")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 {categorias.map((cat, index) => (
                   <option
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     key={index}
-                    value={[cat]}
+                    value={[index]}
                   >
                     {cat}
                   </option>
                 ))}
               </select> */}
+              <Select
+                defaultValue={options.map((categories, index) => ({
+                  value: index,
+                  label: `${index}, ${categories}`,
+                }))}
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderColor: state.isSelected ? "black" : "black",
+                  }),
+                }}
+                placeholder="Seleccione Categoria/s"
+                isMulti
+                options={options}
+                value={options.find((t) => t.value === category)}
+                onChange={(e) => categoriesOnChange(e.map((c) => c.value))}
+                // theme={(theme) => ({
+                //   ...theme,
+                //   borderRadius: 0,
+                //   colors: {
+                //     ...theme.colors,
+                //     primary25: "grey",
+                //     primary: "black",
+                //   },
+                // })}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary25: "blue",
+                    primary: "black",
+                  },
+                })}
+                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
               <label className="flex mb-2 ml-1 text-sm font-small text-gray-600 dark:text-white">
                 Elija una categoria
               </label>
@@ -118,17 +168,17 @@ export default function CreateEvent() {
                   error={errors.date?.message}
                 />
               </div>
-              {/* <div className="md:w-1/2 md:pl-2">
+              <div className="md:w-1/2 md:pl-2">
                 <Input
                   labelText="Fecha de Fin"
                   type="datetime-local"
-                  name="date-end"
+                  // name="date-end"
                   // register={register}
                   // error={errors.userName?.message}
                 />
-              </div> */}
+              </div>
             </div>
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <Input
                 labelText="Imagen de Portada"
                 type="file"
@@ -141,9 +191,14 @@ export default function CreateEvent() {
                 // }
                 //error={errors.email?.message}
               />
-            </div>
+            </div> */}
             <div className="bg-gray-50 sticky bottom-0 left-0 right-0 flex justify-center p-4">
-              <Button variant="outlined" className="m-2" title="Cancelar">
+              <Button
+                variant="outlined"
+                onClick={useClick}
+                className="m-2"
+                title="Cancelar"
+              >
                 Cancelar
               </Button>
               <Button title="Crear Evento" type="submit" className="m-2">
