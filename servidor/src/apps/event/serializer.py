@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Event, Category
+from django.shortcuts import get_object_or_404
 
 # Categoria Seriliazer
 class CategorySerializer(serializers.ModelSerializer):
@@ -21,6 +22,8 @@ class EventSerializer(serializers.ModelSerializer):
         
         # Toma las categorías a partir de los IDs que vienen del request
         category_ids = validated_data.pop('categories', [])  # Obtén la lista de IDs directamente
+
+        categories = [get_object_or_404(Category, id=category_id) for category_id in category_ids]
 
         event = Event.objects.create(**validated_data)
         event.categories.set(category_ids)
