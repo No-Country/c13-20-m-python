@@ -119,10 +119,6 @@ export default function CreateEvent() {
                 ))}
               </select> */}
               <Select
-                defaultValue={options.map((categories, index) => ({
-                  value: index,
-                  label: `${index}, ${categories}`,
-                }))}
                 styles={{
                   control: (baseStyles, state) => ({
                     ...baseStyles,
@@ -145,9 +141,10 @@ export default function CreateEvent() {
                 // })}
                 theme={(theme) => ({
                   ...theme,
-                  borderRadius: 0,
+                  borderRadius: 7,
                   colors: {
                     ...theme.colors,
+                    background: "grey",
                     primary25: "blue",
                     primary: "black",
                   },
