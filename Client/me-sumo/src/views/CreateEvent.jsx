@@ -1,17 +1,11 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { Button } from "@material-tailwind/react";
-import { useSelector } from "react-redux";
 import Input from "../components/Shared/Input";
 import Checks from "../components/Shared/checks";
 import handleCreateEvent from "../hooks/useEvents";
-import { getToken } from "../redux/sliceLogin";
-import eventSchema from "../validations/event.js";
 
 export default function CreateEvent() {
-  const token = useSelector(getToken);
-
   const {
     handleSubmit,
     register,
@@ -59,7 +53,7 @@ export default function CreateEvent() {
             className="space-y-1 w-full mb-4"
             action="#"
             onSubmit={handleSubmit((newEvent) => {
-              handleCreateEvent(newEvent, token);
+              handleCreateEvent(newEvent);
             })}
           >
             <div>

@@ -29,6 +29,7 @@ const useLogin = () => {
 
       if (message === "successful login" && token) {
         dispatch(setAuthToken(token));
+
         dispatch(login());
         redirectLogin(navigate);
       }
@@ -43,7 +44,12 @@ const useLogin = () => {
 
   const handleGoogleLogin = (response) => {
     console.log(response);
-    if (response.credential) dispatch(login());
+    if (response.credential) {
+      dispatch(setAuthToken(response.credential));
+
+      dispatch(login());
+      redirectLogin(navigate);
+    }
   };
 
   const handleLogout = () => {
