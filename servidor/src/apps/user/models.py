@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils import timezone
-
+from apps.event.category import Category
 
 class UserManager(BaseUserManager):
     def create_user(self, first_name:str, last_name:str, email:str, username:str, password:str = None, 
-                    is_staff=False, is_superuser=False, age=None, phone_number = None) -> "User":
+                    is_staff=False, is_superuser=False) -> "User":
         if not email:
             raise ValueError("User must have an email")
         if not username:
@@ -22,8 +22,6 @@ class UserManager(BaseUserManager):
         user.is_active = True
         user.is_staff = is_staff
         user.is_superuser = is_superuser
-        user.age = age
-        user.phone_number = phone_number
         user.save()
 
         return user
@@ -52,7 +50,7 @@ class User(AbstractUser):
     age = models.IntegerField(null=True, default=None)
     password = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15, null=True, blank=True)
-
+    favorite_categories = models.ManyToManyField(Category, blank=True)
 
     GENDER_CHOICES = [
         ('M', 'Mujer'),

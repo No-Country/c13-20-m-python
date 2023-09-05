@@ -1,12 +1,8 @@
 from django.db import models
 from apps.user.models import User
+from .category import Category
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    #agregar otros campos
-    
-    def __str__(self):
-        return self.name
+
 
 class Event(models.Model):
     categories = models.ManyToManyField(Category)

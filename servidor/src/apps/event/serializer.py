@@ -1,27 +1,54 @@
 from rest_framework import serializers
-from .models import Event,User, Category
+from .category import Category
+from .models import Event
+from apps.user.models import User
 
-class EventSerializers(serializers.ModelSerializer):
-    
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User 
+        fields = ['id', 'username']
+
+# Categoria Seriliazer
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name']
+
+class EventListSerializer(serializers.ModelSerializer):
+
+    categories = CategorySerializer(many=True, read_only=True)
+    eventHost = UserSerializer(read_only=True)
 
     class Meta:
         model = Event
+        fields = ('id', 'eventHost', 'name', 'description', 'capacity', 'date', 'created_at', 'virtual', 'state', 'ticketPrice', 'event_images', 'categories', 'location')
+        read_only_fields = ('created_at', 'eventHost',)
+
+
+class EventSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Event
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')
-        read_only_fields = ('created_at','eventHost',) 
+        read_only_fields = ('created_at', 'eventHost',) 
 
     def create(self, validated_data):
+
         validated_data['eventHost'] = self.context['request'].user
-
-        # Obtén las categorías a partir de los IDs proporcionados en el request
-        category = validated_data.pop('categories', [])
         
-        event = Event.objects.create(**validated_data)
+        # Toma las categorías a partir de los IDs que vienen del request
+        categories = validated_data.pop('categories', [])  # Obtén la lista de IDs directamente
 
-        # Asigna las categorías utilizando el método 'set()'
-        event.categories.set(category)
+        event = Event.objects.create(**validated_data)
+        event.categories.set(categories)
+        event.save()
         return event
 
+
+# Evento detalle sin categorias con id y nombre
 class EventDetailSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Event
         exclude = ['created_at']
