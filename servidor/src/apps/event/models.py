@@ -2,8 +2,6 @@ from django.db import models
 from apps.user.models import User
 from .category import Category
 
-
-
 class Event(models.Model):
     categories = models.ManyToManyField(Category)
     eventHost = models.ForeignKey(User, on_delete = models.CASCADE)

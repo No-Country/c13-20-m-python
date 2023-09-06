@@ -1,18 +1,19 @@
 import { Carousel, Typography, Button } from "@material-tailwind/react";
 import loginImg from "../../assets/login-image.png";
-import asistente from "../../assets/images/asistente.png"
-const images = [{
-  src: loginImg,
-  text: 'Fiesta de disfraces'
-},
-{
-  src: asistente,
-  text: 'Tomar el te'
-},
-{
-  src: loginImg,
-  text: 'Juegos de mesa'
-}
+import asistente from "../../assets/images/asistente.png";
+const images = [
+  {
+    src: loginImg,
+    text: "Fiesta de disfraces",
+  },
+  {
+    src: asistente,
+    text: "Tomar el te",
+  },
+  {
+    src: loginImg,
+    text: "Juegos de mesa",
+  },
 ];
 
 export default function CarouselWithContent() {
@@ -42,9 +43,9 @@ export default function CarouselWithContent() {
                 className="mb-12 opacity-80"
               >
                 It is not so much for its beauty that the forest makes a claim
-                upon men&apos;s hearts, as for that subtle something, that quality
-                of air that emanation from old trees, that so wonderfully changes
-                and renews a weary spirit.
+                upon men&apos;s hearts, as for that subtle something, that
+                quality of air that emanation from old trees, that so
+                wonderfully changes and renews a weary spirit.
               </Typography>
               <div className="flex justify-center gap-2">
                 <Button size="lg" color="white">
