@@ -1,17 +1,13 @@
 import { useState } from "react";
+import { getEvents } from "../../redux/sliceEvents";
+import { useSelector } from "react-redux";
 import "material-symbols";
 
 //eslint-disable-next-line
 export default function SearchBar({ onSearch }) {
   const [location, setLocation] = useState("");
 
-  const cities = [
-    "Tandil, Buenos Aires",
-    "Olavarria",
-    "Rosario",
-    "Buenos Aires",
-    "Tucuman",
-  ];
+  const cities = useSelector(getEvents);
 
   const handleChange = (event) => {
     setLocation(event.target.value);
@@ -30,16 +26,28 @@ export default function SearchBar({ onSearch }) {
           type="search"
           onChange={handleChange}
           value={location}
-          list={location.length >= 3 ? "cities" : null}
+          list={location.length >= 1 ? "cities" : null}
           placeholder="Busca los eventos mas cercanos"
           className="w-96 h-10 p-2 border-solid border-gray-600 shadow appearance-none"
         />
 
-        <datalist id="cities" className=" appearance-none bg-deep-orange-800">
-          {cities.map((city, index) => (
-            <option key={index} value={city} className="bg-deep-orange-700" />
-          ))}
-        </datalist>
+        {cities.length ? (
+          <datalist id="cities">
+            {cities.map((city, index) => (
+              <option
+                key={index}
+                value={city.location}
+                style={{
+                  backgroundColor: "#dd4b39",
+                  color: "#fff",
+                  WebkitAppearance: "none",
+                  MozAppearance: "none",
+                  appearance: "none",
+                }}
+              />
+            ))}
+          </datalist>
+        ) : null}
 
         <button
           onClick={handleSearch}
