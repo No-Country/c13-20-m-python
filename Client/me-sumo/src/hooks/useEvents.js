@@ -16,10 +16,9 @@ const useEvents = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(data);
+      return data;
     } catch (error) {
       if (error.response) {
-        console.log("tkn", token);
         alert("error!");
         console.log("Response Data:", error.response.data);
       }
@@ -29,22 +28,22 @@ const useEvents = () => {
   const handleDataEvents = async () => {
     const URL = API_URL_EVENTS;
 
-    try {
-      const response = await axios.get(URL, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    const promise = axios
+      .get(URL)
+      .then((response) => {
+        const { data } = response;
+        return data;
+      })
+      .catch((error) => {
+        console.error(error.message);
+        throw error;
       });
 
-      const { data } = response;
-
+    promise.then((data) => {
       dispatch(setEvents(data));
+    });
 
-      // const allLocations = data.map((location) => location.location);
-    } catch (error) {
-      console.error(error.message);
-      throw error;
-    }
+    return promise;
   };
 
   return { handleDataEvents, handleCreateEvent };
