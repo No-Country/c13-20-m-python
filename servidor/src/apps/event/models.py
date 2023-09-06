@@ -4,7 +4,7 @@ from .category import Category
 from django.core.exceptions import ValidationError
 
 class Event(models.Model):
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, blank=True)
     eventHost = models.ForeignKey(User, on_delete = models.CASCADE)
     name = models.CharField(max_length = 200)
     description = models.TextField() 
