@@ -23,17 +23,17 @@ export const createEventHandler = createSlice({
     // setTicketPrice: (state, action) => {
     //   state.eventData = { ...state.eventData, ticketPrice: action.payload };
     // },
-    // setCategories: (state, action) => {
-    //   state.eventData = { ...state.eventData, categories: action.payload };
-    // },
-    setImage: (state, action) => {
-      state.eventData = { ...state.eventData, event_images: action.payload };
+    setCategories: (state, action) => {
+      state.eventData = { ...state.eventData, categories: action.payload };
     },
+    // setImage: (state, action) => {
+    //   state.eventData = { ...state.eventData, event_images: action.payload };
+    // },
   },
 });
 
 export const getEventData = (state) => state.eventData;
 
-export const { setImage } = createEventHandler.actions;
+export const { setCategories } = createEventHandler.actions;
 
 export default createEventHandler.reducer;
