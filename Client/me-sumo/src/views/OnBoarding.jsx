@@ -60,7 +60,6 @@ export default function Onboarding() {
             <button
               className="text-xl font-bold leading-tight tracking-tight text-gray-900 lg:text-2xl dark:text-white"
               onClick={() => {
-                console.log("Hola");
                 navigate("/interests1");
               }}
             >

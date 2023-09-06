@@ -1,14 +1,20 @@
-import construction from "../../assets/under-construction.png";
-
-export default function CardEvent() {
+export default function CardEvent({
+  name,
+  image,
+  date,
+  location,
+  price,
+  host,
+}) {
   return (
     <div className="card w-72 h-72 bg-base-100 shadow-xl">
-      <figure>
-        <img src={construction} alt="Shoes" />
-      </figure>
       <div className="p-5 rounded-xl">
-        <h2 className="">CARD DE PRUEBA</h2>
-        <p>Esta es una card de prueba para mostrar un evento</p>
+        <img src={image} alt="card-image" />
+        <h2 className="">{name}</h2>
+        <p>{date}</p>
+        <p>{location}</p>
+        <p>{price}</p>
+        <h3>{host}</h3>
       </div>
     </div>
   );
