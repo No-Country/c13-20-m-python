@@ -9,7 +9,7 @@ import Home from "./views/Home";
 import SignUp from "./views/SignUp";
 import NavBar from "./views/NavBar";
 import UserProfile from "./views/UserProfile";
-import CreateEvent from "./views/CreateEvent";
+import CreateEvent from "./views/CreateEvent/CreateEvent";
 import Onboarding from "./views/OnBoarding";
 import Interests1 from "./views/Interests/Interests1";
 import Interests2 from "./views/Interests/Interests2";
