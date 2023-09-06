@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setLocation, setInterests } from "../redux/sliceInterests";
 
 /**
  * El gancho `useInterestSelector` proporciona funciones y estados para gestionar la selección de intereses
@@ -7,52 +9,56 @@ import { useNavigate } from 'react-router-dom';
  */
 const useInterestSelector = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   /* ----------------------------------
-   * PASO 1: Manejo de la Ubicacion 
+   * PASO 1: Manejo de la Ubicacion
    * ---------------------------------- */
-  
+
   // Estado para almacenar la dirección seleccionada en Interest1.
-  const [address, setAddress] = useState('');
-  
+  const [address, setAddress] = useState("");
+
   // Estado para mostrar una alerta si no se selecciona una ubicación válida en Interest1.
   const [showAlert1, setShowAlert1] = useState(false);
-  
+
   // Estado para almacenar las ubicaciones buscadas.
   const [searchedLocations, setSearchedLocations] = useState([]);
 
   /* Función para manejar el botón "Anterior" en Interest1. */
   const handlePrevButton = () => {
-    navigate('/on-boarding');
+    navigate("/on-boarding");
   };
-  
+
   /* Función para manejar el botón "Siguiente" en Interest1. */
   const handleNextButton = () => {
-    if (address === '') {
+    if (address === "") {
       setShowAlert1(true);
     } else {
-      navigate('/interests2');
+      dispatch(setLocation(address));
       setSearchedLocations([...searchedLocations, { name: address }]);
+      navigate("/interests2");
     }
   };
 
   /* ----------------------------------
    * PASO 2: Manejo de la selección de intereses
    * ---------------------------------- */
-  
+
   // Estado para almacenar los intereses seleccionados.
   const [selectedInterests, setSelectedInterests] = useState([]);
-  
+
   // Índice del interés actual en el proceso de selección.
   const [currentInterestIndex, setCurrentInterestIndex] = useState(0);
-  
+
   // Estado para mostrar una alerta si no se selecciona ningún interés.
   const [showAlert, setShowAlert] = useState(false);
 
   /* Función para alternar la selección de un interés. */
   const toggleInterest = (interest) => {
     if (selectedInterests.includes(interest)) {
-      setSelectedInterests(selectedInterests.filter((item) => item !== interest));
+      setSelectedInterests(
+        selectedInterests.filter((item) => item !== interest)
+      );
     } else {
       setSelectedInterests([...selectedInterests, interest]);
       setShowAlert(false);
@@ -75,7 +81,7 @@ const useInterestSelector = () => {
 
   /* Función para manejar el botón "Anterior" en InterestsPage. */
   const handlePrevButtonClick = () => {
-    navigate('/interests1');
+    navigate("/interests1");
   };
 
   /* Función para manejar el botón "Finalizar y guardar" en InterestsPage. */
@@ -83,7 +89,8 @@ const useInterestSelector = () => {
     if (selectedInterests.length === 0) {
       setShowAlert(true);
     } else {
-      navigate('/successful');
+      dispatch(setInterests(selectedInterests));
+      navigate("/successful");
     }
   };
 
@@ -108,8 +115,3 @@ const useInterestSelector = () => {
 };
 
 export default useInterestSelector;
-
-
-
-
-
