@@ -42,12 +42,18 @@ export default function CreateEvent() {
   }
 
   const categorias = [
-    "Fiesta",
-    "Evento",
-    "Religioso",
     "Musica",
+    "Deportes",
+    "Gastronomía",
     "Arte",
-    "Tecnologia",
+    "Ciencia y Tecnología",
+    "E-sports",
+    "Salud",
+    "Negocios",
+    "Cursos y Capacitaciones",
+    "Teatro",
+    "Otros",
+    "Cine",
   ];
   const options = categorias.map((cat, index) => ({
     value: index,

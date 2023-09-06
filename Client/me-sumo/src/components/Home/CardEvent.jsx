@@ -13,7 +13,7 @@ export default function CardEvent({
         <h2 className="">{name}</h2>
         <p>{date}</p>
         <p>{location}</p>
-        <p>{price}</p>
+        <p>Precio: {price}</p>
         <h3>{host}</h3>
       </div>
     </div>
