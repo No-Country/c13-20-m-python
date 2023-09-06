@@ -131,5 +131,4 @@ class CategoryView(views.APIView):
         cateogories = Category.objects.all()
         categories_serializer = CategorySerializer(cateogories, many=True)
         
-        return Response(categories_serializer.data)    
-            
+        return Response(categories_serializer.data)
