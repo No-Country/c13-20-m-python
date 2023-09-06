@@ -15,7 +15,7 @@ class EventView(views.APIView):
 
     # METODO GET / listamos eventos
     def get(self, request):
-        event = Event.objects.all()
+        event = Event.objects.filter(state=True)
         
         location = request.query_params.get('location')
         if location:

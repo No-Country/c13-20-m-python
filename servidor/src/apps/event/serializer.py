@@ -25,13 +25,38 @@ class EventListSerializer(serializers.ModelSerializer):
         fields = ('id', 'eventHost', 'name', 'description', 'capacity', 'date', 'created_at', 'virtual', 'state', 'ticketPrice', 'event_images', 'categories', 'location')
         read_only_fields = ('created_at', 'eventHost',)
 
+    # Mostrar gratis en vez de 0.0
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
 
+        if data['ticketPrice'] == 0.0:
+            data['ticketPrice'] = 'Gratis'
+            
+        return data
+    
 class EventSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')
         read_only_fields = ('created_at', 'eventHost',) 
+        
+    #Validacion capacity != 0 si es 0 no puede comprar entradas?
+    def validate_capacity(self, value):
+        if value != 0 and value < 10000:
+            return value
+        else:
+            raise serializers.ValidationError("Capacidad debe ser distinto de 0 y menor a 10.000") 
+        
+    #Validacion ticket mayor o igual 0
+    def validate_ticketPrice(self, value):
+        if value >= 0:
+            return value 
+        else:
+            raise serializers.ValidationError("Ticket no menor a 0")
+        
+    #validar categorias no puede estar vacio, si es vacio poner default = Otros
+        
 
     def create(self, validated_data):
 
