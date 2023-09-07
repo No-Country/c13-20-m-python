@@ -18,9 +18,9 @@ const images = [
 
 export default function CarouselWithContent() {
   return (
-    <Carousel loop={true} className="rounded-xl">
+    <Carousel loop={true} className="mt-8 mb-8 rounded-xl w-1440 h-600">
       {images.map((image, index) => (
-        <div key={index} className="relative w-full">
+        <div key={index} className="relative">
           <div className="relative h-0 pb-[56.25%]">
             <img
               src={image.src}
@@ -33,6 +33,7 @@ export default function CarouselWithContent() {
               <Typography
                 variant="h1"
                 color="white"
+                font="poppins"
                 className="mb-4 text-3xl md:text-4xl lg:text-5xl"
               >
                 {image.text}
@@ -40,6 +41,7 @@ export default function CarouselWithContent() {
               <Typography
                 variant="lead"
                 color="white"
+                font="poppins"
                 className="mb-12 opacity-80"
               >
                 It is not so much for its beauty that the forest makes a claim
