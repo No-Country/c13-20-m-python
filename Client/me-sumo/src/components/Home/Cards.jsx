@@ -42,7 +42,7 @@ export default function Cards() {
                     .map((individualEvent) => (
                       <CardEvent
                         key={individualEvent.id}
-                        image={`https://me-sumo.onrender.com${individualEvent.event_images}`}
+                        image={individualEvent.event_images}
                         name={individualEvent.name}
                         date={individualEvent.date}
                         location={individualEvent.location}
