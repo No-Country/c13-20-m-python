@@ -9,6 +9,8 @@ from drf_yasg.utils import swagger_auto_schema
 class RegisterView(views.APIView):
 
     def post(self, request):
+        request.data['email'] = request.data['email'].lower()
+        request.data['username'] = request.data['username'].lower()
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -30,7 +32,7 @@ class LoginView(views.APIView):
         serializer.is_valid(raise_exception=True)
         
         
-        email = serializer.validated_data["email"]
+        email = serializer.validated_data["email"].lower()
         password = serializer.validated_data["password"]
 
         user = User.objects.filter(email=email).first()
