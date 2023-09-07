@@ -74,7 +74,6 @@ const useEvents = () => {
 
         // Mezcla los eventos de forma aleatoria y trae los primeros 12.
         const randomEvents = shuffleArray(data).slice(0, 12);
-        console.log(randomEvents);
 
         return randomEvents;
       })
