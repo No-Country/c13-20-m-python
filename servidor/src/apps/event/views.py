@@ -25,7 +25,7 @@ class EventView(views.APIView):
         if date:
             event = event.filter(date=date)
         
-        eventHost_username = request.query_params.get('eventHost__username').lower()
+        eventHost_username = request.query_params.get('eventHost__username')
         if eventHost_username:
             event = event.filter(eventHost__username=eventHost_username)
         
