@@ -23,7 +23,7 @@ export default function CreateEventStep3() {
       <h2 className="text-2xl mt-3 font-bold">Resumen del Evento</h2>
       <div className="flex items-center justify-center mt-3 mb-3">
         <img
-          src={`https://me-sumo.onrender.com${eventInfo.event_images}`}
+          src={eventInfo.event_images}
           alt="event-image"
           className="rounded-xl  w-64 h-64"
         />
