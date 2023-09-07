@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL_EVENTS } from "../config/api";
 import { setEvents } from "../redux/sliceEvents";
-
-
+import { setCategories, setEvent } from "../redux/sliceCreateEvent";
 
 // Función para mezclar aleatoriamente un array.
 function shuffleArray(array) {
@@ -54,6 +53,7 @@ const useEvents = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      navigate("/home");
     } catch (error) {
       if (error.response) {
         // Manejo de error si se recibe una respuesta del servidor.
@@ -66,37 +66,32 @@ const useEvents = () => {
   /* Obtiene datos de eventos desde la API y los almacena en el estado global de Redux.*/
   const handleDataEvents = async () => {
     const URL = API_URL_EVENTS;
-    
+
     const promise = axios
-    .get(URL)
-    .then((response) => {
-      const { data } = response;
-      
-      
-      // Mezcla los eventos de forma aleatoria y trae los primeros 12.
-      const randomEvents = shuffleArray(data).slice(0, 12);
-      console.log(randomEvents)
-      
-      
-      return randomEvents;
-      
-    })
-    .catch((error) => {
-      console.error(error.message);
-      throw error;
-    });
-    
+      .get(URL)
+      .then((response) => {
+        const { data } = response;
+
+        // Mezcla los eventos de forma aleatoria y trae los primeros 12.
+        const randomEvents = shuffleArray(data).slice(0, 12);
+        console.log(randomEvents);
+
+        return randomEvents;
+      })
+      .catch((error) => {
+        console.error(error.message);
+        throw error;
+      });
+
     promise.then((data) => {
       // Almacena los datos de eventos en el estado global de Redux.
       dispatch(setEvents(data));
     });
-    
+
     return promise;
   };
 
   return { handleDataEvents, handleCreateEvent, handleCategory };
-
 };
 
 export default useEvents;
-
