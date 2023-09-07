@@ -2,13 +2,13 @@ import { useForm, useController } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { Button } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 
-import Input from "../components/Shared/Input";
-import Checks from "../components/Shared/checks";
-import useEvents from "../hooks/useEvents";
-import eventSchema from "../validations/event";
+import Input from "../../components/Shared/Input";
+import Checks from "../../components/Shared/checks";
+import useEvents from "../../hooks/useEvents";
+import eventSchema from "../../validations/event";
 export default function CreateEvent() {
   const { handleCreateEvent } = useEvents();
   const {
@@ -30,7 +30,7 @@ export default function CreateEvent() {
       state: true,
       ticketPrice: 0,
       event_images: null,
-      location: "Tandil, Buenos Aires",
+      location: "",
     },
   });
   const navigate = useNavigate();
@@ -40,15 +40,20 @@ export default function CreateEvent() {
       navigate("/");
     }
   }
-  useEffect(() => {});
 
   const categorias = [
-    "Fiesta",
-    "Evento",
-    "Religioso",
     "Musica",
+    "Deportes",
+    "Gastronomía",
     "Arte",
-    "Tecnologia",
+    "Ciencia y Tecnología",
+    "E-sports",
+    "Salud",
+    "Negocios",
+    "Cursos y Capacitaciones",
+    "Teatro",
+    "Otros",
+    "Cine",
   ];
   const options = categorias.map((cat, index) => ({
     value: index,
@@ -57,6 +62,59 @@ export default function CreateEvent() {
   const {
     field: { value: category, onChange: categoriesOnChange },
   } = useController({ name: "categories", control });
+
+  const [address, setAdress] = useState("");
+  const [autocomplete, setAutocomplete] = useState("");
+
+  function initMap() {
+    // eslint-disable-next-line no-undef
+    const geocoder = new google.maps.Geocoder();
+    const mapOptions = {
+      center: { lat: -32.94759613076781, lng: -60.630369245338336 },
+      zoom: 15,
+    };
+
+    // eslint-disable-next-line no-undef
+    const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    geocoder.geocode({ address: address }, (results, status) => {
+      // eslint-disable-next-line no-undef
+      if (status === google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        // eslint-disable-next-line no-undef, no-unused-vars
+        const marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location,
+        });
+      } else {
+        console.error(
+          "Geocode was not successful for the following reason:",
+          status
+        );
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (address) {
+      initMap();
+    }
+    const input = document.getElementById("location");
+    setAutocomplete(
+      // eslint-disable-next-line no-undef, no-unused-vars
+      new google.maps.places.Autocomplete(input, {
+        types: ["geocode"],
+        fields: ["name"],
+      })
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [address]);
+
+  const handleMap = () => {
+    // eslint-disable-next-line no-undef
+    let place = autocomplete.getPlace();
+    setAdress(place.name);
+  };
 
   return (
     <div className="">
@@ -105,21 +163,6 @@ export default function CreateEvent() {
               <label className="flex mb-2 ml-1 text-sm font-medium text-gray-900 dark:text-white">
                 Categoría
               </label>
-              {/* <select
-                required={true}
-                {...register("categories")}
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              >
-                {categorias.map((cat, index) => (
-                  <option
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    key={index}
-                    value={[index]}
-                  >
-                    {cat}
-                  </option>
-                ))}
-              </select> */}
               <Select
                 styles={{
                   control: (baseStyles, state) => ({
@@ -177,7 +220,7 @@ export default function CreateEvent() {
                 />
               </div>
             </div>
-            {/* <div className="mb-3">
+            <div className="mb-3">
               <Input
                 labelText="Imagen de Portada"
                 type="file"
@@ -190,7 +233,26 @@ export default function CreateEvent() {
                 // }
                 //error={errors.email?.message}
               />
-            </div> */}
+            </div>
+            <div>
+              <h1 className="flex mb-2 ml-1 text-sm font-medium text-gray-900 dark:text-white">
+                Ubicacion
+              </h1>
+              <div>
+                <input
+                  {...register("location")}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  id="location"
+                  type="text"
+                  placeholder="Escriba la direccion del evento"
+                  name="location"
+                />
+              </div>
+              <button onClick={() => handleMap()} id="buscar" type="button">
+                Generar mapa
+              </button>
+              <div id="map" className="w-full h-96 my-5"></div>
+            </div>
             <div className="bg-gray-50 sticky bottom-0 left-0 right-0 flex justify-center p-4">
               <Button
                 variant="outlined"

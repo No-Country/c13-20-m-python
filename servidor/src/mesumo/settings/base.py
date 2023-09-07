@@ -22,6 +22,7 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     'apps.user',
     'apps.event',
+    'apps.ticket'
 ]
 
 THIRD_APPS = [
@@ -105,3 +106,6 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT=os.path.join(BASE_DIR,"media/")

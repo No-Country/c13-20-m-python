@@ -27,6 +27,7 @@ export default function Cards() {
   const activateSpinner = events.length;
 
   return (
+
     <div>
       <Carousel className="rounded-xl" controls>
         {activateSpinner ? (
@@ -41,7 +42,7 @@ export default function Cards() {
                     .map((individualEvent) => (
                       <CardEvent
                         key={individualEvent.id}
-                        image={individualEvent.image}
+                        image={`https://me-sumo.onrender.com${individualEvent.event_images}`}
                         name={individualEvent.name}
                         date={individualEvent.date}
                         location={individualEvent.location}
@@ -63,6 +64,7 @@ export default function Cards() {
           <Spinner className="h-12 w-12" />
         )}
       </Carousel>
+
     </div>
   );
 }

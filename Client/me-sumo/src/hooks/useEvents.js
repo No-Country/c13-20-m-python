@@ -1,14 +1,10 @@
 import { getToken } from "../redux/sliceLogin";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL_EVENTS } from "../config/api";
 import { setEvents } from "../redux/sliceEvents";
-/**
- * Hook personalizado para gestionar operaciones relacionadas con eventos.
- *
- * Este hook proporciona funciones para crear nuevos eventos y obtener datos de eventos desde una API.
- * Utiliza el token de autenticación del usuario y Redux para gestionar los eventos.
- **/
+
 
 
 // Función para mezclar aleatoriamente un array.
@@ -22,16 +18,42 @@ function shuffleArray(array) {
 const useEvents = () => {
   const token = useSelector(getToken);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  /* Crea un nuevo evento en la API.*/
+  const redirect = (navigate) => {
+    navigate("/create-event-step3");
+  };
+
   const handleCreateEvent = async (newEvent) => {
+    const { categories, event_images, ...noCatEvent } = newEvent;
+    dispatch(setCategories(categories));
+    noCatEvent.event_images = event_images[0];
+
     try {
-      const { data } = await axios.post(API_URL_EVENTS, newEvent, {
+      const { data } = await axios.post(API_URL_EVENTS, noCatEvent, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(setEvent(data.event));
+      redirect(navigate);
+    } catch (error) {
+      if (error.response) {
+        alert("error!");
+        console.log("Response Data:", error.response.data);
+      }
+    }
+  };
+
+  const handleCategory = async (category, id) => {
+    const modifyCategory = { categories: category };
+    try {
+      await axios.patch(API_URL_EVENTS + `${id}/`, modifyCategory, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      return data;
     } catch (error) {
       if (error.response) {
         // Manejo de error si se recibe una respuesta del servidor.
@@ -71,8 +93,9 @@ const useEvents = () => {
     
     return promise;
   };
-  
-  return { handleDataEvents, handleCreateEvent };
+
+  return { handleDataEvents, handleCreateEvent, handleCategory };
+
 };
 
 export default useEvents;
