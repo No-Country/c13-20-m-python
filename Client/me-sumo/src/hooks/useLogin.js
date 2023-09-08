@@ -43,7 +43,7 @@ const useLogin = () => {
   };
 
   const handleGoogleLogin = (response) => {
-    console.log(response);
+    console.log(response)
     if (response.credential) {
       dispatch(setAuthToken(response.credential));
 

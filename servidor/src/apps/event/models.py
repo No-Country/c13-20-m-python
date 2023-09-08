@@ -1,11 +1,10 @@
 from django.db import models
 from apps.user.models import User
 from .category import Category
-
-
+from django.core.exceptions import ValidationError
 
 class Event(models.Model):
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, blank=True)
     eventHost = models.ForeignKey(User, on_delete = models.CASCADE)
     name = models.CharField(max_length = 200)
     description = models.TextField() 
@@ -18,6 +17,17 @@ class Event(models.Model):
     event_images  =  models.ImageField(null = True, blank = True, upload_to= 'images/')            # Para usar models.ImageField(upload_to = PATH   ) 
     #  el upload to hay que setearlo a un path existente donde se van a guardar las imagenes
     location = models.CharField(max_length = 200 ) #location field
+    tickets_sold = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
+    
+    def clean(self):
+        super().clean()
+
+        if self.tickets_sold < 0:
+            raise ValidationError("El número de boletos vendidos no puede ser negativo.")
+
+        if self.tickets_sold > self.capacity:
+            raise ValidationError("El número de boletos vendidos no puede superar la capacidad del evento.")
+    
