@@ -129,7 +129,6 @@ export default function CreateEvent() {
         <div className="w-full max-w-screen-md xl:max-w-screen-lg p-4 lg:py-0">
           <form
             className="space-y-1 w-full mb-4"
-            action="#"
             onSubmit={handleSubmit((newEvent) => {
               handleCreateEvent(newEvent);
             })}
@@ -176,15 +175,6 @@ export default function CreateEvent() {
                 options={options}
                 value={options.find((t) => t.value === category)}
                 onChange={(e) => categoriesOnChange(e.map((c) => c.value))}
-                // theme={(theme) => ({
-                //   ...theme,
-                //   borderRadius: 0,
-                //   colors: {
-                //     ...theme.colors,
-                //     primary25: "grey",
-                //     primary: "black",
-                //   },
-                // })}
                 theme={(theme) => ({
                   ...theme,
                   borderRadius: 7,
@@ -232,7 +222,7 @@ export default function CreateEvent() {
                 // onChange={(e) =>
                 //   e.map((c) => setValue("event_images", [c.value]))
                 // }
-                //error={errors.email?.message}
+                error={errors.event_images?.message}
               />
             </div>
             <div>
