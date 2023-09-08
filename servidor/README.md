@@ -12,6 +12,8 @@ Bienvenido a la documentación de la API de Me Sumo App. Aquí encontrarás info
     - [Cerrar Sesión](#cerrar-sesión)
   - [Evento](#evento)
     - [Filtrado por categoria](#Filtrado-por-categoria)
+    - [Mostrar eventos](#mostrar-eventos)
+    - [Mostrar evento](#mostrar-evento)
 
 # Endpoints 
 
@@ -66,9 +68,34 @@ Bienvenido a la documentación de la API de Me Sumo App. Aquí encontrarás info
   - Código de estado: 200 (OK)
   - Cuerpo de respuesta: `{"message": "successful logout"}`
 
+
 ## Evento
 
 ### Filtrado por categoria
+
+
+
+
+
+### Mostrar eventos
+
+- **URL**: `/api/events/`
+- **Método HTTP**: `GET`
+- **Descripción**: Este endpoint permite mostrar todos los eventos creados hasta el momento.
+- **Respuesta Exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de respuesta: Datos del evento (ejemplo: `"id":214,"eventHost":{"id":40,"username":"Prueba20"},"name":"DJ Roger Session","description":...`)
+
+### Mostrar evento específico por ID
+
+- **URL**: `/api/events/<pk>`
+- **Método HTTP**: `GET`
+- **Descripción**: Este endpoint permite mostrar un evento especificando su id.
+- **Respuesta Exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de respuesta: Datos del evento (ejemplo: `"id":216,"eventHost":{"id":40,"username":"Prueba20"},"name":"Feria de Ciencias MDQ","description":...`)
+
+
 
 
 ## Uso
@@ -82,3 +109,7 @@ Para utilizar la API, realiza solicitudes HTTP a los endpoints correspondientes 
 ## Licencia
 
 Este proyecto está bajo la licencia [Licencia de Tu Proyecto]. Consulta el archivo LICENSE.md para obtener más detalles.
+
+
+
+
