@@ -42,6 +42,7 @@ export default function CreateEvent() {
   }
 
   const categorias = [
+    "-",
     "Musica",
     "Deportes",
     "Gastronomía",
@@ -117,7 +118,7 @@ export default function CreateEvent() {
   };
 
   return (
-    <div className="">
+    <div className="mt-7">
       <div>
         <h1 className="text-2xl font-bold items-center justify-center">
           Crear un nuevo Evento
@@ -190,7 +191,7 @@ export default function CreateEvent() {
                   colors: {
                     ...theme.colors,
                     background: "grey",
-                    primary25: "blue",
+                    primary25: "grey",
                     primary: "black",
                   },
                 })}

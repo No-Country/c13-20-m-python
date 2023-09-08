@@ -1,30 +1,42 @@
 import { useState } from "react";
 import axios from "axios";
-import { API_URL_ORGANIZATOR } from "../config/api";
+import { API_URL_EVENTS } from "../config/api";
+import { useNavigate } from "react-router-dom";
+import { setFilteredEvents } from "../redux/sliceEvents";
+import { useDispatch } from "react-redux";
 
-const useCharacters = () => {
-  const [organizator, setOrganizator] = useState([]);
+const useSearchEvents = () => {
+  const [searchedLocation, setSearchedLocation] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const onSearch = async (name) => {
+  const redirect = (navigate) => {
+    navigate("/filtered-events");
+  };
+
+  const onSearch = async (searchLocation) => {
     try {
-      const result = await axios(`${API_URL_ORGANIZATOR}${name}`);
+      const response = await axios(API_URL_EVENTS);
 
-      if (result.data.name) {
-        setOrganizator((prevOrganizators) => [
-          ...prevOrganizators,
-          result.data,
-        ]);
-      }
+      const { data } = response;
+
+      const filterEvents = data.filter(
+        (evnt) => evnt.location === searchLocation
+      );
+
+      dispatch(setFilteredEvents(filterEvents));
+      setSearchedLocation(searchLocation);
+
+      redirect(navigate);
     } catch (error) {
       console.log(error);
-      window.alert("No existe un organizador con ese Nombre");
+      window.alert("No existen eventos en esa localidad");
     }
   };
 
   return {
     onSearch,
-    organizator,
+    searchedLocation,
   };
 };
-
-export default useCharacters;
+export default useSearchEvents;

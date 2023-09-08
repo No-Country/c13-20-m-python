@@ -15,6 +15,7 @@ import Onboarding from "./views/OnBoarding";
 import Interests1 from "./views/Interests/Interests1";
 import Interests2 from "./views/Interests/Interests2";
 import Successful from "./views/Interests/Successful";
+import FilteredEventsView from "./views/FilteredEventsView";
 
 function App() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
           Front/Interests
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/filtered-events" element={<FilteredEventsView />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/on-boarding" element={<Onboarding />} />
           <Route path="/sign-up" element={<SignUp />} />
