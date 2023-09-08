@@ -56,6 +56,7 @@ class EventDetailView(views.APIView):
     #  METODO GET / Encontramos evento por id
     def get(self, request, pk): 
         
+        
         try:
             pk = int(pk)
             event = Event.objects.get(id=pk)
