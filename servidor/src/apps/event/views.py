@@ -17,11 +17,8 @@ class EventView(views.APIView):
 
     # METODO GET / listamos eventos
     def get(self, request):
-<<<<<<< HEAD
-=======
         
         set_event_state()
->>>>>>> leonel
         event = Event.objects.filter(state=True)
         
         location = request.query_params.get('location')
