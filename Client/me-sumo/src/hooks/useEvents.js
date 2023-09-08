@@ -19,10 +19,12 @@ const useEvents = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const redirect = (navigate) => {
+  const redirectStep2 = (navigate) => {
+    navigate("/create-event-step2");
+  };
+  const redirectStep3 = (navigate) => {
     navigate("/create-event-step3");
   };
-
   const handleCreateEvent = async (newEvent) => {
     const { categories, event_images, ...noCatEvent } = newEvent;
     dispatch(setCategories(categories));
@@ -36,7 +38,7 @@ const useEvents = () => {
         },
       });
       dispatch(setEvent(data.event));
-      redirect(navigate);
+      redirectStep2(navigate);
     } catch (error) {
       if (error.response) {
         alert("error!");
@@ -63,6 +65,24 @@ const useEvents = () => {
     }
   };
 
+  const handleTicket = async (ticket, id) => {
+    try {
+      console.log(id);
+      console.log(ticket);
+      await axios.patch(API_URL_EVENTS + `${id}/`, ticket, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      redirectStep3(navigate);
+    } catch (error) {
+      if (error.response) {
+        // Manejo de error si se recibe una respuesta del servidor.
+        alert("¡Error al crear la entrada!");
+        console.log("Response Data:", error.message);
+      }
+    }
+  };
   /* Obtiene datos de eventos desde la API y los almacena en el estado global de Redux.*/
   const handleDataEvents = async () => {
     const URL = API_URL_EVENTS;
@@ -90,7 +110,7 @@ const useEvents = () => {
     return promise;
   };
 
-  return { handleDataEvents, handleCreateEvent, handleCategory };
+  return { handleDataEvents, handleCreateEvent, handleCategory, handleTicket };
 };
 
 export default useEvents;
