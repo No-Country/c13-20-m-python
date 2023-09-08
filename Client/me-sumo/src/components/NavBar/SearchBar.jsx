@@ -21,14 +21,14 @@ export default function SearchBar({ onSearch }) {
 
   return (
     <div className='flex justify-center'>
-      <div className='flex border-solid border-gray-600 w-full sm:w-4/5'>
+      <div className='flex border-solid border-gray-600 w-full md:w-4/5'>
         <input
           type='search'
           onChange={handleChange}
           value={location}
           list={location.length >= 1 ? 'cities' : null}
           placeholder='Busca los eventos mas cercanos'
-          className='h-10 p-2 border-solid border-gray-600 shadow appearance-none w-full sm:w-4/5'
+          className='h-10 p-2 border-solid border-gray-600 shadow appearance-none w-full'
         />
 
         {cities.length ? (

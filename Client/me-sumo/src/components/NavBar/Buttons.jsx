@@ -4,7 +4,7 @@ import LoginButton from "./LoginButton";
 
 export default function Buttons() {
   return (
-    <div className='flex shrink lg:gap-5'>
+    <div className='flex'>
       <div className='btn mx-5 join-item'>
         <CreateEventButton />
       </div>
