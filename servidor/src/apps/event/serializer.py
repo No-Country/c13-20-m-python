@@ -34,6 +34,8 @@ class EventListSerializer(serializers.ModelSerializer):
             
         return data
     
+
+    
 class EventSerializer(serializers.ModelSerializer):
     
     class Meta:
