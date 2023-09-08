@@ -5,6 +5,8 @@ from .serializer import EventSerializer, EventDetailSerializer, EventListSeriali
 from apps.user import authentication
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
+from .event_state import set_event_state
+from datetime import datetime
 
 
 class EventView(views.APIView):
@@ -15,6 +17,11 @@ class EventView(views.APIView):
 
     # METODO GET / listamos eventos
     def get(self, request):
+<<<<<<< HEAD
+=======
+        
+        set_event_state()
+>>>>>>> leonel
         event = Event.objects.filter(state=True)
         
         location = request.query_params.get('location')
@@ -52,6 +59,7 @@ class EventDetailView(views.APIView):
     permission_classes = (permissions.IsAuthenticated, ) 
     #  METODO GET / Encontramos evento por id
     def get(self, request, pk): 
+        
         
         try:
             pk = int(pk)
