@@ -14,15 +14,12 @@ export default function NavBar() {
     }
   }
   return (
-    <div className="flex justify-between">
-      <img
-        src={logo}
-        alt="img-login"
-        className="h-auto ml-2 mr-2 rounded-2xl"
-        onClick={useToHome}
-      />
+    <div className='flex flex-col'>
+      <div className='flex justify-around items-center mb-5'>
+        <img src={logo} alt='img-login' className='h-12 w-25 ml-2 mr-2 rounded-2xl' onClick={useToHome} />
+        <Buttons />
+      </div>
       <SearchBar onSearch={onSearch} />
-      <Buttons />
     </div>
   );
 }
