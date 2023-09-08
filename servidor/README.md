@@ -5,12 +5,17 @@ Bienvenido a la documentación de la API de Me Sumo App. Aquí encontrarás info
 ## Tabla de Contenidos
 
 - [Endpoints](#endpoints)
-  - [Registro de Usuario](#registro-de-usuario)
-  - [Inicio de Sesión](#inicio-de-sesión)
-  - [Información del usuario con sesión iniciada](#Información-del-usuario-con-sesión-iniciada)
-  - [Cerrar Sesión](#cerrar-sesión)
+  - [Usuario](#usuario)
+    - [Registro de Usuario](#registro-de-usuario)
+    - [Inicio de Sesión](#inicio-de-sesión)
+    - [Información del usuario con sesión iniciada](#Información-del-usuario-con-sesión-iniciada)
+    - [Cerrar Sesión](#cerrar-sesión)
+  - [Evento](#evento)
+    - [Filtrado por categoria](#Filtrado-por-categoria)
 
-## Endpoints
+# Endpoints 
+
+## Usuario
 
 ### Registro de Usuario
 
@@ -61,8 +66,9 @@ Bienvenido a la documentación de la API de Me Sumo App. Aquí encontrarás info
   - Código de estado: 200 (OK)
   - Cuerpo de respuesta: `{"message": "successful logout"}`
 
+## Evento
 
-
+### Filtrado por categoria
 
 
 ## Uso
@@ -76,9 +82,3 @@ Para utilizar la API, realiza solicitudes HTTP a los endpoints correspondientes 
 ## Licencia
 
 Este proyecto está bajo la licencia [Licencia de Tu Proyecto]. Consulta el archivo LICENSE.md para obtener más detalles.
-
-Este proyecto está bajo la licencia [Licencia de Tu Proyecto]. Consulta el archivo LICENSE.md para obtener más detalles.
-
-
-
-
