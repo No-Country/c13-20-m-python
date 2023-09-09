@@ -24,9 +24,9 @@ export default function EventInformation() {
     fetchData();
   }, []);
   return event ? (
-    <div className="bg-orange-100">
+    <div className="bg-orange-50	">
       <div className="flex flex-col justify-items-center items-center">
-        <div className="flex flex-row justify-center w-10/12 max-h-72 lg:h-full rounded-lg m-10">
+        <div className="flex flex-row justify-center w-full md:w-10/12 max-h-72 lg:h-full rounded-lg m-10">
           <img
             className="w-full h-auto object-cover focus:h-full  rounded-lg"
             src={event.event_images}
@@ -34,12 +34,12 @@ export default function EventInformation() {
           />
         </div>
       </div>
-      <div className="w-10/12 m-auto">
+      <div className="md:w-10/12 m-auto">
         <h1 className="text-6xl text-left py-10	">{event.name}</h1>
         <p className="text-left">{event.description}</p>
       </div>
-      <div className="flex flex-row w-10/12 m-auto">
-        <div className="w-5/12">
+      <div className="flex flex-col md:flex-row w-full md:w-10/12 m-auto">
+        <div className="w-full md:w-4/12">
           <h3 className="text-4xl	text-left py-10">Datos del Evento</h3>
           <div className=" text-left">
             <h5 className="text-left text-2xl">Fecha y hora</h5>
@@ -55,12 +55,12 @@ export default function EventInformation() {
           </div>
           <div>{event.location}</div>
         </div>
-        <div className="flex flex-col justify-between items-center m-auto w-10/12">
-          <div className=" w-4/12 flex flex-col ml-auto  rounded-lg">
+        <div className="flex flex-col justify-between items-center  w-10/12">
+          <div className="w-full md:w-6/12 flex flex-col ml-auto  rounded-lg">
             <h3 className="decoration-slate-950	py-4 text-xl font-semibold">
               Organizado por:
             </h3>
-            <div className="flex flex-row justify-between bg-orange-50 py-2 px-5 rounded-lg">
+            <div className="flex flex-row justify-between bg-orange-50 py-2 md:py-4 px-2 sm:px-5 rounded-lg">
               <p className="font-medium	text-lg	">{event.eventHost?.username}</p>
               {!siguiendo ? (
                 <Button
@@ -70,10 +70,7 @@ export default function EventInformation() {
                   Seguir
                 </Button>
               ) : (
-                <Button
-                  onClick={() => setSiguiendo(false)}
-                  className="bg-neutral-300	text-black	"
-                >
+                <Button onClick={() => setSiguiendo(false)} className="">
                   Siguiendo
                 </Button>
               )}

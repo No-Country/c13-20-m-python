@@ -24,8 +24,8 @@ function App() {
   const isLoginPage = location.pathname === "/login";
 
   return (
-    <Provider className="bg-orange-100" store={store}>
-      <div className="w-full bg-orange-100	">
+    <Provider className="bg-orange-50	" store={store}>
+      <div className="w-full bg-orange-50		">
         {!isLoginPage && <NavBar />}
         <Routes>
           Front/Interests
