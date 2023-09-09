@@ -47,6 +47,24 @@ const useEvents = () => {
     }
   };
 
+  const handleGetEvent = async (id) => {
+    try {
+      console.log("id", id.pk);
+      const response = await axios.get(API_URL_EVENTS + `${id.pk}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        // Manejo de error si se recibe una respuesta del servidor.
+        //alert("¡Error al encontrar el evento!");
+        console.log("Response Data:", error.response.data);
+      }
+    }
+  };
+
   const handleCategory = async (category, id) => {
     const modifyCategory = { categories: category };
     try {
@@ -110,7 +128,13 @@ const useEvents = () => {
     return promise;
   };
 
-  return { handleDataEvents, handleCreateEvent, handleCategory, handleTicket };
+  return {
+    handleDataEvents,
+    handleCreateEvent,
+    handleCategory,
+    handleTicket,
+    handleGetEvent,
+  };
 };
 
 export default useEvents;

@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
-import CardEvent from "./CardEvent";
-import { getEvents } from "../../redux/sliceEvents";
+import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import useEvents from "../../hooks/useEvents";
 import { Spinner, Carousel, Button } from "@material-tailwind/react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
+import useEvents from "../../hooks/useEvents";
+import CardEvent from "./CardEvent";
+import { getEvents } from "../../redux/sliceEvents";
 /**
  * Componente de tarjetas de eventos con carrusel y botones de navegación.
  *
@@ -14,6 +16,8 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
  * mientras se obtiene la información de los eventos.
  **/
 export default function Cards() {
+  const navigate = useNavigate();
+
   const { handleDataEvents } = useEvents();
 
   useEffect(() => {
@@ -27,7 +31,6 @@ export default function Cards() {
   const activateSpinner = events.length;
 
   return (
-
     <div>
       <Carousel className="rounded-xl" controls>
         {activateSpinner ? (
@@ -47,6 +50,9 @@ export default function Cards() {
                         date={individualEvent.date}
                         location={individualEvent.location}
                         price={individualEvent.ticketPrice}
+                        onAction={() =>
+                          navigate(`/event/${individualEvent.id}`)
+                        }
                       />
                     ))}
                 </div>
@@ -54,8 +60,8 @@ export default function Cards() {
           ) : (
             <div className="flex justify-center gap-2">
               <Button size="lg" color="black">
-              <FiChevronLeft size={24} className="cursor-pointer" />
-              <FiChevronRight size={24} className="cursor-pointer" />
+                <FiChevronLeft size={24} className="cursor-pointer" />
+                <FiChevronRight size={24} className="cursor-pointer" />
               </Button>
             </div>
           )
@@ -64,19 +70,6 @@ export default function Cards() {
           <Spinner className="h-12 w-12" />
         )}
       </Carousel>
-
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
