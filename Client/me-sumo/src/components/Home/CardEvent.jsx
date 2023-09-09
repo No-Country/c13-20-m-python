@@ -17,6 +17,7 @@ export default function CardEvent({
   location,
   price,
   host,
+  onAction,
 }) {
   // Formatear la fecha en el formato deseado
   const formattedDate = new Date(date);
@@ -32,7 +33,7 @@ export default function CardEvent({
     <Card className="mt-6 w-72 border border-gray-300 rounded">
       <CardHeader color="blue-gray" className="relative h-56">
         {/* Centrar la imagen y ajustar su tamaño */}
-        <div className="w-full h-full overflow-hidden">
+        <div className="w-full h-full overflow-hidden" onClick={onAction}>
           <img
             src={image}
             alt="card-image"
