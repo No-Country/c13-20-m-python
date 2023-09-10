@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .views import EventView, EventDetailAssistantView, EventCategoryView, CategoryView
+from .views import EventView, EventDetailAssistantView, EventCategoryView, CategoryView,EventDetailOrganizerView, EventListOrganizerView
 from apps.ticket.views import BuyTicketView
 from django.urls import path
 
@@ -14,4 +14,12 @@ urlpatterns = [
 
 urlpatterns += [
     path('events/<int:event_id>/buy-ticket', BuyTicketView.as_view(), name='tickets')
+]
+
+
+#ORGANIZADOR
+
+urlpatterns += [
+    path('organization/events', EventListOrganizerView.as_view(), name="my-events"),
+    path('organization/events/<int:pk>', EventDetailOrganizerView.as_view(), name='my-event-detail')
 ]

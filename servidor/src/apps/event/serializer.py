@@ -68,4 +68,4 @@ class EventDetailOrganizerSerializer(serializers.ModelSerializer):
 class EventListOrganizerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'event_images', 'location', 'date', 'tickets_sold', 'ticketPrice', 'state')
