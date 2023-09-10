@@ -26,7 +26,7 @@ class Event(models.Model):
         super().clean()
 
         if self.tickets_sold < 0:
-            raise ValidationError("El número de boletos vendidos no puede ser negativo.")
+            raise ValidationError("The number of tickets sold cannot be negative.")
 
         if self.tickets_sold > self.capacity:
             raise ValidationError("El número de boletos vendidos no puede superar la capacidad del evento.")

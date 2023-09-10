@@ -15,6 +15,10 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['id', 'name']
 
+
+
+#DATOS QUE SE MUESTRAN AL LISTAR LOS EVENTOS
+
 class EventListSerializer(serializers.ModelSerializer):
 
     categories = CategorySerializer(many=True, read_only=True)
@@ -22,16 +26,14 @@ class EventListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('id', 'eventHost', 'name', 'description', 'capacity', 'date', 'created_at', 'virtual', 'state', 'ticketPrice', 'event_images', 'categories', 'location')
-        read_only_fields = ('created_at', 'eventHost',)
-
+        fields = ('id', 'eventHost', 'name', 'date', 'ticketPrice', 'event_images', 'categories', 'location')
 
 class EventSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')
-        read_only_fields = ('created_at', 'eventHost',) 
+        read_only_fields = ('created_at', 'eventHost', 'id',) 
 
     def create(self, validated_data):
 
@@ -51,5 +53,19 @@ class EventDetailSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Event
-        exclude = ['created_at']
-        read_only_fields = ('id','eventHost')
+        fields = ('id','eventHost','name','description','capacity','date','virtual', 'ticketPrice','event_images','categories','location')
+        read_only_fields = ('id', 'eventHost',) 
+    
+
+class EventDetailOrganizerSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Event
+        fields = ('id','eventHost','name','description','capacity','date','virtual', 'ticketPrice','event_images','categories','location', 'created_at', 'tickets_sold')
+        read_only_fields = ('id', 'eventHost', 'created_at') 
+
+
+class EventListOrganizerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ('id', 'name')
