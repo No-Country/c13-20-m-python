@@ -159,6 +159,10 @@ class EventDetailOrganizerView(views.APIView):
         except Event.DoesNotExist:
             return Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
 
+        # Verifica si el usuario que intenta obtener es el mismo que el usuario autenticado
+        if event.eventHost != request.user:
+            return Response({"detail": "You don't have permission to edit this event"}, status=status.HTTP_403_FORBIDDEN)
+        
         serializer = EventDetailOrganizerSerializer(event, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
@@ -172,6 +176,10 @@ class EventDetailOrganizerView(views.APIView):
             event = Event.objects.get(pk=pk)
         except Event.DoesNotExist:
             return Response({"detail": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        # Verifica si el usuario que intenta obtener es el mismo que el usuario autenticado
+        if event.eventHost != request.user:
+            return Response({"detail": "You don't have permission to edit this event"}, status=status.HTTP_403_FORBIDDEN)
         
         event.delete()
         return Response({'message: Event successfully removed!'}, status= status.HTTP_200_OK)
