@@ -1,6 +1,5 @@
 import Select from "react-select";
 import { useForm, useController } from "react-hook-form";
-import moment from "moment";
 import { useDispatch } from "react-redux";
 import { setFilterEventsBy } from "../../redux/sliceEvents";
 
@@ -20,20 +19,6 @@ export default function Dropdown({ events, placeholder, property }) {
     dispatch(setFilterEventsBy(selectedCategories));
   };
 
-  const renderOption = (option) => {
-    if (typeof option.value === "number") {
-      return option.value === 0 ? "gratis" : option.value;
-    } else if (moment(option.value, "YYYY-MM-DDTHH:mm:ssZ", true).isValid()) {
-      const date = moment(option.value);
-      if (date.isSame(moment(), "week")) {
-        return "Eventos de esta semana";
-      } else if (date.isSame(moment(), "month")) {
-        return "Eventos de este mes";
-      }
-    }
-    return option.label;
-  };
-
   return (
     <div>
       <Select
@@ -47,7 +32,7 @@ export default function Dropdown({ events, placeholder, property }) {
         isMulti
         options={options.map((option) => ({
           ...option,
-          label: renderOption(option),
+          label: option.label,
         }))}
         value={options.find((t) => t.value === category)}
         onChange={(e) => {
