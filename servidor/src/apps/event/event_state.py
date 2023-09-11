@@ -11,7 +11,7 @@ def set_event_state():
     now = datetime.now()
 
     # filtramos por state y fecha de event.date e igualamos
-    events_date = Event.objects.filter(state=True, date__date = now.date())
+    events_date = Event.objects.filter(state=True, date__lte=now)
     
     print(events_date)
    # print(events_date)
