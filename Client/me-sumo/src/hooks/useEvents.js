@@ -2,7 +2,7 @@ import { getToken } from "../redux/sliceLogin";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL_EVENTS } from "../config/api";
+import { API_URL_EVENTS, API_URL_ORGANIZATOR } from "../config/api";
 import { setEvents } from "../redux/sliceEvents";
 import { setCategories, setEvent } from "../redux/sliceCreateEvent";
 
@@ -87,7 +87,7 @@ const useEvents = () => {
     try {
       console.log(id);
       console.log(ticket);
-      await axios.patch(API_URL_EVENTS + `${id}/`, ticket, {
+      await axios.patch(API_URL_ORGANIZATOR + `${id}/`, ticket, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
