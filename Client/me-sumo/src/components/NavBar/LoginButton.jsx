@@ -15,7 +15,7 @@ export default function LoginButton() {
   return (
     <button
       onClick={handleClick}
-      className="bg-orange-600 w-28 h-9 rounded-xl text-gray-50"
+      className="bg-orange-600 w-28 h-9 rounded-xl text-gray-50 -ml-9 sm:ml-0"
     >
       {login ? "Logout" : "Login"}
     </button>
