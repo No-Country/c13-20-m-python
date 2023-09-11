@@ -5,6 +5,8 @@ from .serializer import EventSerializer, EventDetailSerializer, EventListSeriali
 from apps.user import authentication
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
+from .event_state import set_event_state
+from datetime import datetime
 
 
 class EventView(views.APIView):
@@ -15,6 +17,8 @@ class EventView(views.APIView):
 
     # LISTAR EVENTOS DEL HOME (Lo puede hacer sin estar autenticado)
     def get(self, request):
+        
+        set_event_state()
         event = Event.objects.filter(state=True)
         
         location = request.query_params.get('location')
@@ -49,14 +53,14 @@ class EventView(views.APIView):
 
 class EventDetailAssistantView(views.APIView):   
     authentication_classes = (authentication.CustomUserAuthentication, )
-    permission_classes = (permissions.IsAuthenticated, ) 
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, ) 
 
     #  VER DETALLE DE UN EVENTO (Cuando el usuario entra en un evento en especifico)
     def get(self, request, pk): 
-        
+            
         try:
             pk = int(pk)
-            event = Event.objects.get(id=pk)
+            event = Event.objects.get(id=pk, state = True)
 
         except Event.DoesNotExist:
             return Response({"error": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
@@ -72,7 +76,7 @@ class EventDetailAssistantView(views.APIView):
 class EventCategoryView(views.APIView):
 
     authentication_classes = (authentication.CustomUserAuthentication, )
-    permission_classes = (permissions.IsAuthenticated, ) 
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, ) 
     
     # METODO GET / Obtenemos la categoria y filtramos
     def get(self, request, category_name):

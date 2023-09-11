@@ -1,10 +1,6 @@
 from rest_framework import serializers
 from .models import Ticket, User, Event
 
-""" class UserTicketSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User 
-        fields = ['id', 'username'] """
 
 # Categoria Seriliazer
 class EventTicketSerializer(serializers.ModelSerializer):

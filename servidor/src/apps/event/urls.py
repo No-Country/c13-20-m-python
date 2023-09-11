@@ -6,7 +6,7 @@ from django.urls import path
 urlpatterns = [
     path('events/', EventView.as_view(), name='events' ),
     path('events/<pk>/', EventDetailAssistantView.as_view(), name="event_detail_assistant"),
-    path('events/category/<str:category_name>', EventCategoryView.as_view(), name='event_category'),
+    path('events/category/<str:category_name>/', EventCategoryView.as_view(), name='event_category'),
     path('categories/', CategoryView.as_view(), name='categories')
 ]
 

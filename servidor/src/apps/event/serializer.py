@@ -4,21 +4,19 @@ from .models import Event
 from apps.user.models import User
 
 
+# User Serializer
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User 
         fields = ['id', 'username']
 
-# Categoria Seriliazer
+# Categoria Serialiazer
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['id', 'name']
 
-
-
 #DATOS QUE SE MUESTRAN AL LISTAR LOS EVENTOS
-
 class EventListSerializer(serializers.ModelSerializer):
 
     categories = CategorySerializer(many=True, read_only=True)
@@ -28,13 +26,37 @@ class EventListSerializer(serializers.ModelSerializer):
         model = Event
         fields = ('id', 'eventHost', 'name', 'date', 'ticketPrice', 'event_images', 'categories', 'location')
 
+        # Mostrar gratis en vez de 0.0
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+
+        if data['ticketPrice'] == 0.0:
+            data['ticketPrice'] = 'Gratis'    
+        return data
+
+
+ 
 class EventSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')
         read_only_fields = ('created_at', 'eventHost', 'id',) 
-
+        
+    #Validacion capacity != 0 si es 0 no puede comprar entradas?
+    def validate_capacity(self, value):
+        if value != 0 and value < 10000:
+            return value
+        else:
+            raise serializers.ValidationError("Capacidad debe ser distinto de 0 y menor a 10.000") 
+        
+    #Validacion ticket mayor o igual 0
+    def validate_ticketPrice(self, value):
+        if value >= 0:
+            return value 
+        else:
+            raise serializers.ValidationError("Ticket no menor a 0")
+        
     def create(self, validated_data):
 
         validated_data['eventHost'] = self.context['request'].user
@@ -55,6 +77,14 @@ class EventDetailSerializer(serializers.ModelSerializer):
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','virtual', 'ticketPrice','event_images','categories','location')
         read_only_fields = ('id', 'eventHost',) 
+        
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+
+        if data['ticketPrice'] == 0.0:
+            data['ticketPrice'] = 'Gratis'    
+        return data
+
     
 
 class EventDetailOrganizerSerializer(serializers.ModelSerializer):
