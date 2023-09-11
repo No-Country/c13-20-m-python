@@ -1,4 +1,4 @@
-import logo from "../assets/nuestro-logo.png";
+import logo from "../../images/MeSumo.svg";
 import { useForm } from "react-hook-form";
 import useLogin from "../hooks/useLogin";
 import loginImg from "../assets/login-image.png";

@@ -15,6 +15,10 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['id', 'name']
 
+
+
+#DATOS QUE SE MUESTRAN AL LISTAR LOS EVENTOS
+
 class EventListSerializer(serializers.ModelSerializer):
 
     categories = CategorySerializer(many=True, read_only=True)
@@ -22,18 +26,16 @@ class EventListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('id', 'eventHost', 'name', 'description', 'capacity', 'date', 'created_at', 'virtual', 'state', 'ticketPrice', 'event_images', 'categories', 'location')
-        read_only_fields = ('created_at', 'eventHost',)
+        fields = ('id', 'eventHost', 'name', 'date', 'ticketPrice', 'event_images', 'categories', 'location')
 
-    # Mostrar gratis en vez de 0.0
+        # Mostrar gratis en vez de 0.0
     def to_representation(self, instance):
         data = super().to_representation(instance)
 
         if data['ticketPrice'] == 0.0:
-            data['ticketPrice'] = 'Gratis'
-            
+            data['ticketPrice'] = 'Gratis'    
         return data
-    
+
 
     
 class EventSerializer(serializers.ModelSerializer):
@@ -41,7 +43,7 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','created_at','virtual','state','ticketPrice','event_images','categories','location')
-        read_only_fields = ('created_at', 'eventHost',) 
+        read_only_fields = ('created_at', 'eventHost', 'id',) 
         
     #Validacion capacity != 0 si es 0 no puede comprar entradas?
     def validate_capacity(self, value):
@@ -58,7 +60,6 @@ class EventSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Ticket no menor a 0")
         
     #validar categorias no puede estar vacio, si es vacio poner default = Otros
-        
 
     def create(self, validated_data):
 
@@ -78,5 +79,19 @@ class EventDetailSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Event
-        exclude = ['created_at']
-        read_only_fields = ('id','eventHost')
+        fields = ('id','eventHost','name','description','capacity','date','virtual', 'ticketPrice','event_images','categories','location')
+        read_only_fields = ('id', 'eventHost',) 
+    
+
+class EventDetailOrganizerSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Event
+        fields = ('id','eventHost','name','description','capacity','date','virtual', 'ticketPrice','event_images','categories','location', 'created_at', 'tickets_sold')
+        read_only_fields = ('id', 'eventHost', 'created_at') 
+
+
+class EventListOrganizerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ('id', 'name', 'event_images', 'location', 'date', 'tickets_sold', 'ticketPrice', 'state')

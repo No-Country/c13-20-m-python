@@ -9,6 +9,10 @@ export default function SearchBar({ onSearch }) {
 
   const cities = useSelector(getEvents);
 
+  const uniqueCities = Array.from(
+    new Set(cities.map((city) => city.location))
+  ).map((location) => cities.find((city) => city.location === location));
+
   const handleChange = (event) => {
     setLocation(event.target.value);
   };
@@ -20,39 +24,36 @@ export default function SearchBar({ onSearch }) {
   };
 
   return (
-    <div className="flex">
-      <div className="flex border-solid border-gray-600">
+    <div className='flex justify-center'>
+      <div className='flex border-solid border-gray-600 w-full md:w-4/5'>
         <input
-          type="search"
+          type='search'
           onChange={handleChange}
           value={location}
-          list={location.length >= 1 ? "cities" : null}
-          placeholder="Busca los eventos mas cercanos"
-          className="w-96 h-10 p-2 border-solid border-gray-600 shadow appearance-none"
+          list={location.length >= 1 ? 'cities' : null}
+          placeholder='Busca los eventos mas cercanos'
+          className='h-10 p-2 border-solid border-gray-600 shadow appearance-none w-full'
         />
 
-        {cities.length ? (
+        {uniqueCities.length ? (
           <datalist id="cities">
-            {cities.map((city, index) => (
+            {uniqueCities.map((city, index) => (
               <option
                 key={index}
                 value={city.location}
                 style={{
-                  backgroundColor: "#dd4b39",
-                  color: "#fff",
-                  WebkitAppearance: "none",
-                  MozAppearance: "none",
-                  appearance: "none",
+                  backgroundColor: '#dd4b39',
+                  color: '#fff',
+                  WebkitAppearance: 'none',
+                  MozAppearance: 'none',
+                  appearance: 'none',
                 }}
               />
             ))}
           </datalist>
         ) : null}
 
-        <button
-          onClick={handleSearch}
-          className="material-symbols-outlined h-10 w-auto ml-1 text-3xl "
-        >
+        <button onClick={handleSearch} className='material-symbols-outlined h-10 w-auto ml-1 text-3xl '>
           Search
         </button>
       </div>
