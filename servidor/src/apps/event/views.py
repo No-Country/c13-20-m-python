@@ -78,7 +78,7 @@ class EventDetailAssistantView(views.APIView):
 class EventCategoryView(views.APIView):
 
     authentication_classes = (authentication.CustomUserAuthentication, )
-    permission_classes = (permissions.IsAuthenticated, ) 
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, ) 
     
     # METODO GET / Obtenemos la categoria y filtramos
     def get(self, request, category_name):

@@ -4,21 +4,19 @@ from .models import Event
 from apps.user.models import User
 
 
+# User Serializer
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User 
         fields = ['id', 'username']
 
-# Categoria Seriliazer
+# Categoria Serialiazer
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['id', 'name']
 
-
-
 #DATOS QUE SE MUESTRAN AL LISTAR LOS EVENTOS
-
 class EventListSerializer(serializers.ModelSerializer):
 
     categories = CategorySerializer(many=True, read_only=True)
@@ -37,7 +35,7 @@ class EventListSerializer(serializers.ModelSerializer):
         return data
 
 
-    
+ 
 class EventSerializer(serializers.ModelSerializer):
     
     class Meta:
@@ -59,8 +57,6 @@ class EventSerializer(serializers.ModelSerializer):
         else:
             raise serializers.ValidationError("Ticket no menor a 0")
         
-    #validar categorias no puede estar vacio, si es vacio poner default = Otros
-
     def create(self, validated_data):
 
         validated_data['eventHost'] = self.context['request'].user
@@ -81,6 +77,14 @@ class EventDetailSerializer(serializers.ModelSerializer):
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','virtual', 'ticketPrice','event_images','categories','location')
         read_only_fields = ('id', 'eventHost',) 
+        
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+
+        if data['ticketPrice'] == 0.0:
+            data['ticketPrice'] = 'Gratis'    
+        return data
+
     
 
 class EventDetailOrganizerSerializer(serializers.ModelSerializer):
