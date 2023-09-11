@@ -9,6 +9,10 @@ export default function SearchBar({ onSearch }) {
 
   const cities = useSelector(getEvents);
 
+  const uniqueCities = Array.from(
+    new Set(cities.map((city) => city.location))
+  ).map((location) => cities.find((city) => city.location === location));
+
   const handleChange = (event) => {
     setLocation(event.target.value);
   };
@@ -31,9 +35,9 @@ export default function SearchBar({ onSearch }) {
           className="w-96 h-10 p-2 border-solid border-gray-600 shadow appearance-none"
         />
 
-        {cities.length ? (
+        {uniqueCities.length ? (
           <datalist id="cities">
-            {cities.map((city, index) => (
+            {uniqueCities.map((city, index) => (
               <option
                 key={index}
                 value={city.location}
