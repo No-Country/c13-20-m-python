@@ -49,7 +49,7 @@ class EventView(views.APIView):
 
 class EventDetailAssistantView(views.APIView):   
     authentication_classes = (authentication.CustomUserAuthentication, )
-    permission_classes = (permissions.IsAuthenticated, ) 
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, ) 
 
     #  VER DETALLE DE UN EVENTO (Cuando el usuario entra en un evento en especifico)
     def get(self, request, pk): 
