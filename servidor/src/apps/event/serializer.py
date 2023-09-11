@@ -45,7 +45,8 @@ class EventSerializer(serializers.ModelSerializer):
         
     #Validacion capacity != 0 si es 0 no puede comprar entradas?
     def validate_capacity(self, value):
-        if value != 0 and value < 10000:
+        #if value != 0 and value < 10000:
+        if value < 10000:
             return value
         else:
             raise serializers.ValidationError("Capacidad debe ser distinto de 0 y menor a 10.000") 
