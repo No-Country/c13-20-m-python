@@ -56,11 +56,10 @@ class EventDetailView(views.APIView):
     permission_classes = (permissions.IsAuthenticated, ) 
     #  METODO GET / Encontramos evento por id
     def get(self, request, pk): 
-        
-        
+            
         try:
             pk = int(pk)
-            event = Event.objects.get(id=pk)
+            event = Event.objects.get(id=pk, state = True)
 
         except Event.DoesNotExist:
             return Response({"error": "Event not found"}, status=status.HTTP_404_NOT_FOUND)
