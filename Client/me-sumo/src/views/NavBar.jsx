@@ -14,7 +14,7 @@ export default function NavBar() {
     }
   }
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between pl-10 pr-14">
       <img
         src={logo}
         alt="img-login"

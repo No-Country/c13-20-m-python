@@ -1,9 +1,23 @@
 import CardEvent from "../Home/CardEvent";
+import { useSelector } from "react-redux";
+import { getFilterEventsBy } from "../../redux/sliceEvents";
 
 export default function FilteredEvents({ events }) {
+  const filterStrings = useSelector(getFilterEventsBy);
+
+  const filteredEvents = events.filter((event) => {
+    if (!filterStrings || filterStrings.length === 0) {
+      return event;
+    } else
+      return filterStrings.some((filterString) => {
+        return event.categories.some(
+          (category) => category.name === filterString
+        );
+      });
+  });
   return (
     <div className="flex gap-4 mt-6">
-      {events.map((individualEvent) => (
+      {filteredEvents.map((individualEvent) => (
         <CardEvent
           key={individualEvent.id}
           image={individualEvent.event_images}

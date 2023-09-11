@@ -18,12 +18,10 @@ const images = [
 
 export default function CarouselWithContent() {
   return (
-
-    <Carousel loop={true} className="rounded-xl h-96 ">
+    <Carousel loop={true} className="h-96 ">
       {images.map((image, index) => (
         <div key={index} className="relative w-full h-96">
           <div className="relative h-96">
-
             <img
               src={image.src}
               alt={`image ${index + 1}`}
