@@ -4,13 +4,13 @@ from rest_framework.views import APIView
 from .serializers import TicketSerializer
 from apps.user import authentication
 
-from .models import Event
+from .models import Event, Ticket
 
 # Create your views here.
 
 class BuyTicketView(APIView):
     authentication_classes = (authentication.CustomUserAuthentication, )
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, ) 
+    permission_classes = (permissions.IsAuthenticated, ) 
     
     def post(self, request, event_id):
         try:
@@ -36,5 +36,15 @@ class BuyTicketView(APIView):
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
         else:
             return Response({"error": "El evento está agotado"}, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class ListMyTickets(APIView):
+    authentication_classes = (authentication.CustomUserAuthentication, )
+    permission_classes = (permissions.IsAuthenticated, ) 
+
+    def get(self, request):
+        tickets = Ticket.objects.filter(user__username=request.user.username)
+        ticket_serializer = TicketSerializer(tickets, many=True)
+        return Response(ticket_serializer.data)
 
     
