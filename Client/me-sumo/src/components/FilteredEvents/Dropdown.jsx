@@ -52,8 +52,8 @@ export default function Dropdown({ events, placeholder, property }) {
         value={options.find((t) => t.value === category)}
         onChange={(e) => {
           const selectedCategories = e.map((c) => c.value);
-          categoriesOnChange(selectedCategories); // Update the category state
-          onChangeCat(selectedCategories); // Dispatch the action
+          categoriesOnChange(selectedCategories);
+          onChangeCat(selectedCategories);
         }}
         theme={(theme) => ({
           ...theme,
