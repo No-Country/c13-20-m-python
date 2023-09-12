@@ -4,19 +4,18 @@ const eventSchema = Joi.object({
   name: Joi.string()
     .min(3)
     .max(35)
-    .pattern(/^[A-Za-z\s\d!@#$%^&*()_+-=[\]{};':"\\|,.<>/?]+$/)
     .messages({
-      "string.pattern.base": "Name must contains only letters.",
+      "string.pattern.base": "El nombre solo acepta letras",
       "string.min": "Name should have a minimum length of 3 characters",
       "string.empty": "Name is required",
     })
     .required(),
-  date: Joi.date(),
+  date: Joi.date().min("now"),
   description: Joi.string()
-    .min(5)
-    .max(100)
+    .min(25)
+    .max(400)
     .messages({
-      "string.min": "Description should have a minimun of 20 characters",
+      "string.min": "La descripcion tiene que tener un minimo de 20 caracteres",
       "string.empty": "Description is required",
     })
     .required(),
