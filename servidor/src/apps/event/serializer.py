@@ -72,8 +72,7 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 # Evento detalle sin categorias con id y nombre
-class EventDetailSerializer(serializers.ModelSerializer):
-    eventHost = UserSerializer(read_only=True)    
+class EventDetailSerializer(serializers.ModelSerializer):  
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','finish_date','virtual', 'ticketPrice','event_images','categories','location')
@@ -87,8 +86,7 @@ class EventDetailSerializer(serializers.ModelSerializer):
         return data
 
     
-class EventDetailOrganizerSerializer(serializers.ModelSerializer):
-    eventHost = UserSerializer(read_only=True) 
+class EventDetailOrganizerSerializer(serializers.ModelSerializer): 
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','finish_date','virtual', 'ticketPrice','event_images','categories','location', 'created_at', 'tickets_sold')
