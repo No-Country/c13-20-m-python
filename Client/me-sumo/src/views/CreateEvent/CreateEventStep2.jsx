@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 
 import { Button } from "@material-tailwind/react";
 
+import freeSign from "../../assets/icons/free_sign.svg";
+import $sign from "../../assets/icons/$sign.svg";
+import donationSign from "../../assets/icons/donation_sign.svg";
 import useEvents from "../../hooks/useEvents";
 import Input from "../../components/Shared/Input";
 import Checks from "../../components/Shared/checks";
@@ -94,12 +97,20 @@ export default function CreateEventStep2() {
                       </h3>
                       <div
                         onClick={() => handleModal()}
-                        className="w-auto m-2 p-10  bg-orange-200 rounded-lg"
+                        className=" flex flex-row w-auto m-2 p-10  bg-orange-100 rounded-lg"
                       >
-                        De Pago
+                        <img src={$sign} className="w-7 h-auto" />
+                        <p>De Pago</p>
                       </div>
-                      <div className="w-auto m-2 p-10 bg-orange-200 rounded-lg">
+                      <div className="flex flex-row w-auto m-2 p-10 bg-orange-100 rounded-lg">
+                        <img className="w-7 h-auto" src={freeSign} />
+
                         <p>Gratis</p>
+                      </div>
+                      <div className="flex flex-row w-auto m-2 p-10 bg-orange-100 rounded-lg">
+                        <img className="w-7 h-auto" src={donationSign} />
+
+                        <p>Donacion</p>
                       </div>
                     </div>
                   </div>
