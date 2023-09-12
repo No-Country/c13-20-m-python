@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useEvents from "../hooks/useEvents";
 import calendar from "../assets/icons/calendar.svg";
+import ticketPrice from "../assets/icons/ticket_price.svg";
 export default function EventInformation() {
   const { handleGetEvent } = useEvents();
   const id = useParams();
@@ -55,7 +56,7 @@ export default function EventInformation() {
         </div>
         <div className="flex flex-col justify-between items-center  w-10/12">
           <div className="w-full md:w-6/12 flex flex-col ml-auto  rounded-lg">
-            <h3 className="decoration-slate-950	py-4 text-xl font-semibold">
+            <h3 className="decoration-slate-950	py-4  text-xl sm:text-3xl font-semibold">
               Organizado por:
             </h3>
             <div className="flex flex-row justify-between bg-orange-50 py-2 md:py-4 px-2 sm:px-5 rounded-lg">
@@ -79,7 +80,23 @@ export default function EventInformation() {
             {event.ticketPrice == 0 ? (
               <div>Evento Gratuito</div>
             ) : (
-              <div>${event.ticketPrice}</div>
+              <>
+                <div className="flex flex-row justify-between">
+                  <div className="flex flex-row">
+                    <img
+                      src={ticketPrice}
+                      alt="Calendario"
+                      className="w-10 h-auto"
+                    />
+                    <p className="p-2  text-2xl">
+                      A partir de ${event.ticketPrice}
+                    </p>
+                  </div>
+                  <p className="justify-self-end	self-center">
+                    {event.capacity} Disponibles
+                  </p>
+                </div>
+              </>
             )}
             <Button className="my-10 bg-orange-600">Adquirir Entradas</Button>
           </div>
