@@ -24,7 +24,7 @@ function App() {
 
   return (
     <Provider store={store}>
-      <div className="w-full">
+      <div className="bg-orange-50">
         {!isLoginPage && <NavBar />}
         <Routes>
           Front/Interests

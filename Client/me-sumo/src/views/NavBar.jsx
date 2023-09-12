@@ -14,7 +14,7 @@ export default function NavBar() {
     }
   }
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between mb-20">
       <img
         src={logo}
         alt="img-login"

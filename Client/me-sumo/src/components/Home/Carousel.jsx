@@ -52,7 +52,7 @@ export default function CarouselWithContent() {
                 wonderfully changes and renews a weary spirit.
               </Typography>
               <div className="flex justify-center gap-2">
-                <Button size="lg" color="white">
+                <Button size="lg" color="orange">
                   Explorá
                 </Button>
               </div>
