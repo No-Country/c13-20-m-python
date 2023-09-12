@@ -88,7 +88,7 @@ class EventDetailSerializer(serializers.ModelSerializer):
 
     
 class EventDetailOrganizerSerializer(serializers.ModelSerializer):
-    
+    eventHost = UserSerializer(read_only=True) 
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','finish_date','virtual', 'ticketPrice','event_images','categories','location', 'created_at', 'tickets_sold')
