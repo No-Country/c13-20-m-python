@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL_EVENTS, API_URL_ORGANIZATOR } from "../config/api";
 import { setEvents } from "../redux/sliceEvents";
-import { setCategories, setEvent } from "../redux/sliceCreateEvent";
+import { setCategories, setEvent, setTicket } from "../redux/sliceCreateEvent";
 
 // Función para mezclar aleatoriamente un array.
 function shuffleArray(array) {
@@ -49,13 +49,12 @@ const useEvents = () => {
 
   const handleTicket = async (ticket, id) => {
     try {
-      console.log(id);
-      console.log(ticket);
       await axios.patch(API_URL_ORGANIZATOR + `${id}/`, ticket, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      dispatch(setTicket(ticket));
       redirectStep3(navigate);
     } catch (error) {
       if (error.response) {

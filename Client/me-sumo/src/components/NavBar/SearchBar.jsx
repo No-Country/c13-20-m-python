@@ -24,15 +24,15 @@ export default function SearchBar({ onSearch }) {
   };
 
   return (
-    <div className='flex justify-center'>
-      <div className='flex border-solid border-gray-600 w-full md:w-4/5'>
+    <div className="flex justify-center">
+      <div className="flex border-solid border-primary-800 w-full md:w-4/5">
         <input
-          type='search'
+          type="search"
           onChange={handleChange}
           value={location}
-          list={location.length >= 1 ? 'cities' : null}
-          placeholder='Busca los eventos mas cercanos'
-          className='h-10 p-2 border-solid border-gray-600 shadow appearance-none w-full'
+          list={location.length >= 1 ? "cities" : null}
+          placeholder="Busca los eventos en..."
+          className="h-10 p-2 border-solid border-primary-800 border-2 rounded-xl shadow appearance-none w-full bg-transparent placeholder-primary-800"
         />
 
         {uniqueCities.length ? (
@@ -42,18 +42,21 @@ export default function SearchBar({ onSearch }) {
                 key={index}
                 value={city.location}
                 style={{
-                  backgroundColor: '#dd4b39',
-                  color: '#fff',
-                  WebkitAppearance: 'none',
-                  MozAppearance: 'none',
-                  appearance: 'none',
+                  backgroundColor: "#dd4b39",
+                  color: "#fff",
+                  WebkitAppearance: "none",
+                  MozAppearance: "none",
+                  appearance: "none",
                 }}
               />
             ))}
           </datalist>
         ) : null}
 
-        <button onClick={handleSearch} className='material-symbols-outlined h-10 w-auto ml-1 text-3xl '>
+        <button
+          onClick={handleSearch}
+          className="material-symbols-outlined h-10 w-auto ml-1 text-3xl "
+        >
           Search
         </button>
       </div>

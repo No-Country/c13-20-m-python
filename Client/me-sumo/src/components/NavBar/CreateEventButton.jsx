@@ -13,7 +13,10 @@ export default function CreateEventButton() {
   return (
     <div>
       {logged && (
-        <button onClick={handleClick} className='bg-orange-600 w-28 h-9 rounded-xl text-gray-50'>
+        <button
+          onClick={handleClick}
+          className="bg-orange-600 w-28 h-9 rounded-xl text-gray-50"
+        >
           Crear Evento
         </button>
       )}
