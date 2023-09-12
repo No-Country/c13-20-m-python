@@ -92,8 +92,11 @@ const useEvents = () => {
       .then((response) => {
         const { data } = response;
 
-        // Mezcla los eventos de forma aleatoria y trae los primeros 12.
+
+        // Mezcla los eventos de forma aleatoria
         const randomEvents = shuffleArray(data);
+
+
         return randomEvents;
       })
       .catch((error) => {

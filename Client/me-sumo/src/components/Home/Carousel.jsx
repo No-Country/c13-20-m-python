@@ -1,4 +1,4 @@
-import { Carousel, Typography} from "@material-tailwind/react";
+import { Carousel, Typography, Button } from "@material-tailwind/react";
 import loginImg from "../../assets/login-image.png";
 import asistente from "../../assets/images/asistente.png";
 const images = [
@@ -39,6 +39,11 @@ export default function CarouselWithContent() {
                 It is not so much for its beauty that the forest makes a claim upon men&apos;s hearts, as for that subtle something, that
                 quality of air that emanation from old trees, that so wonderfully changes and renews a weary spirit.
               </Typography>
+              <div className="flex justify-center gap-2">
+                <Button size="lg" color="orange">
+                  Explorá
+                </Button>
+              </div>
             </div>
           </div>
         </div>
