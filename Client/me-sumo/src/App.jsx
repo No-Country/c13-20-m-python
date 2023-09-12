@@ -18,6 +18,7 @@ import Successful from "./views/Interests/Successful";
 import FilteredEventsView from "./views/FilteredEventsView";
 import CreateEventStep2 from "./views/CreateEvent/CreateEventStep2";
 import EventInformation from "./views/EventInformation";
+import Ticket from "./views/Ticket/ticket";
 
 function App() {
   const location = useLocation();
@@ -43,6 +44,7 @@ function App() {
           <Route path="/interests2" element={<Interests2 />} />
           <Route path="/successful" element={<Successful />} />
           <Route path="/event/:pk" element={<EventInformation />} />
+          <Route path="/ticket" element={<Ticket />} />
         </Routes>
       </div>
     </Provider>
