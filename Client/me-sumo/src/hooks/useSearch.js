@@ -2,7 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import { API_URL_EVENTS } from "../config/api";
 import { useNavigate } from "react-router-dom";
-import { setFilteredEvents } from "../redux/sliceEvents";
+import {
+  setFilteredEvents,
+  setFilteredEventsCategories,
+} from "../redux/sliceEvents";
 import { useDispatch } from "react-redux";
 
 const useSearchEvents = () => {
@@ -24,6 +27,17 @@ const useSearchEvents = () => {
         (evnt) => evnt.location === searchLocation
       );
 
+      const filteredCategories = filterEvents
+        .map((evnt) => evnt.categories)
+        .flat()
+        .reduce((uniqueCategories, category) => {
+          if (!uniqueCategories.some((cat) => cat.id === category.id)) {
+            uniqueCategories.push(category);
+          }
+          return uniqueCategories;
+        }, []);
+
+      dispatch(setFilteredEventsCategories(filteredCategories));
       dispatch(setFilteredEvents(filterEvents));
       setSearchedLocation(searchLocation);
 

@@ -1,10 +1,16 @@
-import withMT from '@material-tailwind/react/utils/withMT';
+import withMT from "@material-tailwind/react/utils/withMT";
 /** @type {import('tailwindcss').Config} */
- 
-export default  withMT({
+
+export default withMT({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        sm: "480px",
+        md: "768px",
+        lg: "976px",
+        xl: "1440px",
+      },
       colors: {
         primary: {
           50: "#eff6ff",
@@ -14,8 +20,8 @@ export default  withMT({
           400: "#60a5fa",
           500: "#3b82f6",
           600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e40af",
+          700: "#fde5cc",
+          800: "#003049",
           900: "#1e3a8a",
           950: "#172554",
         },

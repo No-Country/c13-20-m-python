@@ -3,10 +3,13 @@ import CardEvent from "./CardEvent";
 import { getEvents } from "../../redux/sliceEvents";
 import { useSelector } from "react-redux";
 import useEvents from "../../hooks/useEvents";
+import { useNavigate } from "react-router-dom";
 
 import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md";
 
 export default function Cards() {
+  const navigate = useNavigate();
+
   const { handleDataEvents } = useEvents();
   const [currentSlide, setCurrentSlide] = useState(0);
 

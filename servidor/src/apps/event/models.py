@@ -10,6 +10,7 @@ class Event(models.Model):
     description = models.TextField() 
     capacity = models.PositiveIntegerField(default = 0)
     date = models.DateTimeField()
+    finish_date = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     virtual = models.BooleanField(default = False)
     state = models.BooleanField(default = True) # Si el boolean es true, el evento sigue activo
@@ -26,7 +27,7 @@ class Event(models.Model):
         super().clean()
 
         if self.tickets_sold < 0:
-            raise ValidationError("El número de boletos vendidos no puede ser negativo.")
+            raise ValidationError("The number of tickets sold cannot be negative.")
 
         if self.tickets_sold > self.capacity:
             raise ValidationError("El número de boletos vendidos no puede superar la capacidad del evento.")

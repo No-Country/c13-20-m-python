@@ -2,9 +2,9 @@ import { getToken } from "../redux/sliceLogin";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_URL_EVENTS } from "../config/api";
+import { API_URL_EVENTS, API_URL_ORGANIZATOR } from "../config/api";
 import { setEvents } from "../redux/sliceEvents";
-import { setCategories, setEvent } from "../redux/sliceCreateEvent";
+import { setCategories, setEvent, setTicket } from "../redux/sliceCreateEvent";
 
 // Función para mezclar aleatoriamente un array.
 function shuffleArray(array) {
@@ -47,10 +47,28 @@ const useEvents = () => {
     }
   };
 
+  const handleTicket = async (ticket, id) => {
+    try {
+      await axios.patch(API_URL_ORGANIZATOR + `${id}/`, ticket, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch(setTicket(ticket));
+      redirectStep3(navigate);
+    } catch (error) {
+      if (error.response) {
+        // Manejo de error si se recibe una respuesta del servidor.
+        alert("¡Error al crear la entrada!");
+        console.log("Response Data:", error.message);
+      }
+    }
+  };
+
   const handleCategory = async (category, id) => {
     const modifyCategory = { categories: category };
     try {
-      await axios.patch(API_URL_EVENTS + `${id}/`, modifyCategory, {
+      await axios.patch(API_URL_ORGANIZATOR + `${id}/`, modifyCategory, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -65,24 +83,6 @@ const useEvents = () => {
     }
   };
 
-  const handleTicket = async (ticket, id) => {
-    try {
-      console.log(id);
-      console.log(ticket);
-      await axios.patch(API_URL_EVENTS + `${id}/`, ticket, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      redirectStep3(navigate);
-    } catch (error) {
-      if (error.response) {
-        // Manejo de error si se recibe una respuesta del servidor.
-        alert("¡Error al crear la entrada!");
-        console.log("Response Data:", error.message);
-      }
-    }
-  };
   /* Obtiene datos de eventos desde la API y los almacena en el estado global de Redux.*/
   const handleDataEvents = async () => {
     const URL = API_URL_EVENTS;
@@ -110,7 +110,31 @@ const useEvents = () => {
     return promise;
   };
 
-  return { handleDataEvents, handleCreateEvent, handleCategory, handleTicket };
+  const handleGetEvent = async (id) => {
+    try {
+      console.log("id", id.pk);
+      const response = await axios.get(API_URL_EVENTS + `${id.pk}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        // Manejo de error si se recibe una respuesta del servidor.
+        //alert("¡Error al encontrar el evento!");
+        console.log("Response Data:", error.response.data);
+      }
+    }
+  };
+
+  return {
+    handleDataEvents,
+    handleCreateEvent,
+    handleCategory,
+    handleTicket,
+    handleGetEvent,
+  };
 };
 
 export default useEvents;

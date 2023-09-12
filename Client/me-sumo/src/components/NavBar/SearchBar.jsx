@@ -9,6 +9,10 @@ export default function SearchBar({ onSearch }) {
 
   const cities = useSelector(getEvents);
 
+  const uniqueCities = Array.from(
+    new Set(cities.map((city) => city.location))
+  ).map((location) => cities.find((city) => city.location === location));
+
   const handleChange = (event) => {
     setLocation(event.target.value);
   };
@@ -20,20 +24,20 @@ export default function SearchBar({ onSearch }) {
   };
 
   return (
-    <div className="flex">
-      <div className="flex border-solid border-gray-600">
+    <div className="flex justify-center">
+      <div className="flex border-solid border-primary-800 w-full md:w-4/5">
         <input
           type="search"
           onChange={handleChange}
           value={location}
           list={location.length >= 1 ? "cities" : null}
-          placeholder="Busca los eventos mas cercanos"
-          className="w-96 h-10 p-2 border-solid border-gray-600 shadow appearance-none"
+          placeholder="Busca los eventos en..."
+          className="h-10 p-2 border-solid border-primary-800 border-2 rounded-xl shadow appearance-none w-full bg-transparent placeholder-primary-800"
         />
 
-        {cities.length ? (
+        {uniqueCities.length ? (
           <datalist id="cities">
-            {cities.map((city, index) => (
+            {uniqueCities.map((city, index) => (
               <option
                 key={index}
                 value={city.location}

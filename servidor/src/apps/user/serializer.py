@@ -10,6 +10,13 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             'password': {'write_only': True}
         }
     
+    
+    """ def validate_first_name(self,value):
+        return value
+
+    def validate_last_name(self,value):
+        return value """
+    
     def validate_email(self, value):        
         if User.objects.filter(email=value).exists():
             raise serializers.ValidationError("This email is already in use.")
