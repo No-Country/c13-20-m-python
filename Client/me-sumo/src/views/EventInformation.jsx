@@ -8,9 +8,7 @@ export default function EventInformation() {
   const id = useParams();
   const [event, setEvent] = useState(null);
   const [siguiendo, setSiguiendo] = useState(false);
-  // handleGetEvent(id).then((evento) => {
-  //   setEvent(evento);
-  // });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -70,7 +68,10 @@ export default function EventInformation() {
                   Seguir
                 </Button>
               ) : (
-                <Button onClick={() => setSiguiendo(false)} className="">
+                <Button
+                  onClick={() => setSiguiendo(false)}
+                  className="outlined"
+                >
                   Siguiendo
                 </Button>
               )}
