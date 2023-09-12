@@ -5,7 +5,10 @@ import { useSelector } from "react-redux";
 import useEvents from "../../hooks/useEvents";
 import { useNavigate } from "react-router-dom";
 
-import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md";
+import {
+  MdOutlineArrowForwardIos,
+  MdOutlineArrowBackIos,
+} from "react-icons/md";
 
 export default function Cards() {
   const navigate = useNavigate();
@@ -37,7 +40,10 @@ export default function Cards() {
           <div className="overflow-hidden">
             <div className="flex gap-4 transition-transform transform duration-600 ease-in-out">
               {events
-                .slice(currentSlide * itemsPerPage, (currentSlide + 1) * itemsPerPage)
+                .slice(
+                  currentSlide * itemsPerPage,
+                  (currentSlide + 1) * itemsPerPage
+                )
                 .map((individualEvent) => (
                   <CardEvent
                     key={individualEvent.id}
@@ -47,15 +53,24 @@ export default function Cards() {
                     location={individualEvent.location}
                     price={individualEvent.ticketPrice}
                     eventHost={individualEvent.eventHost}
+                    onActionClick={() =>
+                      navigate("/event/" + individualEvent.id)
+                    }
                   />
                 ))}
             </div>
           </div>
           <div className="absolute -top-14 ml-96 w-full h-full ">
-            <button onClick={handlePrevSlide} className=" text-[#003049] hover:text-gray-500 focus:outline-none">
+            <button
+              onClick={handlePrevSlide}
+              className=" text-[#003049] hover:text-gray-500 focus:outline-none"
+            >
               <MdOutlineArrowBackIos className="relative w-[32px] h-[32px]" />
             </button>
-            <button onClick={handleNextSlide} className=" text-[#003049] hover:text-gray-500 focus:outline-none">
+            <button
+              onClick={handleNextSlide}
+              className=" text-[#003049] hover:text-gray-500 focus:outline-none"
+            >
               <MdOutlineArrowForwardIos className="relative w-[32px] h-[32px]" />
             </button>
           </div>
@@ -68,21 +83,3 @@ export default function Cards() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
