@@ -92,8 +92,10 @@ const useEvents = () => {
       .then((response) => {
         const { data } = response;
 
+
         // Mezcla los eventos de forma aleatoria
         const randomEvents = shuffleArray(data);
+
 
         return randomEvents;
       })
