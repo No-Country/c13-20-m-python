@@ -21,7 +21,6 @@ def set_event_state():
     
     # State False cuando event.date sea igual a la fecha y hora actual
     for event in events_date:
-        print(event.id)
         print(event.date.strftime("%Y-%m-%d %H:%M"))
         if event.date.strftime("%Y-%m-%d %H:%M") <= format_date:
             event.state = False 
