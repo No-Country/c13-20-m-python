@@ -8,4 +8,4 @@ export const API_URL_REGISTER = API_URL_BASE + "/register/";
 
 export const API_URL_EVENTS = API_URL_BASE + "/events/";
 
-export const API_URL_ORGANIZATOR = API_URL_BASE + "/organizadores/";
+export const API_URL_ORGANIZATOR = API_URL_BASE + "/organization/events/";
