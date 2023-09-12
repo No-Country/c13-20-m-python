@@ -73,7 +73,7 @@ class EventSerializer(serializers.ModelSerializer):
 
 # Evento detalle sin categorias con id y nombre
 class EventDetailSerializer(serializers.ModelSerializer):
-    
+    eventHost = UserSerializer(read_only=True)    
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','finish_date','virtual', 'ticketPrice','event_images','categories','location')
