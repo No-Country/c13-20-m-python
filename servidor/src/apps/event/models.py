@@ -10,6 +10,7 @@ class Event(models.Model):
     description = models.TextField() 
     capacity = models.PositiveIntegerField(default = 0)
     date = models.DateTimeField()
+    finish_date = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     virtual = models.BooleanField(default = False)
     state = models.BooleanField(default = True) # Si el boolean es true, el evento sigue activo

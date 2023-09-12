@@ -13,7 +13,7 @@ SECRET_KEY = parser.get('keys', 'SECRETKEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 #sqlite3 local
