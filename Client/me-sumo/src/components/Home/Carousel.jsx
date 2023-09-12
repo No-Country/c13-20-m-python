@@ -18,11 +18,17 @@ const images = [
 
 export default function CarouselWithContent() {
   return (
-    <Carousel loop={true} className='rounded-xl h-80 overflow-hidden'>
+
+    <Carousel loop={true} className="h-96 ">
       {images.map((image, index) => (
-        <div key={index} className='relative w-full h-96'>
-          <div className='relative h-96'>
-            <img src={image.src} alt={`image ${index + 1}`} className='absolute inset-0 w-full h-96 object-cover' />
+        <div key={index} className="relative w-full h-96">
+          <div className="relative h-96">
+            <img
+              src={image.src}
+              alt={`image ${index + 1}`}
+              className="absolute inset-0 w-full h-96 object-cover"
+            />
+
           </div>
           <div className='absolute inset-0 grid place-items-center bg-black/75'>
             <div className='w-3/4 text-center md:w-2/4'>

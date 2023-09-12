@@ -14,11 +14,17 @@ export default function NavBar() {
     }
   }
   return (
-    <div className='flex flex-col'>
-      <div className='flex flex-col items-center mb-5 md:flex-row justify-around'>
-        <img src={logo} alt='img-login' className='h-12 w-25 ml-2 mr-2 mb-2' onClick={useToHome} />
+    <div className="flex flex-col bg-primary-700 pt-9 pb-10">
+      <div className="flex flex-col items-center mb-5 md:flex-row justify-around">
+        <img
+          src={logo}
+          alt="img-login"
+          className="h-12 w-25 -ml-16 mr-28 mb-2"
+          onClick={useToHome}
+        />
         <Buttons />
       </div>
+
       <SearchBar onSearch={onSearch} />
     </div>
   );

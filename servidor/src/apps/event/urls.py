@@ -20,6 +20,6 @@ urlpatterns += [
 #ORGANIZADOR
 
 urlpatterns += [
-    path('organization/events', EventListOrganizerView.as_view(), name="my-events"),
-    path('organization/events/<int:pk>', EventDetailOrganizerView.as_view(), name='my-event-detail')
+    path('organization/events/', EventListOrganizerView.as_view(), name="my-events"),
+    path('organization/events/<int:pk>/', EventDetailOrganizerView.as_view(), name='my-event-detail')
 ]

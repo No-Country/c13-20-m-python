@@ -152,7 +152,7 @@ class EventDetailOrganizerView(views.APIView):
         }, status=status.HTTP_200_OK)   
                 
     def patch(self, request, pk):
-
+        
         pk = int(pk)
 
         try:
