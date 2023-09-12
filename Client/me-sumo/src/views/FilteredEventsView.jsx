@@ -23,8 +23,8 @@ export default function FilteredEventsView() {
   ];
 
   return (
-    <div className="mt-7">
-      <h1 className="text-2xl font-bold text-left">
+    <div className="mt-7 ml-5">
+      <h1 className="text-2xl font-bold text-left ml-3 text-primary-800">
         Resultados de eventos en {events[0].location}
       </h1>
       <div className="flex gap-5">
