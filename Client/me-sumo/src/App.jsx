@@ -9,7 +9,6 @@ import Home from "./views/Home";
 import SignUp from "./views/SignUp";
 import NavBar from "./views/NavBar";
 import UserProfile from "./views/UserProfile";
-import OrganizatorProfile from "./views/OrganizatorProfile";
 import CreateEvent from "./views/CreateEvent/CreateEvent";
 import CreateEventStep3 from "./views/CreateEvent/CreateEventStep3";
 import Onboarding from "./views/OnBoarding";
@@ -22,6 +21,7 @@ import EventInformation from "./views/EventInformation";
 import TicketStepOne from "./views/EventTicket/TicketStepOne";
 import TicketStepTwo from "./views/EventTicket/TicketStepTwo";
 import TicketStepTree from "./views/EventTicket/TicketStepTree";
+import Organizator from "./views/Organizator";
 
 function App() {
   const location = useLocation();
@@ -40,7 +40,7 @@ function App() {
           <Route path="/on-boarding" element={<Onboarding />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/user-profile" element={<UserProfile />} />
-          <Route path="/organizador" element={<OrganizatorProfile />} />
+          <Route path="/organizador" element={<Organizator />} />
           <Route path="/create-event" element={<CreateEvent />} />
           <Route path="/create-event-step2" element={<CreateEventStep2 />} />
           <Route path="/create-event-step3" element={<CreateEventStep3 />} />
