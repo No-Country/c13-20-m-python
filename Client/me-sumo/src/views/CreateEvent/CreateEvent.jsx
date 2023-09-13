@@ -9,6 +9,7 @@ import Input from "../../components/Shared/Input";
 import Checks from "../../components/Shared/checks";
 import useEvents from "../../hooks/useEvents";
 import eventSchema from "../../validations/event";
+
 export default function CreateEvent() {
   const { handleCreateEvent } = useEvents();
   const {
@@ -124,7 +125,11 @@ export default function CreateEvent() {
           Crear un nuevo Evento
         </h1>
       </div>
-      <Checks />
+      <Checks
+        firstCheck="Información Báscica"
+        secondCheck="Entradas"
+        thirdCheck="Publicar"
+      />
       <div className="flex justify-center w-full h-auto ">
         <div className="w-full max-w-screen-md xl:max-w-screen-lg p-4 lg:py-0">
           <form
@@ -238,6 +243,9 @@ export default function CreateEvent() {
                   placeholder="Escriba la direccion del evento"
                   name="location"
                 />
+                <span className="text-red-600">
+                  {errors.location ? errors.location.message : "\u00A0"}
+                </span>
               </div>
               <button onClick={() => handleMap()} id="buscar" type="button">
                 Generar mapa

@@ -24,7 +24,7 @@ class EventListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('id', 'eventHost', 'name', 'date', 'finish_date','state', 'ticketPrice', 'event_images', 'categories', 'location')
+        fields = ('id', 'eventHost', 'name', 'date', 'finish_date','state', 'ticketPrice', 'event_images', 'categories', 'location','description')
 
         # Mostrar gratis en vez de 0.0
     def to_representation(self, instance):
@@ -73,7 +73,8 @@ class EventSerializer(serializers.ModelSerializer):
 
 # Evento detalle sin categorias con id y nombre
 class EventDetailSerializer(serializers.ModelSerializer):
-    
+    categories = CategorySerializer(many=True, read_only=True)
+    eventHost = UserSerializer(read_only=True)
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','finish_date','virtual', 'ticketPrice','event_images','categories','location')
@@ -86,8 +87,8 @@ class EventDetailSerializer(serializers.ModelSerializer):
             data['ticketPrice'] = 'Gratis'    
         return data
 
-class EventDetailOrganizerSerializer(serializers.ModelSerializer):
     
+class EventDetailOrganizerSerializer(serializers.ModelSerializer): 
     class Meta:
         model = Event
         fields = ('id','eventHost','name','description','capacity','date','finish_date','virtual', 'ticketPrice','event_images','categories','location', 'created_at', 'tickets_sold')
@@ -97,4 +98,4 @@ class EventDetailOrganizerSerializer(serializers.ModelSerializer):
 class EventListOrganizerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id', 'name', 'event_images', 'location', 'date', 'finish_date','tickets_sold', 'ticketPrice', 'state')
+        fields = ('id', 'name', 'event_images', 'location', 'date', 'finish_date','tickets_sold', 'ticketPrice', 'state','capacity')

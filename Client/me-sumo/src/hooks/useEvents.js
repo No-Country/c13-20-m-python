@@ -25,6 +25,7 @@ const useEvents = () => {
   const redirectStep3 = (navigate) => {
     navigate("/create-event-step3");
   };
+
   const handleCreateEvent = async (newEvent) => {
     const { categories, event_images, ...noCatEvent } = newEvent;
     dispatch(setCategories(categories));
@@ -92,8 +93,8 @@ const useEvents = () => {
       .then((response) => {
         const { data } = response;
 
-        // Mezcla los eventos de forma aleatoria y trae los primeros 12.
-        const randomEvents = shuffleArray(data).slice(0, 12);
+        // Mezcla los eventos de forma aleatoria
+        const randomEvents = shuffleArray(data);
 
         return randomEvents;
       })
@@ -113,11 +114,14 @@ const useEvents = () => {
   const handleGetEvent = async (id) => {
     try {
       console.log("id", id.pk);
-      const response = await axios.get(API_URL_EVENTS + `${id.pk}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        API_URL_EVENTS + `${id.pk}/`
+        // , {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //   },
+        // }
+      );
       return response.data;
     } catch (error) {
       if (error.response) {
