@@ -114,11 +114,14 @@ const useEvents = () => {
   const handleGetEvent = async (id) => {
     try {
       console.log("id", id.pk);
-      const response = await axios.get(API_URL_EVENTS + `${id.pk}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        API_URL_EVENTS + `${id.pk}/`
+        // , {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //   },
+        // }
+      );
       return response.data;
     } catch (error) {
       if (error.response) {
