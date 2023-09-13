@@ -1,26 +1,29 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getTicketsAdquired } from "../../redux/sliceTickets";
+import { setTicketsAdquired, getEventSelected } from "../../redux/sliceTickets";
+
 import Checks from "../../components/Shared/checks";
 import TicketResume from "../../components/Ticket/TicketResume";
 
 export default function TicketStepTwo() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [counter, setCounter] = useState(0);
+  const [counterTicket, setCounterTicket] = useState(0);
 
-  const onSubmit = (counter) => {
-    dispatch(getTicketsAdquired(counter));
+  const eventData = useSelector(getEventSelected);
+
+  const onSubmit = () => {
+    dispatch(setTicketsAdquired(counterTicket));
     navigate("/ticketsStepTree");
   };
 
   const handleClickUp = () => {
-    setCounter(counter + 1);
+    setCounterTicket(counterTicket + 1);
   };
 
   const handleClickDown = () => {
-    setCounter(counter - 1);
+    setCounterTicket(counterTicket - 1);
   };
 
   return (
@@ -46,15 +49,15 @@ export default function TicketStepTwo() {
                 </p>
                 <div className="flex align-center">
                   <p className="text-left text-l mt-4 mb-1 ml-3 font-medium text-primary-800 dark:text-white">
-                    $ PRECIO
+                    $ {eventData.ticketPrice}
                   </p>
-                  <p className="mt-5 mb-1 text-left text-xs ml-3 text-primary-800">
-                    Entradas disponibles
+                  <p className="mt-5 mb-1 text-left text-xs ml-4 text-primary-800">
+                    Entradas disponibles: {eventData.capacity}
                   </p>
                 </div>
               </div>
               <div className="flex justify-end p-5 items-center">
-                {counter > 0 && (
+                {counterTicket > 0 && (
                   <button
                     className="h-14 w-14 text-primary-50 rounded-xl bg-transparent text-xl border border-primary-50"
                     onClick={handleClickDown}
@@ -62,7 +65,7 @@ export default function TicketStepTwo() {
                     -
                   </button>
                 )}
-                <p className="p-5">{counter}</p>
+                <p className="p-5">{counterTicket}</p>
                 <div className="flex -pr-10">
                   <button
                     className="h-14 w-14 text-primary-50 rounded-xl bg-transparent -pr-10 text-xl border border-primary-50"
@@ -79,7 +82,7 @@ export default function TicketStepTwo() {
           <TicketResume />
           <button
             title="Next Step"
-            onClick={() => onSubmit}
+            onClick={onSubmit}
             className="w-80 h-11 bg-primary-50 text-white rounded-l mt-10 ml-24"
           >
             Continuar →

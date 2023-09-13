@@ -1,11 +1,17 @@
 import { useSelector } from "react-redux";
-import { getBuyerData } from "../../redux/sliceTickets";
+import {
+  getBuyerData,
+  getEventSelected,
+  getTicketsAdquired,
+} from "../../redux/sliceTickets";
 
 export default function TicketResume() {
   const buyer = useSelector(getBuyerData);
+  const event = useSelector(getEventSelected);
+  const ticketsBuyed = useSelector(getTicketsAdquired);
 
   return (
-    <div className="bg-primary-500 shadow-md rounded-xl w-80 h-full ml-24 mt-5 p-7">
+    <div className="bg-primary-500 shadow-md rounded-xl w-80 h-700 ml-24 mt-5 p-7">
       <label className="flex mb-2 ml-1 text-xl font-medium text-primary-800 dark:text-white">
         <p>Resumen de Compra</p>
       </label>
@@ -45,13 +51,18 @@ export default function TicketResume() {
         <p className="mt-4 mb-1 text-left text-sm text-primary-800">
           Entrada General
         </p>
-        <p className="mt-4 mb-1 text-left text-sm ml-1 text-primary-800">$</p>
+        <p className="mt-4 mb-1 text-left text-sm ml-1 text-primary-800">
+          $ {event.ticketPrice ? event.ticketPrice : "-"}
+        </p>
       </div>
       <div className="flex justify-between">
         <p className="mt-4 mb-1 text-left text-xs ml-1 text-primary-800">
           Cantidad:
         </p>
-        <p className="mt-4 mb-1 text-left text-xs ml-1 text-primary-800"> - </p>
+        <p className="mt-4 mb-1 text-left text-xs ml-1 text-primary-800">
+          {" "}
+          {ticketsBuyed ? ticketsBuyed : "-"}{" "}
+        </p>
       </div>
       <div className="flex justify-between">
         <p className="mt-4 mb-1 text-left text-xs text-primary-800">
@@ -63,7 +74,7 @@ export default function TicketResume() {
           TOTAL:
         </p>
         <p className="mt-4 mb-1 text-left text-l font-medium text-primary-800 dark:text-white">
-          $
+          $ {!isNaN(event.ticketPrice) ? ticketsBuyed * event.ticketPrice : "-"}
         </p>
       </div>
     </div>
