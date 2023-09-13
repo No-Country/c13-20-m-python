@@ -19,6 +19,7 @@ export default function CardEvent({
   location,
   price,
   eventHost,
+  onActionClick,
 }) {
 
   const [isClicked, setIsClicked] = useState(false);
@@ -59,6 +60,7 @@ export default function CardEvent({
 >
       <CardHeader className="h-[160px]">
         <div className="items-stretch w-full h-full ">
+
           <img
             src={imageUrl}
             alt={name}
@@ -66,6 +68,7 @@ export default function CardEvent({
           />
         </div>
       </CardHeader>
+
       <CardBody className=" text-left items-stretch whitespace-normal">
         <Typography className="mt-2 w-[267px] font-extrabold [font-family:'Lato-ExtraBold',_Helvetica] text-[#003049] text-[18px] tracking-[0] leading-[normal]">
           {name}
@@ -115,11 +118,3 @@ export default function CardEvent({
     </Link>
   );
 }
-
-
-
-
-
-
-
-

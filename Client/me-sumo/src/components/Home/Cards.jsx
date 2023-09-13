@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 import useEvents from "../../hooks/useEvents"; 
 import { useNavigate } from "react-router-dom"; 
 
+
 import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md"; 
+
 
 export default function Cards() {
   const navigate = useNavigate(); 
@@ -44,7 +46,10 @@ export default function Cards() {
           <div className="drop-shadow-lg">
             <div className="flex gap-4 transition-transform transform duration-600  ease-in-out">
               {events
-                .slice(currentSlide * itemsPerPage, (currentSlide + 1) * itemsPerPage)
+                .slice(
+                  currentSlide * itemsPerPage,
+                  (currentSlide + 1) * itemsPerPage
+                )
                 .map((individualEvent) => (
                   // Mapea los eventos en tarjetas individuales
                   <CardEvent
@@ -56,10 +61,14 @@ export default function Cards() {
                     location={individualEvent.location}
                     price={individualEvent.ticketPrice}
                     eventHost={individualEvent.eventHost}
+                    onActionClick={() =>
+                      navigate("/event/" + individualEvent.id)
+                    }
                   />
                 ))}
             </div>
           </div>
+
            {/* Botones para navegar entre las páginas del carrusel */}
             <div className="absolute -top-16 right-8">
               <button
@@ -81,6 +90,7 @@ export default function Cards() {
                 <MdOutlineArrowForwardIos className="relative w-[32px] h-[32px]" />
               </button>
             </div>
+
           </div>
       
       ) : (
@@ -92,22 +102,4 @@ export default function Cards() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
