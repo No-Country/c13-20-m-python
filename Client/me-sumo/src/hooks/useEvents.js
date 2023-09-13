@@ -130,11 +130,15 @@ const useEvents = () => {
 
   const handleGetEvent = async (id) => {
     try {
+
       const response = await axios.get(API_URL_EVENTS + `${id.pk}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
+   
+
       return response.data;
     } catch (error) {
       if (error.response) {

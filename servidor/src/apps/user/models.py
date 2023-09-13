@@ -51,6 +51,7 @@ class User(AbstractUser):
     password = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     favorite_categories = models.ManyToManyField(Category, blank=True)
+    
 
     GENDER_CHOICES = [
         ('M', 'Mujer'),
