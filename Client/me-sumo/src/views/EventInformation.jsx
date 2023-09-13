@@ -60,7 +60,7 @@ export default function EventInformation() {
               Organizado por:
             </h3>
             <div className="flex flex-row justify-between bg-orange-50 py-2 md:py-4 px-2 sm:px-5 rounded-lg">
-              <p className="font-medium	text-lg	">{event.eventHost}</p>
+              <p className="font-medium	text-lg	">{event.eventHost?.username}</p>
               {!siguiendo ? (
                 <Button
                   onClick={() => setSiguiendo(true)}
@@ -77,27 +77,29 @@ export default function EventInformation() {
                 </Button>
               )}
             </div>
-            {event.ticketPrice == 0 ? (
-              <div>Evento Gratuito</div>
-            ) : (
-              <>
-                <div className="flex flex-row justify-between">
-                  <div className="flex flex-row">
-                    <img
-                      src={ticketPrice}
-                      alt="Calendario"
-                      className="w-10 h-auto"
-                    />
-                    <p className="p-2  text-2xl">
-                      A partir de ${event.ticketPrice}
-                    </p>
-                  </div>
-                  <p className="justify-self-end	self-center">
-                    {event.capacity} Disponibles
+
+            <>
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-row">
+                  <img
+                    src={ticketPrice}
+                    alt="Calendario"
+                    className="w-10 h-auto"
+                  />
+                  <p className="p-2  text-2xl">
+                    {event.ticketPrice == "Gratis" ? (
+                      <div>Evento Gratuito</div>
+                    ) : (
+                      `A partir de $ ${event.ticketPrice}`
+                    )}
                   </p>
                 </div>
-              </>
-            )}
+                <p className="justify-self-end	self-center">
+                  {event.capacity} Disponibles
+                </p>
+              </div>
+            </>
+
             <Button className="my-10 bg-orange-600">Adquirir Entradas</Button>
           </div>
         </div>
