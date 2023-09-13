@@ -5,14 +5,14 @@ import useEvents from "../hooks/useEvents";
 import calendar from "../assets/icons/calendar.svg";
 export default function EventInformation() {
   const { handleGetEvent } = useEvents();
-  const id = useParams();
+  const pk = useParams();
   const [event, setEvent] = useState(null);
   const [siguiendo, setSiguiendo] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const event = await handleGetEvent(id);
+        const event = await handleGetEvent(pk);
         console.log("evento", event);
         setEvent(event);
       } catch (error) {

@@ -2,6 +2,7 @@ import React from "react";
 import { Spinner, Carousel, Button } from "@material-tailwind/react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
+
 const CityCards = () => {
   // Supongamos que tienes una lista de ciudades similar a la de eventos en tu estado global.
   const cities = [
@@ -44,49 +45,55 @@ const CityCards = () => {
 
 
   return (
-    <div className="mt-10 mb-20  mx-40">
-    <Carousel className="border  rounded-lg  shadow-lg" controls >
-      {activateSpinner ? (
-        <div className="flex justify-center gap-2">
-          <Button size="lg" color="black">
-            <FiChevronLeft size={customCarouselStyles.arrowIconSize} className="cursor-pointer" />
-            <FiChevronRight size={customCarouselStyles.arrowIconSize} className="cursor-pointer" />
-          </Button>
-        </div>
-      ) : (
-        Array.isArray(cities) && cities.length > 0 ? (
-          Array(Math.ceil(cities.length / 4))
-            .fill()
-            .map((_, index) => (
-              <div className="flex gap-4" key={index}>
-                {cities
-                  .slice(index * 4, (index + 1) * 4)
-                  .map((city, cityIndex) => (
-                    <div key={cityIndex} className="ml-7 border rounded-2xl drop-shadow-lg  w-[299px]">
-                      <div
-                        className="w-[299px] h-[400px] relative rounded-[12px]"
-                            style={{
-                                backgroundImage: `linear-gradient(180deg, rgba(247, 127, 0, 0) 50%, #f77f00 100%), url(${city.imageUrl})`,
-                                backgroundSize: "cover",
-                                backgroundPosition: "50% 50%",
-                              }}     
-                          
-                      >
-                        <div className="absolute bottom-7 w-[267px] [font-family:'Lato-ExtraBold',_Helvetica] font-extrabold text-orange-50  text-[20px] tracking-[0] leading-[normal]">
-                          {city.name}
+    <div className="mt-10 mb-20  mx-28">
+      <Carousel className="border rounded-lg " controls>
+        {activateSpinner ? (
+          <div className="flex justify-center gap-2">
+            <Button size="lg" color="black">
+              <FiChevronLeft
+                size={customCarouselStyles.arrowIconSize}
+                className="cursor-pointer"
+              />
+              <FiChevronRight
+                size={customCarouselStyles.arrowIconSize}
+                className="cursor-pointer"
+              />
+            </Button>
+          </div>
+        ) : (
+          Array.isArray(cities) && cities.length > 0 ? (
+            Array(Math.ceil(cities.length / 4))
+              .fill()
+              .map((_, index) => (
+                <div className="flex gap-4" key={index}>
+                  {cities
+                    .slice(index * 4, (index + 1) * 4)
+                    .map((city, cityIndex) => (
+                      <div key={cityIndex} className="ml-7 border rounded-2xl drop-shadow-lg  w-[299px]">
+                        <div
+                          className="w-[299px] h-[400px]  rounded-[12px]"
+                          style={{
+                            backgroundImage: `linear-gradient(180deg, rgba(247, 127, 0, 0) 50%, #f77f00 100%), url(${city.imageUrl})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "50% 50%",
+                          }}
+                        >
+                          <div className="absolute bottom-7 w-[267px] [font-family:'Lato-ExtraBold',_Helvetica] font-extrabold text-orange-50  text-[20px] tracking-[0] leading-[normal]">
+                            {city.name}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-              </div>
-            ))
-        ) : (
-          <Spinner className="h-12 w-12" />
-        )
-      )}
-    </Carousel>
-  </div>
-);
+                    ))}
+                </div>
+              ))
+          ) : (
+            <Spinner className="h-12 w-12" />
+          )
+        )}
+      </Carousel>
+    </div>
+  );
+  
 };
 
 export default CityCards;
