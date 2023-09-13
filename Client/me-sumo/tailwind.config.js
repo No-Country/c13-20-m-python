@@ -6,7 +6,10 @@ export default withMT({
   theme: {
     extend: {
       spacing: {
-        "56rem": "56rem",
+        "36rem": "36rem",
+      },
+      heigth: {
+        700: "700px",
       },
       screens: {
         sm: "480px",

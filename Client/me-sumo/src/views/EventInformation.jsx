@@ -114,8 +114,9 @@ export default function EventInformation() {
               </div>
             </>
 
-            <Button className="my-10 bg-orange-600">Adquirir Entradas</Button>
-
+            <Button className="my-10 bg-orange-600" onClick={handleNextStep}>
+              Adquirir Entradas
+            </Button>
           </div>
         </div>
       </div>

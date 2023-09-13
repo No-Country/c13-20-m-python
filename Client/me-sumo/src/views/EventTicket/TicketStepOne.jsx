@@ -50,7 +50,7 @@ export default function TicketStepOne() {
             <button
               title="Next Step"
               type="submit"
-              className="w-80 h-11 bg-primary-50 text-white rounded-l absolute ml-96 mt-40"
+              className="w-80 h-11 bg-primary-50 text-white rounded-l absolute ml-36rem mt-40"
             >
               Continuar →
             </button>
