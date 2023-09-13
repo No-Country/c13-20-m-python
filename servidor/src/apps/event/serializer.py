@@ -86,7 +86,6 @@ class EventDetailSerializer(serializers.ModelSerializer):
             data['ticketPrice'] = 'Gratis'    
         return data
 
-    
 class EventDetailOrganizerSerializer(serializers.ModelSerializer):
     
     class Meta:
