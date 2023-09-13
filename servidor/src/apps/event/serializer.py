@@ -24,7 +24,7 @@ class EventListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('id', 'eventHost', 'name', 'date', 'finish_date','state', 'ticketPrice', 'event_images', 'categories', 'location')
+        fields = ('id', 'eventHost', 'name', 'date', 'finish_date','state', 'ticketPrice', 'event_images', 'categories', 'location','description')
 
         # Mostrar gratis en vez de 0.0
     def to_representation(self, instance):
