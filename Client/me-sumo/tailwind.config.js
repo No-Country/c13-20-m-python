@@ -5,6 +5,9 @@ export default withMT({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      spacing: {
+        "56rem": "56rem",
+      },
       screens: {
         sm: "480px",
         md: "768px",
@@ -13,12 +16,12 @@ export default withMT({
       },
       colors: {
         primary: {
-          50: "#eff6ff",
+          50: "#F77F00",
           100: "#dbeafe",
           200: "#bfdbfe",
           300: "#93c5fd",
           400: "#60a5fa",
-          500: "#3b82f6",
+          500: "#FEF2E6",
           600: "#2563eb",
           700: "#fde5cc",
           800: "#003049",
