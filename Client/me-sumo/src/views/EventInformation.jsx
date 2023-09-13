@@ -7,6 +7,8 @@ import { setEventSelected } from "../redux/sliceTickets";
 import useEvents from "../hooks/useEvents";
 import calendar from "../assets/icons/calendar.svg";
 
+import ticketPrice from "../assets/icons/ticket_price.svg";
+
 export default function EventInformation() {
   const { handleGetEvent } = useEvents();
   const id = useParams();
@@ -37,7 +39,7 @@ export default function EventInformation() {
   return event ? (
     <div className="bg-orange-50	">
       <div className="flex flex-col justify-items-center items-center">
-        <div className="flex flex-row justify-center w-full md:w-10/12 max-h-72 lg:h-full rounded-lg m-10">
+        <div className="flex flex-row justify-center w-full md:w-10/12 max-h-72 lg:max-h-96 lg:h-full rounded-lg m-10">
           <img
             className="w-full h-auto object-cover focus:h-full  rounded-lg"
             src={event.event_images}
@@ -59,7 +61,7 @@ export default function EventInformation() {
               <img src={calendar} alt="Calendario" className="mr-2" />{" "}
               <p className="text-xl text-left" type="date">
                 {event.date.slice(0, 10)} ⚫{" "}
-                {event.date.slice(12, event.date.length - 1)}
+                {event.date.slice(11, event.date.length - 1)}
               </p>
             </div>
             <p className="text-left"></p>
@@ -68,7 +70,7 @@ export default function EventInformation() {
         </div>
         <div className="flex flex-col justify-between items-center  w-10/12">
           <div className="w-full md:w-6/12 flex flex-col ml-auto  rounded-lg">
-            <h3 className="decoration-slate-950	py-4 text-xl font-semibold">
+            <h3 className="decoration-slate-950	py-4  text-xl sm:text-3xl font-semibold">
               Organizado por:
             </h3>
             <div className="flex flex-row justify-between bg-orange-50 py-2 md:py-4 px-2 sm:px-5 rounded-lg">
@@ -89,17 +91,31 @@ export default function EventInformation() {
                 </Button>
               )}
             </div>
-            {event.ticketPrice == 0 ? (
-              <div>Evento Gratuito</div>
-            ) : (
-              <div>${event.ticketPrice}</div>
-            )}
-            <Button
-              onClick={() => handleNextStep}
-              className="my-10 bg-orange-600"
-            >
-              Adquirir Entradas
-            </Button>
+
+            <>
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-row">
+                  <img
+                    src={ticketPrice}
+                    alt="Calendario"
+                    className="w-10 h-auto"
+                  />
+                  <p className="p-2  text-2xl">
+                    {event.ticketPrice == "Gratis" ? (
+                      <div>Evento Gratuito</div>
+                    ) : (
+                      `A partir de $ ${event.ticketPrice}`
+                    )}
+                  </p>
+                </div>
+                <p className="justify-self-end	self-center">
+                  {event.capacity} Disponibles
+                </p>
+              </div>
+            </>
+
+            <Button className="my-10 bg-orange-600">Adquirir Entradas</Button>
+
           </div>
         </div>
       </div>
