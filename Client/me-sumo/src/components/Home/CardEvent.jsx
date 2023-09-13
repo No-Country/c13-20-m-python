@@ -38,7 +38,7 @@ export default function CardEvent({
   return (
     <Card
       onClick={onActionClick}
-      className="mt-6 ml-7  w-[299px] border rounded-2xl bg-orange-50 drop-shadow-lg h-[400px]"
+      className="mt-6 ml-2  w-[299px] border rounded-2xl bg-orange-50 drop-shadow-lg h-[400px]"
     >
       <CardHeader
         className="relative drop-shadow-lg  h-56"
