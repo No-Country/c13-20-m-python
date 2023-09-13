@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Checkbox } from "@material-tailwind/react";
+import { BsCreditCardFill } from "react-icons/bs";
+import { PiMoneyFill } from "react-icons/pi";
+
+import logo from "../../assets/Logo-mp.png";
 
 import Checks from "../../components/Shared/checks";
 import TicketResume from "../../components/Ticket/TicketResume";
@@ -26,13 +30,12 @@ export default function TicketStepTree() {
             <div className="flex w-5/6 h-40 bg-primary-700 rounded-xl">
               <div className="flex">
                 <Checkbox
-                  defaultChecked
                   ripple={true}
                   className="h-8 w-8 rounded-full border-primary-50 bg-primary-50/25 transition-all hover:scale-105 hover:before:opacity-0"
                 />
               </div>
               <div className="flex flex-col w-2/3">
-                <p className="text-left text-l mt-10 ml-3 font-medium text-primary-800 dark:text-white">
+                <p className="text-left text-xl mt-10 ml-3 font-medium text-primary-800 dark:text-white">
                   Tarjeta de Crédito / Débito
                 </p>
                 <p className="mt-4 mb-1 text-left text-xs ml-3 text-primary-800">
@@ -40,6 +43,9 @@ export default function TicketStepTree() {
                   crédito o débito de tu banco
                 </p>
               </div>
+              <div className="mt-12 ml-14 text-primary-800">
+                <BsCreditCardFill className="w-12 h-12" />
+              </div>
             </div>
           </div>
 
@@ -47,13 +53,12 @@ export default function TicketStepTree() {
             <div className="flex w-5/6 h-40 bg-primary-700 rounded-xl">
               <div className="flex">
                 <Checkbox
-                  defaultChecked
                   ripple={true}
                   className="h-8 w-8 rounded-full border-primary-50 bg-primary-50/25 transition-all hover:scale-105 hover:before:opacity-0"
                 />
               </div>
               <div className="flex flex-col w-2/3">
-                <p className="text-left text-l mt-12 ml-3 font-medium text-primary-800 dark:text-white">
+                <p className="text-left text-xl mt-12 ml-3 font-medium text-primary-800 dark:text-white">
                   Mercado Pago
                 </p>
                 <p className="mt-4 mb-1 text-left text-xs ml-3 text-primary-800">
@@ -61,6 +66,9 @@ export default function TicketStepTree() {
                   Mercado Pago
                 </p>
               </div>
+              <div className="mt-12 ml-12">
+                <img src={logo} alt="logo-mp" />
+              </div>
             </div>
           </div>
 
@@ -68,19 +76,21 @@ export default function TicketStepTree() {
             <div className="flex w-5/6 h-40 bg-primary-700 rounded-xl">
               <div className="flex">
                 <Checkbox
-                  defaultChecked
                   ripple={true}
                   className="h-8 w-8 rounded-full border-primary-50 bg-primary-50/25 transition-all hover:scale-105 hover:before:opacity-0"
                 />
               </div>
               <div className="flex flex-col w-2/3">
-                <p className="text-left text-l mt-12 ml-3 font-medium text-primary-800 dark:text-white">
+                <p className="text-left text-xl mt-12 ml-3 font-medium text-primary-800 dark:text-white">
                   Efectivo en Puerta
                 </p>
                 <p className="mt-4 mb-1 text-left text-xs ml-3 text-primary-800">
                   Abona en efectivo las entradas adquiridas hasta 30 minutos
                   antes del evento.
                 </p>
+              </div>
+              <div className="mt-12 ml-14">
+                <PiMoneyFill className=" w-14 h-14 text-primary-800" />
               </div>
             </div>
           </div>

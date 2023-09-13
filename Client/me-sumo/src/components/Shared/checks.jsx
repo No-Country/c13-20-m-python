@@ -6,7 +6,7 @@ export default function Checks({ firstCheck, secondCheck, thirdCheck }) {
     <div>
       <div className="flex justify-center items-center flex-row p-4">
         <div className="">
-          <img src={check_circle} className="h-auto m-1 pl-8 md:pl-12" />
+          <img src={check_circle} className="h-auto m-1 ml-9 pl-4" />
           <p className="text-center">{firstCheck} </p>
         </div>
         <div className="">
