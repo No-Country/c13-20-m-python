@@ -4,8 +4,8 @@ export default function TicketQR() {
   const value = "hola";
   return (
     <div className="flex flex-col items-center">
-      <p>Presenta este QR en la entrada del evento</p>
-      <QRCode size={320} value={value} />
+      <p>Tu entrada al evento</p>
+      <QRCode size={220} value={value} />
     </div>
   );
 }
