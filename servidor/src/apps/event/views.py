@@ -71,9 +71,7 @@ class EventDetailAssistantView(views.APIView):
         event_serializer = EventDetailSerializer(event)
         return Response(event_serializer.data)   
         
-
-    
-    
+        
 # APIVIEW POR CATEGORIAS FILTRO
 class EventCategoryView(views.APIView):
 
@@ -82,7 +80,6 @@ class EventCategoryView(views.APIView):
     
     # METODO GET / Obtenemos la categoria y filtramos
     def get(self, request, category_name):
-        
         
         #Cambiar a lower para mas disponibilidad en la ruta y que no salte errores
         category_name_lower = category_name.lower()
@@ -155,7 +152,7 @@ class EventDetailOrganizerView(views.APIView):
         }, status=status.HTTP_200_OK)   
                 
     def patch(self, request, pk):
-
+        
         pk = int(pk)
 
         try:
@@ -189,14 +186,12 @@ class EventDetailOrganizerView(views.APIView):
         return Response({'message: Event successfully removed!'}, status= status.HTTP_200_OK)
     
 
-
 class EventListOrganizerView(views.APIView):
 
     authentication_classes = (authentication.CustomUserAuthentication, )
     permission_classes = (permissions.IsAuthenticated, ) 
     
     def get(self, request):
-        
         events = Event.objects.filter(eventHost__username=request.user.username)
         event_serializer = EventListOrganizerSerializer(events, many=True)
         return Response(event_serializer.data)   
