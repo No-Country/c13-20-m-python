@@ -11,7 +11,7 @@ import ticketPrice from "../assets/icons/ticket_price.svg";
 
 export default function EventInformation() {
   const { handleGetEvent } = useEvents();
-  const id = useParams();
+  const pk = useParams();
   const [event, setEvent] = useState(null);
   const [siguiendo, setSiguiendo] = useState(false);
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export default function EventInformation() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const event = await handleGetEvent(id);
+        const event = await handleGetEvent(pk);
         console.log("evento", event);
         setEvent(event);
       } catch (error) {

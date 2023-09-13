@@ -22,6 +22,8 @@ export default function CardHost({ eventHost, location }) {
     const [usedImages, setUsedImages] = useState([]);
     // Estado para almacenar la imagen aleatoria
     const [randomImage, setRandomImage] = useState(null);
+    // Estado para controlar si el usuario ha seguido al anfitrión
+    const [isFollowing, setIsFollowing] = useState(false);
 
     // Función para obtener una imagen no utilizada aleatoria
     const getRandomImage = () => {
@@ -45,6 +47,12 @@ export default function CardHost({ eventHost, location }) {
         }
     };
 
+    // Función para manejar el clic en el botón "Seguir"
+    const handleFollowClick = () => {
+        // Aquí puedes implementar la lógica para seguir o dejar de seguir al anfitrión
+        setIsFollowing(!isFollowing);
+    };
+
     // Obtener una imagen aleatoria cuando el componente se monta
     useEffect(() => {
         getRandomImage();
@@ -55,11 +63,11 @@ export default function CardHost({ eventHost, location }) {
     }
 
     return (
-        <Card className="mt-6 ml-7 w-[299px] border rounded-2xl bg-orange-50 drop-shadow-lg h-[300px] flex flex-col justify-center items-center">
+        <Card className="mt-6 ml-7 w-[299px] border rounded-2xl bg-orange-50 drop-shadow-lg h-[300px] flex flex-col justify-center items-center ">
             <CardHeader className="w-[120px] h-[120px] rounded-full relative flex items-center justify-center border-black">
                 <img src={randomImage} alt={username} className="w-full h-full rounded-full" />
             </CardHeader>
-            <CardBody className="text-left items-stretch relative whitespace-normal">
+            <CardBody className="text-center relative whitespace-normal flex flex-col items-center justify-center">
                 <Typography className="mt-2 w-[267px] [font-family:'Lato-ExtraBold',_Helvetica] font-extrabold text-[#003049] text-[20px] tracking-[0] leading-[normal]">
                     {username}
                 </Typography>
@@ -70,12 +78,19 @@ export default function CardHost({ eventHost, location }) {
                     </Typography>
                 </div>
             </CardBody>
+           
             <CardFooter className="pt-0">
-                <Button className="bg-[#F77F00]">Seguir</Button>
+                <Button
+                    onClick={handleFollowClick}
+                    className={`bg-${isFollowing ? 'gray-900' : 'orange-500'}`}
+                >
+                    {isFollowing ? 'Seguido' : 'Seguir'}
+                </Button>
             </CardFooter>
         </Card>
     );
 }
+
 
 
 
