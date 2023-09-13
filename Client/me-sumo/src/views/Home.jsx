@@ -10,8 +10,8 @@ export default function Home() {
     <div>
       <CarouselWithContent className=" w-full" /> 
       <div className="w-full pt-4">
-        <div className="text-left ">
-          <Typography  className="md:justify-start text-[#003049] [font-family:'Lato-SemiBold',_Helvetica] font-semibold  text-[40px] tracking-[0] leading-[normal] whitespace-nowrap mt-32 mb-10 ml-52">
+        <div className="text-left">
+          <Typography  className="md:justify-start text-[#003049] [font-family:'Lato-SemiBold',_Helvetica] font-semibold  text-[40px] tracking-[0] leading-[normal] whitespace-nowrap mt-32 mb-8 ml-36">
             Eventos Populares
           </Typography>
         </div>
@@ -19,7 +19,7 @@ export default function Home() {
       </div>
       <div>
       <div className="text-left">
-      <Typography className="text-[#003049] [font-family:'Lato-SemiBold',_Helvetica] font-semibold  text-[40px] tracking-[0] leading-[normal] whitespace-nowrap mt-32 mb-10 ml-52">
+      <Typography className="text-[#003049] [font-family:'Lato-SemiBold',_Helvetica] font-semibold  text-[40px] tracking-[0] leading-[normal] whitespace-nowrap mt-32 mb-10 ml-36">
         Organizadores
           </Typography>
           </div>
@@ -27,7 +27,7 @@ export default function Home() {
       </div>
       <div>
         <div className="text-left">
-          <Typography className="text-[#003049] [font-family:'Lato-SemiBold',_Helvetica] font-semibold  text-[40px] tracking-[0] leading-[normal] whitespace-nowrap mt-32 mb-10 ml-52">
+          <Typography className="text-[#003049] [font-family:'Lato-SemiBold',_Helvetica] font-semibold  text-[40px] tracking-[0] leading-[normal] whitespace-nowrap mt-32 mb-10 ml-36 ">
             Explora eventos en estas ciudades
           </Typography>
         </div>

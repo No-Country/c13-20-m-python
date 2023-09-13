@@ -1,4 +1,3 @@
-// Importa componentes y bibliotecas necesarias
 import {
   Card,
   CardHeader,
@@ -9,9 +8,11 @@ import { BsCalendar3, BsShare, BsGeoAltFill } from "react-icons/bs";
 import { MdOutlineConfirmationNumber } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
 import { AiOutlineHeart } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
-// Define una función llamada CardEvent que toma varias propiedades como argumento
 export default function CardEvent({
+  eventId,
   name,
   image,
   date,
@@ -20,9 +21,14 @@ export default function CardEvent({
   eventHost,
   onActionClick,
 }) {
-  const username = eventHost ? eventHost.username : "Desconocido";
 
-  // Formatea la fecha en el formato deseado utilizando objetos Date
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleCardClick = () => {
+    setIsClicked(!isClicked); // Cambia el estado al hacer clic
+  }; 
+  
+  const username = eventHost ? eventHost.username : "Desconocido";
   const formattedDate = new Date(date);
   const formattedDateString = formattedDate.toLocaleDateString("es-ES", {
     day: "2-digit",
@@ -34,78 +40,83 @@ export default function CardEvent({
     minute: "2-digit",
   });
 
-  // Retorna un componente Card con contenido dinámico basado en las propiedades
+  // URL de la imagen por defecto
+  const defaultImageURL =
+    "https://www.eventindustryshow.com/img/blog/Trabalhar-em-Eventos-11.jpg";
+
+  // Usar la imagen por defecto si 'image' es null o no se proporciona
+  const imageUrl = image || defaultImageURL
+
+
   return (
-    <Card
-      onClick={onActionClick}
-      className="mt-6 ml-2  w-[299px] border rounded-2xl bg-orange-50 drop-shadow-lg h-[400px]"
-    >
-      <CardHeader
-        className="relative drop-shadow-lg  h-56"
-        onClick={onActionClick}
-      >
-        {/* Muestra una imagen centrada y ajustada */}
-        <div
-          className="items-stretch w-full h-full overflow-hidden"
-          onClick={onActionClick}
-        >
+
+    <Link to={`/event/${eventId}`}>
+<Card
+  onClick={handleCardClick} // Agrega un manejador de clic
+  className={`mt-6 ml-7 w-[300px] border rounded-2xl bg-orange-50 h-[400px] transform transition-transform ${
+    isClicked
+      ? 'scale-105 opacity-70'
+      : 'hover:scale-105 hover:opacity-70'
+  }`}
+>
+      <CardHeader className="h-[160px]">
+        <div className="items-stretch w-full h-full ">
+
+
           <img
-            src={image}
-            alt="card-image"
-            className="w-full h-full object-cover rounded-lg "
-            style={{ maxHeight: "100%", maxWidth: "100%" }}
+            src={imageUrl}
+            alt={name}
+            className="w-full h-full object-cover rounded-lg"
           />
         </div>
       </CardHeader>
-      <CardBody
-        onClick={onActionClick}
-        className="text-left items-stretch relative  whitespace-normal "
-      >
-        {/* Muestra el nombre del evento */}
-        <Typography className="mt-2 w-[267px] [font-family:'Lato-ExtraBold',_Helvetica] font-extrabold text-[#003049] text-[20px] tracking-[0] leading-[normal]">
+
+      <CardBody className=" text-left items-stretch whitespace-normal">
+        <Typography className="mt-2 w-[267px] font-extrabold [font-family:'Lato-ExtraBold',_Helvetica] text-[#003049] text-[18px] tracking-[0] leading-[normal]">
           {name}
         </Typography>
-
-        {/* Muestra la fecha y hora del evento */}
         <div className="mt-4 flex items-center">
-          <BsCalendar3 className="mr-2 w-[20px] h-[20px] text-[#003049]" />
-          <Typography className="text-[#003049] [font-family:'Lato-Regular',_Helvetica] font-normal text-[14px] tracking-[0] leading-[24px] ">
+          <BsCalendar3 className="mr-2 w-5 h-5 text-[#003049]" />
+          <Typography className="text-[#003049] font-normal [font-family:'Lato-ExtraBold',_Helvetica] text-[14px] ${locationFontSizeClass} tracking-[0] leading-[24px]">
             {formattedDateString} - {formattedTimeString}
           </Typography>
         </div>
-
-        {/* Muestra la ubicación del evento */}
         <div className="mt-4 flex items-center">
-          <BsGeoAltFill className="mr-2 flex-shrink-0 w-[20px] h-[20px] text-[#003049]" />
-          <Typography className="text-[#003049] [font-family:'Lato-Regular',_Helvetica] font-normal text-[14px] tracking-[0] leading-[24px]">
+        <BsGeoAltFill
+    className="mr-2 w-5 h-5] text-[#003049]"/>
+         <Typography
+    className={`text-[#003049] text-[14px] font-normal [font-family:'Lato-ExtraBold',_Helvetica] tracking-[0] ${
+      location && location.length > 20 ? "leading-[15px]" : "leading-[24px]"
+    }`}
+  >
             {location}
           </Typography>
         </div>
-
-        {/* Muestra el precio del evento */}
-        <div className="mt-4 flex items-center">
-          <MdOutlineConfirmationNumber className="mr-2 w-[20px] h-[20px] text-[#003049]" />
-          <Typography className="text-[#003049] [font-family:'Lato-Regular',_Helvetica] font-normal text-[14px] tracking-[0] leading-[24px]">
+        <div className="mt-4 flex items-center splace-x-4">
+          <MdOutlineConfirmationNumber className="mr-2 w-[18px] h-[18px] text-[#003049]" />
+          <Typography className="text-[#003049] font-normal [font-family:'Lato-ExtraBold',_Helvetica] text-[14px] tracking-[0] leading-[24px]">
             {price === "Gratis" ? "Gratis" : `A partir de $${price}`}
           </Typography>
         </div>
+        <div className="mt-4 flex items-center justify-between">
+  <div className="flex items-center">
+    <RxAvatar className="mr-2 w-[18px] h-[18px] text-[#003049]" />
+    <Typography className="text-[#003049] font-normal [font-family:'Lato-ExtraBold',_Helvetica] text-[14px] tracking-[0] leading-[24px]">
+      {username}
+    </Typography>
+  </div>
+  <div className="flex items-center space-x-2">
+    <div className="w-[18px] h-[18px] flex items-center justify-center text-[#F77F00]">
+      <BsShare />
+    </div>
+    <div className="w-[18px] h-[18px] flex items-center justify-center text-[#F77F00]">
+      <AiOutlineHeart size={20} />
+    </div>
+  </div>
+</div>
 
-        {/* Muestra el anfitrión del evento y los iconos de compartir y me gusta */}
-        <div className="mt-4 flex items-center">
-          <RxAvatar className="mr-2 w-[20px] h-[20px] text-[#003049]" />
-          <Typography className="text-[#003049] [font-family:'Lato-Regular',_Helvetica] font-normal text-[14px] tracking-[0] leading-[24px]">
-            {username}
-          </Typography>
-          <div className="ml-28 flex items-center space-x-2">
-            <div className="w-[20px] h-[18px] flex items-center justify-center text-[#F77F00]">
-              <BsShare />
-            </div>
-            <div className="w-[20px] h-[18px] flex items-center justify-center text-[#F77F00]">
-              <AiOutlineHeart size={20} />
-            </div>
-          </div>
-        </div>
       </CardBody>
     </Card>
+    </Link>
   );
 }
