@@ -84,6 +84,23 @@ const useEvents = () => {
     }
   };
 
+  const handleBuyTicket = async (id, data) => {
+    try {
+      await axios.post(API_URL_EVENTS + `${id}/buy-ticket`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      navigate("/home");
+    } catch (error) {
+      if (error.response) {
+        // Manejo de error si se recibe una respuesta del servidor.
+        alert("¡Error al crear el evento!");
+        console.log("Response Data:", error.response.data);
+      }
+    }
+  };
+
   /* Obtiene datos de eventos desde la API y los almacena en el estado global de Redux.*/
   const handleDataEvents = async () => {
     const URL = API_URL_EVENTS;
@@ -113,15 +130,15 @@ const useEvents = () => {
 
   const handleGetEvent = async (id) => {
     try {
-      console.log("id", id.pk);
-      const response = await axios.get(
-        API_URL_EVENTS + `${id.pk}/`
-        // , {
-        //   headers: {
-        //     Authorization: `Bearer ${token}`,
-        //   },
-        // }
-      );
+
+      const response = await axios.get(API_URL_EVENTS + `${id.pk}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+   
+
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -138,6 +155,7 @@ const useEvents = () => {
     handleCategory,
     handleTicket,
     handleGetEvent,
+    handleBuyTicket,
   };
 };
 

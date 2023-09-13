@@ -1,5 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Card, CardHeader, CardBody, CardFooter, Button, Typography } from "@material-tailwind/react";
+import { useState, useEffect } from "react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Button,
+  Typography,
+} from "@material-tailwind/react";
 import { BsGeoAltFill } from "react-icons/bs";
 import ellipse1 from "../../../images/ellipse1.png";
 import ellipse2 from "../../../images/ellipse2.png";
@@ -10,6 +17,7 @@ import ellipse4 from "../../../images/ellipse4.png";
 const cardImages = [ellipse1, ellipse2, ellipse3, ellipse4];
 
 export default function CardHost({ eventHost, location }) {
+
     // Verificar si eventHost está definido antes de acceder a sus propiedades
     if (!eventHost) {
         return <div>No se encontró información del host.</div>;
@@ -25,27 +33,33 @@ export default function CardHost({ eventHost, location }) {
     // Estado para controlar si el usuario ha seguido al anfitrión
     const [isFollowing, setIsFollowing] = useState(false);
 
-    // Función para obtener una imagen no utilizada aleatoria
-    const getRandomImage = () => {
-        // Filtra las imágenes que no se han utilizado
-        const availableImages = cardImages.filter((image) => !usedImages.includes(image));
 
-        // Si ya se han utilizado todas las imágenes, reinicia el registro de imágenes utilizadas
-        if (availableImages.length === 0) {
-            setUsedImages([]);
-            setRandomImage(cardImages[0]); // Devuelve la primera imagen
-        } else {
-            // Obtiene una imagen aleatoria de las disponibles
-            const randomIndex = Math.floor(Math.random() * availableImages.length);
-            const selectedImage = availableImages[randomIndex];
+  // Obtener el username de eventHost
+  const username = eventHost.username;
 
-            // Registra la imagen utilizada
-            setUsedImages([...usedImages, selectedImage]);
+  // Estado para mantener un registro de las imágenes utilizadas
+  //eslint-disable-next-line
+  const [usedImages, setUsedImages] = useState([]);
+  // Estado para almacenar la imagen aleatoria
+  //eslint-disable-next-line
+  const [randomImage, setRandomImage] = useState(null);
 
-            // Establece la imagen aleatoria
-            setRandomImage(selectedImage);
-        }
-    };
+  // Función para obtener una imagen no utilizada aleatoria
+  const getRandomImage = () => {
+    // Filtra las imágenes que no se han utilizado
+    const availableImages = cardImages.filter(
+      (image) => !usedImages.includes(image)
+    );
+
+    // Si ya se han utilizado todas las imágenes, reinicia el registro de imágenes utilizadas
+    if (availableImages.length === 0) {
+      setUsedImages([]);
+      setRandomImage(cardImages[0]); // Devuelve la primera imagen
+    } else {
+      // Obtiene una imagen aleatoria de las disponibles
+      const randomIndex = Math.floor(Math.random() * availableImages.length);
+      const selectedImage = availableImages[randomIndex];
+
 
     // Función para manejar el clic en el botón "Seguir"
     const handleFollowClick = () => {
@@ -58,9 +72,11 @@ export default function CardHost({ eventHost, location }) {
         getRandomImage();
     }, []);
 
-    if (!randomImage) {
-        return null; // Mostrar un componente de carga o manejar el caso de imagen nula
+      // Establece la imagen aleatoria
+      setRandomImage(selectedImage);
     }
+  };
+
 
     return (
         <Card className="mt-6 ml-7 w-[299px] border rounded-2xl bg-orange-50 drop-shadow-lg h-[300px] flex flex-col justify-center items-center ">
@@ -94,4 +110,7 @@ export default function CardHost({ eventHost, location }) {
 
 
 
+  if (!randomImage) {
+    return null; // Mostrar un componente de carga o manejar el caso de imagen nula
+  }
 

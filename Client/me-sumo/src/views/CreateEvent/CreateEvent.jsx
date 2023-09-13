@@ -54,8 +54,8 @@ export default function CreateEvent() {
     "Negocios",
     "Cursos y Capacitaciones",
     "Teatro",
-    "Otros",
     "Cine",
+    "Otros",
   ];
   const options = categorias.map((cat, index) => ({
     value: index,
