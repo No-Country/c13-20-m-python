@@ -124,7 +124,11 @@ export default function CreateEvent() {
           Crear un nuevo Evento
         </h1>
       </div>
-      <Checks />
+      <Checks
+        firstCheck="Información Báscica"
+        secondCheck="Entradas"
+        thirdCheck="Publicar"
+      />
       <div className="flex justify-center w-full h-auto ">
         <div className="w-full max-w-screen-md xl:max-w-screen-lg p-4 lg:py-0">
           <form

@@ -18,6 +18,9 @@ import Successful from "./views/Interests/Successful";
 import FilteredEventsView from "./views/FilteredEventsView";
 import CreateEventStep2 from "./views/CreateEvent/CreateEventStep2";
 import EventInformation from "./views/EventInformation";
+import TicketStepOne from "./views/EventTicket/TicketStepOne";
+import TicketStepTwo from "./views/EventTicket/TicketStepTwo";
+import TicketStepTree from "./views/EventTicket/TicketStepTree";
 
 function App() {
   const location = useLocation();
@@ -43,6 +46,9 @@ function App() {
           <Route path="/interests2" element={<Interests2 />} />
           <Route path="/successful" element={<Successful />} />
           <Route path="/event/:pk" element={<EventInformation />} />
+          <Route path="/ticketsStepOne" element={<TicketStepOne />} />
+          <Route path="/ticketsStepTwo" element={<TicketStepTwo />} />
+          <Route path="/ticketsStepTree" element={<TicketStepTree />} />
         </Routes>
       </div>
     </Provider>

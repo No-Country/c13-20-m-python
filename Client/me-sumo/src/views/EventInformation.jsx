@@ -1,14 +1,21 @@
 import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setEventSelected } from "../redux/sliceTickets";
 import useEvents from "../hooks/useEvents";
 import calendar from "../assets/icons/calendar.svg";
+
 import ticketPrice from "../assets/icons/ticket_price.svg";
+
 export default function EventInformation() {
   const { handleGetEvent } = useEvents();
   const id = useParams();
   const [event, setEvent] = useState(null);
   const [siguiendo, setSiguiendo] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +28,14 @@ export default function EventInformation() {
       }
     };
     fetchData();
+    //eslint-disable-next-line
   }, []);
+
+  const handleNextStep = () => {
+    dispatch(setEventSelected(event));
+    navigate("/ticketsStepOne");
+  };
+
   return event ? (
     <div className="bg-orange-50	">
       <div className="flex flex-col justify-items-center items-center">
@@ -101,6 +115,7 @@ export default function EventInformation() {
             </>
 
             <Button className="my-10 bg-orange-600">Adquirir Entradas</Button>
+
           </div>
         </div>
       </div>

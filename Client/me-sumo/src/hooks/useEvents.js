@@ -25,6 +25,7 @@ const useEvents = () => {
   const redirectStep3 = (navigate) => {
     navigate("/create-event-step3");
   };
+
   const handleCreateEvent = async (newEvent) => {
     const { categories, event_images, ...noCatEvent } = newEvent;
     dispatch(setCategories(categories));
