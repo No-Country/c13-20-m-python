@@ -36,11 +36,19 @@ export default function CardEvent({
 
   // Retorna un componente Card con contenido dinámico basado en las propiedades
   return (
-    <Card className="mt-6 ml-7  w-[299px] border rounded-2xl bg-orange-50 drop-shadow-lg h-[400px]">
-      onClick={() => onActionClick}
-      <CardHeader className="relative drop-shadow-lg  h-56">
+    <Card
+      onClick={onActionClick}
+      className="mt-6 ml-7  w-[299px] border rounded-2xl bg-orange-50 drop-shadow-lg h-[400px]"
+    >
+      <CardHeader
+        className="relative drop-shadow-lg  h-56"
+        onClick={onActionClick}
+      >
         {/* Muestra una imagen centrada y ajustada */}
-        <div className="items-stretch w-full h-full overflow-hidden">
+        <div
+          className="items-stretch w-full h-full overflow-hidden"
+          onClick={onActionClick}
+        >
           <img
             src={image}
             alt="card-image"
@@ -49,7 +57,10 @@ export default function CardEvent({
           />
         </div>
       </CardHeader>
-      <CardBody className="text-left items-stretch relative  whitespace-normal ">
+      <CardBody
+        onClick={onActionClick}
+        className="text-left items-stretch relative  whitespace-normal "
+      >
         {/* Muestra el nombre del evento */}
         <Typography className="mt-2 w-[267px] [font-family:'Lato-ExtraBold',_Helvetica] font-extrabold text-[#003049] text-[20px] tracking-[0] leading-[normal]">
           {name}
