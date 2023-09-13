@@ -49,6 +49,7 @@ export default function CardEvent({
 
 
   return (
+
     <Link to={`/event/${eventId}`}>
 <Card
   onClick={handleCardClick} // Agrega un manejador de clic
@@ -60,6 +61,7 @@ export default function CardEvent({
 >
       <CardHeader className="h-[160px]">
         <div className="items-stretch w-full h-full ">
+
 
           <img
             src={imageUrl}

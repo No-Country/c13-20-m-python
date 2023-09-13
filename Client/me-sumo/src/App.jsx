@@ -21,7 +21,7 @@ import EventInformation from "./views/EventInformation";
 import TicketStepOne from "./views/EventTicket/TicketStepOne";
 import TicketStepTwo from "./views/EventTicket/TicketStepTwo";
 import TicketStepTree from "./views/EventTicket/TicketStepTree";
-import Organizator from "./views/Organizator";
+import OrganizProfile from "./views/OrganizProfile";
 
 function App() {
   const location = useLocation();
@@ -40,7 +40,7 @@ function App() {
           <Route path="/on-boarding" element={<Onboarding />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/user-profile" element={<UserProfile />} />
-          <Route path="/organizador" element={<Organizator />} />
+          <Route path="/organizador" element={<OrganizProfile />} />
           <Route path="/create-event" element={<CreateEvent />} />
           <Route path="/create-event-step2" element={<CreateEventStep2 />} />
           <Route path="/create-event-step3" element={<CreateEventStep3 />} />

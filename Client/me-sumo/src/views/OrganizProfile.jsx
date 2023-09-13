@@ -3,7 +3,7 @@ import { Typography } from "@material-tailwind/react";
 import useUserData from "../hooks/useUserData";
 import EventDetail from "../components/OrganizatorProfile/EventDetail";
 
-export default function OrganizatorProfile() {
+export default function OrganizProfile() {
   const { searchUserEventsData } = useUserData();
   const [events, setEvents] = useState([]);
   const activateSpinner = events;
