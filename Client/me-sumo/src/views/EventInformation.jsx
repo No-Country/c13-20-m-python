@@ -21,7 +21,7 @@ export default function EventInformation() {
     const fetchData = async () => {
       try {
         const event = await handleGetEvent(id);
-        console.log("evento", event);
+
         setEvent(event);
       } catch (error) {
         console.log("Error en la visualizacion del evento");

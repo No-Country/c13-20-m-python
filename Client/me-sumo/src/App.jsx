@@ -9,6 +9,7 @@ import Home from "./views/Home";
 import SignUp from "./views/SignUp";
 import NavBar from "./views/NavBar";
 import UserProfile from "./views/UserProfile";
+import OrganizatorProfile from "./views/OrganizatorProfile";
 import CreateEvent from "./views/CreateEvent/CreateEvent";
 import CreateEventStep3 from "./views/CreateEvent/CreateEventStep3";
 import Onboarding from "./views/OnBoarding";
@@ -39,6 +40,7 @@ function App() {
           <Route path="/on-boarding" element={<Onboarding />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/organizador" element={<OrganizatorProfile />} />
           <Route path="/create-event" element={<CreateEvent />} />
           <Route path="/create-event-step2" element={<CreateEventStep2 />} />
           <Route path="/create-event-step3" element={<CreateEventStep3 />} />

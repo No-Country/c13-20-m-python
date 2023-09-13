@@ -3,7 +3,7 @@ import Joi from "joi";
 const eventSchema = Joi.object({
   name: Joi.string()
     .min(3)
-    .max(35)
+    .max(60)
     .messages({
       "string.pattern.base": "El nombre solo acepta letras",
       "string.min": "Name should have a minimum length of 3 characters",

@@ -2,6 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { Checkbox } from "@material-tailwind/react";
 import { BsCreditCardFill } from "react-icons/bs";
 import { PiMoneyFill } from "react-icons/pi";
+import useEvents from "../../hooks/useEvents";
+import { useSelector } from "react-redux";
+import {
+  getEventSelected,
+  getTicketsAdquired,
+  getBuyerData,
+} from "../../redux/sliceTickets";
 
 import logo from "../../assets/Logo-mp.png";
 
@@ -11,8 +18,24 @@ import TicketResume from "../../components/Ticket/TicketResume";
 export default function TicketStepTree() {
   const navigate = useNavigate();
 
+  const eventData = useSelector(getEventSelected);
+  const buyerData = useSelector(getBuyerData);
+  const ticketsAdquired = useSelector(getTicketsAdquired);
+
+  const id = eventData.id;
+  const data = {
+    name: buyerData.name,
+    email: buyerData.email,
+    phone_number: buyerData.telephone,
+    number_tickets: ticketsAdquired,
+    total_price: eventData.ticketPrice,
+  };
+
+  const { handleBuyTicket } = useEvents();
+
   const onSubmit = () => {
-    navigate("/ticketsStepTree");
+    handleBuyTicket(id, data);
+    navigate("/home");
   };
 
   return (
