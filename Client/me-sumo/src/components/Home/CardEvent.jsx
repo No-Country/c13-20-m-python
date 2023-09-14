@@ -18,16 +18,15 @@ export default function CardEvent({
   date,
   location,
   price,
-  eventHost,
-  onActionClick,
+  eventHost
 }) {
 
   const [isClicked, setIsClicked] = useState(false);
 
   const handleCardClick = () => {
     setIsClicked(!isClicked); // Cambia el estado al hacer clic
-  }; 
-  
+  };
+
   const username = eventHost ? eventHost.username : "Desconocido";
   const formattedDate = new Date(date);
   const formattedDateString = formattedDate.toLocaleDateString("es-ES", {

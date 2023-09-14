@@ -21,7 +21,7 @@ export default function EventInformation() {
     const fetchData = async () => {
       try {
 
-        const event = await handleGetEvent(id);
+        const event = await handleGetEvent(pk);
 
 
         setEvent(event);

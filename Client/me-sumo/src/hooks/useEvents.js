@@ -91,7 +91,6 @@ const useEvents = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      navigate("/home");
     } catch (error) {
       if (error.response) {
         // Manejo de error si se recibe una respuesta del servidor.
@@ -131,13 +130,7 @@ const useEvents = () => {
   const handleGetEvent = async (id) => {
     try {
 
-      const response = await axios.get(API_URL_EVENTS + `${id.pk}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-   
+      const response = await axios.get(API_URL_EVENTS + `${id.pk}/`)
 
       return response.data;
     } catch (error) {

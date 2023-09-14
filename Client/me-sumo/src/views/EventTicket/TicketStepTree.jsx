@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { Checkbox } from "@material-tailwind/react";
 import { BsCreditCardFill } from "react-icons/bs";
 import { PiMoneyFill } from "react-icons/pi";
@@ -10,13 +9,14 @@ import {
   getBuyerData,
 } from "../../redux/sliceTickets";
 
+import TicketQR from "../../components/Ticket/TicketQR";
 import logo from "../../assets/Logo-mp.png";
-
+import useLogin from "../../hooks/useLogin";
 import Checks from "../../components/Shared/checks";
 import TicketResume from "../../components/Ticket/TicketResume";
 
 export default function TicketStepTree() {
-  const navigate = useNavigate();
+  const { isModalOpen, handleOpenModal } = useLogin();
 
   const eventData = useSelector(getEventSelected);
   const buyerData = useSelector(getBuyerData);
@@ -35,7 +35,7 @@ export default function TicketStepTree() {
 
   const onSubmit = () => {
     handleBuyTicket(id, data);
-    navigate("/home");
+    handleOpenModal();
   };
 
   return (
@@ -129,6 +129,7 @@ export default function TicketStepTree() {
           </button>
         </div>
       </div>
+      {isModalOpen && (<TicketQR />)}
     </div>
   );
 }
