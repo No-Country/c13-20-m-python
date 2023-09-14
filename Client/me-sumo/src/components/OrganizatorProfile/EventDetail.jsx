@@ -22,7 +22,7 @@ export default function EventDetail({
     .format("ddd. D [de] MMMM, HH:mm");
 
   return (
-    <div className="w-full flex">
+    <div className="w-full flex pb-10 border-b border-solid border-primary-800 border-opacity-25">
       <div className="w-1/3 mt-10 pl-7 flex">
         <div className="w-1/3 ">
           <img src={image} alt="event-img" className="rounded-xl" />

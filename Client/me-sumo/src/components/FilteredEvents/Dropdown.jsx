@@ -46,7 +46,7 @@ export default function Dropdown({ events, placeholder, property }) {
 
           colors: {
             ...theme.colors,
-            background: "grey",
+            background: "none",
             primary25: "grey",
             primary: "black",
           },
