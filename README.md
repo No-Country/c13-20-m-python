@@ -40,15 +40,15 @@ Los organizadores pueden administrar la información del evento, como ubicacione
 
 ### Frontend (React)
 
-- [**Sofia Costamagna**](#https://www.linkedin.com/in/sofia-costamagna/)
-- [**Rodrigo Fontan**](#https://www.linkedin.com/in/rodrigo-font%C3%A1n-52833456/)
-- [**Nicolas Ramirez**](#https://www.linkedin.com/in/nicolasramire/)
-- [**Bruno Viscay**](#https://www.linkedin.com/in/bruno-viscay-12b770106/)
+- [**Sofia Costamagna**](https://www.linkedin.com/in/sofia-costamagna/)
+- [**Rodrigo Fontan**](https://www.linkedin.com/in/rodrigo-font%C3%A1n-52833456/)
+- [**Nicolas Ramirez**](https://www.linkedin.com/in/nicolasramire/)
+- [**Bruno Viscay**](https://www.linkedin.com/in/bruno-viscay-12b770106/)
 
 
 ### Backend (Django REST)
 
-- [**Juan Pablo Bianchi**](#https://www.linkedin.com/in/juan-pablo-bianchi/)
-- [**Juan Cruz Carrizo**](#https://www.linkedin.com/in/juancruzcarrizoastiazaran/)
-- [**Leonel Rodriguez**](#https://www.linkedin.com/in/leonel-rodriguez-6729b5211/)
-- [**Lucas Gabriel Simoes**](#https://www.linkedin.com/in/lucas-gabriel-simoes/)
+- [**Juan Pablo Bianchi**](https://www.linkedin.com/in/juan-pablo-bianchi/)
+- [**Juan Cruz Carrizo**](https://www.linkedin.com/in/juancruzcarrizoastiazaran/)
+- [**Leonel Rodriguez**](https://www.linkedin.com/in/leonel-rodriguez-6729b5211/)
+- [**Lucas Gabriel Simoes**](https://www.linkedin.com/in/lucas-gabriel-simoes/)
