@@ -14,7 +14,7 @@ const Interest1 = () => {
   } = useInterestSelector();
   const [autocomplete, setAutocomplete] = useState(null);
   const [isLocationSelected, setIsLocationSelected] = useState(false);
-  const [showSuccessAlert, setShowSuccessAlert] = useState(false); // Nueva alerta
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
 
   useEffect(() => {
     const input = document.getElementById("direccion");
@@ -33,11 +33,16 @@ const Interest1 = () => {
         setAddress(place.name);
         setShowAlert1(false);
         setIsLocationSelected(true);
-        setShowSuccessAlert(true); // Mostrar nueva alerta
+        setShowSuccessAlert(true);
+
+        // Ocultar la alerta de éxito después de 3 segundos (3000 ms)
+        setTimeout(() => {
+          setShowSuccessAlert(false);
+        }, 2000);
       } else {
         setShowAlert1(true);
         setIsLocationSelected(false);
-        setShowSuccessAlert(false); // Ocultar nueva alerta en caso de error
+        setShowSuccessAlert(false);
       }
     }
   };
@@ -54,7 +59,7 @@ const Interest1 = () => {
         </div>
       )}
 
-      {showSuccessAlert && ( // Mostrar nueva alerta cuando se selecciona la ubicación con éxito
+      {showSuccessAlert && (
         <div className="flex justify-center items-center h-full">
           <Alert color="green" className="w-2/5">
             <Typography variant="small" font="poppins">
@@ -102,7 +107,7 @@ const Interest1 = () => {
                 size="small"
                 rounded
                 ripple="light"
-                className= "bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300" 
+                className="bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300"
                 type="submit"
               >
                 Seleccionar Localidad
@@ -113,24 +118,18 @@ const Interest1 = () => {
 
         <div className="flex justify-end space-x-2 mt-8">
           <Button
-           
-            buttonType="filled"
-            size="small"
-            rounded
-            ripple="light"
             onClick={handlePrevButton}
-            className="bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300" 
+            className="border-[#003049] text-white bg-[#003049]"
           >
             Anterior
           </Button>
           <Button
-
             buttonType="filled"
             size="small"
             rounded
             ripple="light"
             onClick={handleNextButton}
-            className="bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300" 
+            className="bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300"
           >
             Siguiente
           </Button>
@@ -141,4 +140,5 @@ const Interest1 = () => {
 };
 
 export default Interest1;
+
 

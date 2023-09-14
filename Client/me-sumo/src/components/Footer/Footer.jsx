@@ -22,11 +22,12 @@ export function FooterWithSocialLinks() {
   const latoFontStyle = { fontFamily: "Lato, sans-serif" };
 
   return (
-    <footer className="bg-[#FDE5CC] w-full">
+    <footer className="bg-[#FDE5CC] w-full ">
       <div className="container w-fulL mx-auto p-8 gap-[40px] pt-[64px] pb-[40px] px-[80px] ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 justify-between pt-0 pb-[40px] px-0 border-b [border-bottom-style:solid] border-[#003049] relative flex-[0_0_auto]">
           <div className="md:col-span-1">
-            <Typography variant="h5" className="mb-6 ml-2 text-left">
+            <div className="mb-4 flex justify-center md:justify-start">
+            <Typography variant="h5" className="mb-6 ml-4 text-left">
               <span className="text-[#003049] font-extrabold text-4xl">
                 Me
               </span>
@@ -34,6 +35,7 @@ export function FooterWithSocialLinks() {
                 Sumo
               </span>
             </Typography>
+            </div>
             <div className="mb-4 flex justify-center ml-5 md:justify-start">
               <a
                 href="https://www.facebook.com"
@@ -61,15 +63,14 @@ export function FooterWithSocialLinks() {
               </a>
             </div>
           </div>
-          <div className="md:col-span-1">
-            <div className="grid grid-cols-3 gap-4">
+          <div className="md:col-span-1 text-center md:text-left">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {LINKS.map(({ title, items }) => (
                 <div key={title}>
                   <Typography
                     variant="small"
                     className="mb-3 text-[#003049] font-bold "
-                    style={{ ...latoFontStyle, display: "inline-block", marginLeft: "1rem" }}
-
+                    style={{ ...latoFontStyle, display: "block" }}
                   >
                     {title}
                   </Typography>
@@ -80,7 +81,7 @@ export function FooterWithSocialLinks() {
                           as="a"
                           href="#"
                           color="gray"
-                          className="py-1.5 font-normal transition-colors hover:text-[#003049]"
+                          className="py-1.5 font-normal transition-colors hover:text-[#003049] block"
                         >
                           {link}
                         </Typography>
@@ -104,5 +105,7 @@ export function FooterWithSocialLinks() {
     </footer>
   );
 }
+  
+
 
 
