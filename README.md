@@ -96,7 +96,7 @@ Toda la documentacion por parte del backend, los endpoints y las respuestas de s
 
 </br>
 
-### ‍💼🧙‍♂️ Project Manager
+### ‍💼🧙‍♂️ 👔Project Manager
 | <img src="https://media.licdn.com/dms/image/C4D03AQFAlK0Ng_izTA/profile-displayphoto-shrink_800_800/0/1577347227159?e=1700092800&v=beta&t=FGKOYGdhxsdlGLlQF7xzwF_EyUckokQ8MmFCx5IPXM0" height=60>|
 |:-:|
 | **Ivan Rovner** |
