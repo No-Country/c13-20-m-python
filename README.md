@@ -8,7 +8,7 @@
 - [Integrantes del equipo](#Integrantes-del-equipo)
   - [Frontend](#Frontend-react)
   - [Backend](#Backend-Django-REST)
-  - [UX/UI Designer](#UX/UI-Designer)
+  - [UX/UI Designer](#uxui-Designer)
   - [QA Tester](#QA-Tester)
   - [Project Manager](#Project-Manager)
 
