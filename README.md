@@ -10,7 +10,7 @@
   - [Objetivo](#Objetivo)
   - [Solución / MVP](#Solución-/-MVP)
   - [Nuestra App](#Nuestra-App)
-  - [MeSumo - BACKEND REST API](#MeSumo-BACKEND-REST-API)
+  - [MeSumo - BACKEND REST API](#mesumo---backend-rest-api)
   - [Integrantes del equipo](#Integrantes-del-equipo)
     - [Frontend](#Frontend-react)
     - [Backend](#Backend-Django-REST)
