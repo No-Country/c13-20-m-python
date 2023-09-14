@@ -1,15 +1,21 @@
-import { Button } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { isLogged } from "../redux/sliceLogin";
 import { setEventSelected } from "../redux/sliceTickets";
 import useEvents from "../hooks/useEvents";
-import calendar from "../assets/icons/calendar.svg";
+import Cards from "../components/Home/Cards";
 
+import locationSign from "../assets/icons/location_sign.svg";
+import calendar from "../assets/icons/calendar.svg";
 import ticketPrice from "../assets/icons/ticket_price.svg";
 
 export default function EventInformation() {
+  const logged = useSelector(isLogged);
+
   const { handleGetEvent } = useEvents();
   const pk = useParams();
   const [event, setEvent] = useState(null);
@@ -20,9 +26,7 @@ export default function EventInformation() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-
         const event = await handleGetEvent(pk);
-
 
         setEvent(event);
       } catch (error) {
@@ -54,7 +58,7 @@ export default function EventInformation() {
         <p className="text-left">{event.description}</p>
       </div>
       <div className="flex flex-col md:flex-row w-full md:w-10/12 m-auto">
-        <div className="w-full md:w-4/12">
+        <div className="w-full md:w-5/12">
           <h3 className="text-4xl	text-left py-10">Datos del Evento</h3>
           <div className=" text-left">
             <h5 className="text-left text-2xl">Fecha y hora</h5>
@@ -68,16 +72,27 @@ export default function EventInformation() {
             </div>
             <p className="text-left"></p>
           </div>
-          <div>{event.location}</div>
+          <div className="md:py-6 text-left">
+            <h5 className="text-left text-2xl">Ubicación</h5>
+            <div className="flex items-center py-4">
+              {" "}
+              <img src={locationSign} alt="Calendario" className="mr-2" />{" "}
+              <p className="text-xl text-left" type="date">
+                {event.location}
+              </p>
+            </div>
+            <p className="text-left"></p>
+          </div>
         </div>
         <div className="flex flex-col justify-between items-center  w-10/12">
-          <div className="w-full md:w-6/12 flex flex-col ml-auto  rounded-lg">
+          <div className="w-full md:w-6/12 flex flex-col ml-auto">
             <h3 className="decoration-slate-950	py-4  text-xl sm:text-3xl font-semibold">
               Organizado por:
             </h3>
-            <div className="flex flex-row justify-between bg-orange-50 py-2 md:py-4 px-2 sm:px-5 rounded-lg">
+            <div className="flex flex-row justify-between bg-amber-50 py-2 md:py-4 px-2 sm:px-5 my-3 	rounded-lg">
               <p className="font-medium	text-lg	">{event.eventHost?.username}</p>
-              {!siguiendo ? (
+
+              {!siguiendo || !logged ? (
                 <Button
                   onClick={() => setSiguiendo(true)}
                   className="bg-orange-600"
@@ -89,11 +104,10 @@ export default function EventInformation() {
                   onClick={() => setSiguiendo(false)}
                   className="outlined"
                 >
-                  Siguiendo
+                  Seguido
                 </Button>
               )}
             </div>
-
             <>
               <div className="flex flex-row justify-between">
                 <div className="flex flex-row">
@@ -115,12 +129,21 @@ export default function EventInformation() {
                 </p>
               </div>
             </>
-
-            <Button className="my-10 bg-orange-600" onClick={handleNextStep}>
-              Adquirir Entradas
-            </Button>
+            {logged && (
+              <Button className="my-10 bg-orange-600" onClick={handleNextStep}>
+                Adquirir Entradas
+              </Button>
+            )}
           </div>
         </div>
+      </div>
+      <div className="w-full pt-4">
+        <div className="text-left">
+          <Typography className="md:justify-start text-[#003049] [font-family:'Lato-SemiBold',_Helvetica] font-semibold  text-[40px] tracking-[0] leading-[normal] whitespace-nowrap mt-32 mb-8 ml-36">
+            Eventos Relacionados
+          </Typography>
+        </div>
+        <Cards />
       </div>
     </div>
   ) : (
