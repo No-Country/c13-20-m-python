@@ -18,10 +18,11 @@
     - [QA Tester](#QA-Tester)
     - [Project Manager](#Project-Manager)
   - [Construido con](#Construido-con)
-    - [Tecnologias usadas para la API](#Frontend-react)
-    - [Tecnologías usadas para la APP](#Backend-Django-REST)
-    - [Tecnologías usadas en la UX/UI](#uxui-Designer)
-    - [Tecnologías usadas para la planificación y comunicación](#QA-Tester)
+    - [Tecnologias usadas para la API](#tecnologias-usadas-para-la-api)
+    - [Tecnologías usadas para la APP](#tecnologías-usadas-para-la-app)
+    - [Tecnologías usadas en la UX/UI](#tecnologías-usadas-en-la-uxui-%EF%B8%8F)
+    - [Tecnologías usadas para asegurar la calidad de la aplicación](#tecnologías-usadas-para-asegurar-la-calidad-de-la-aplicación)
+    - [Tecnologías usadas para la planificación y comunicación](#tecnologías-usadas-para-la-planificación-y-comunicación)
 
 # Introducción
 
@@ -95,13 +96,14 @@ Toda la documentacion por parte del backend, los endpoints y las respuestas de s
 
 </br>
 
-### ‍💼 Project Manager
+### ‍💼🧙‍♂️ Project Manager
 | <img src="https://media.licdn.com/dms/image/C4D03AQFAlK0Ng_izTA/profile-displayphoto-shrink_800_800/0/1577347227159?e=1700092800&v=beta&t=FGKOYGdhxsdlGLlQF7xzwF_EyUckokQ8MmFCx5IPXM0" height=60>|
 |:-:|
 | **Ivan Rovner** |
 |<a href="https://www.linkedin.com/in/ivanjoelrovner/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a>
 
 </br>
+
 ## Construido con
 
 ### Tecnologias usadas para la API
@@ -123,6 +125,7 @@ Toda la documentacion por parte del backend, los endpoints y las respuestas de s
 
 ### Tecnologías usadas en la UX/UI 🛠️
 ![Figma](https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white) 
+
 ### Tecnologías usadas para asegurar la calidad de la aplicación
  [![Postman](https://img.shields.io/badge/Postman-10.15-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://www.postman.com/)
 
