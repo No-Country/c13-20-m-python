@@ -69,7 +69,7 @@ export default function CreateEventStep3() {
       <Button
         title="Crear Evento"
         onClick={() => handleCategory(catInfo, id)}
-        className="m-2"
+        className="m-2 bg-primary-50"
       >
         Finalizar
       </Button>
