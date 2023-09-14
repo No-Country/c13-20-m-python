@@ -49,6 +49,24 @@ Proporcionamos una interfaz de usuario amigable para que los organizadores pueda
 Ofrecemos herramientas de promoción integradas para ayudar a los organizadores a llegar a un público más amplio.
 Los organizadores pueden administrar la información del evento, como ubicaciones, horarios y entradas, en un solo lugar.
 
+## Que es lo que podras hacer con MeSumo?
+
+En MeSumo vas a tomar los roles tanto como de Organizador de eventos y de Asistente/Invitado a eventos:
+
+  ## Organizador
+  - Podras crear, editar y realizar un informe detallado de los eventos que crees;
+  - Tus eventos podran ser completamente gratuitos o ser pagos;
+  - Con o sin cupos máximos;
+  - Recibirás comentarios y reseñas de los eventos, estos pueden ser antes del día del evento o después de que el evento haya finalizado;
+  - Podrás enviar un recordatorio a los asistentes sobre un evento a comenzar;
+
+  ## Asistente/Invitado
+  - Vas a poder explorar y elegir eventos según tus intereses;
+  - Podrás seguir a los organizadores para estar al tanto de los eventos que ellos crean y así no perdertelos;
+  - Tendrás distintos métodos de pago para adquirir las entradas a los eventos, tales como:
+      . Tarjeta de débito/crédito, Mercado Pago o por ventanilla de forma presencial;
+  - Podrás valorar las experiencias de los eventos a los que asistas y/o ver las experiencias de los demás;
+
 ## Nuestra App
 
 Para comenzar a utilizar nuestra aplicacion solo debes clickear [AQUÍ](https://me-sumo-app.vercel.app/), crear tu cuenta y listo! Ya eres un nuevo miembro de MeSumo. Podras encontrar todos los eventos disponibles en tu zona, y crear nuevos eventos. Diviertete!
