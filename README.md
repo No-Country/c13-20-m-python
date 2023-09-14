@@ -17,7 +17,11 @@
     - [UX/UI Designer](#uxui-Designer)
     - [QA Tester](#QA-Tester)
     - [Project Manager](#Project-Manager)
-
+  - [Construido con](#Construido-con)
+    - [Tecnologias usadas para la API](#Frontend-react)
+    - [Tecnologías usadas para la APP](#Backend-Django-REST)
+    - [Tecnologías usadas en la UX/UI](#uxui-Designer)
+    - [Tecnologías usadas para la planificación y comunicación](#QA-Tester)
 
 # Introducción
 
@@ -98,3 +102,31 @@ Toda la documentacion por parte del backend, los endpoints y las respuestas de s
 |<a href="https://www.linkedin.com/in/ivanjoelrovner/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a>
 
 </br>
+## Construido con
+
+### Tecnologias usadas para la API
+![Django Rest](https://img.shields.io/badge/django_rest_-3.14.0-ED1C24?style=for-the-badge&logo=django&logoColor=white)
+[![Render](https://img.shields.io/badge/Render-000000?style=for-the-badge&logo=render&logoColor=white)](https://render.com/) [![Cloudinary](https://img.shields.io/badge/Cloudinary-777BB4?style=for-the-badge&logo=cloudinary&logoColor=white)](https://cloudinary.com/)
+![Google Cloud](https://img.shields.io/badge/Google_Cloud-00000?style=for-the-badge&logo=googlecloud&color=white)
+![Gunicorn](https://img.shields.io/badge/Gunicorn-00000?style=for-the-badge&logo=gunicorn&logoColor=green&color=white)
+![POSTGRESQL](https://img.shields.io/badge/PostgreSQL-00000?style=for-the-badge&logo=postgresql&logoColor=blue&color=white)
+![Git](https://img.shields.io/badge/git-00000?style=for-the-badge&logo=git&color=white)
+
+### Tecnologías usadas para la APP
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/) ![React Hook Forms](https://img.shields.io/badge/react_hook_forms-ffc0cb?style=for-the-badge&logo=reacthookform&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-ADD8E6?style=for-the-badge&logo=eslint&logoColor=white)
+![JOI](https://img.shields.io/badge/joi-00000?style=for-the-badge&logo=npm&color=red)
+![Google Maps](https://img.shields.io/badge/Google_Maps-00000?style=for-the-badge&logo=googlemaps&color=white)
+ [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38b2ac?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/) [![Redux](https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/) [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/) 
+ ![Vercel](https://img.shields.io/badge/vercel-00000?style=for-the-badge&logo=vercel&logoColor=black&color=white)
+![MOMENT.js](https://img.shields.io/badge/moment.js-00000?style=for-the-badge&logo=javascript&logoColor=white&color=lightblue)
+
+### Tecnologías usadas en la UX/UI 🛠️
+![Figma](https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white) 
+### Tecnologías usadas para asegurar la calidad de la aplicación
+ [![Postman](https://img.shields.io/badge/Postman-10.15-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://www.postman.com/)
+
+### Tecnologías usadas para la planificación y comunicación
+
+![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=fff) ![Trello](https://img.shields.io/badge/Trello-095ED8?style=for-the-badge&logo=Trello&logoColor=fff) ![Slack](https://img.shields.io/badge/Slack-%234A154B?style=for-the-badge&logo=Slack&logoColor=white) ![Google Meet](https://img.shields.io/badge/Google_Meet-FF0000?style=for-the-badge&logo=Google-Meet&logoColor=fff) ![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=WhatsApp&logoColor=fff)![Github](https://img.shields.io/badge/github-00000?style=for-the-badge&logo=github&color=black)
+
