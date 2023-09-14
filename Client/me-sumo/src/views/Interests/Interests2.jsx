@@ -83,20 +83,19 @@ const InterestsPage = () => {
           <div className='mt-2 mb-4 text-left'>
 
             {/* Título */}
-            <Typography variant="h4" font="poppins" weight="semibold" className="mt-4 mb-2 text=sm">
+            <Typography className=" mt-7 mb-7  pt-0 font-bold text-[#003049] text-[48px] md:text-4xl text-2xl">
               Paso 2: Intereses
             </Typography>
 
             {/* Barra de progreso */}
             <div className="w-full bg-neutral-200 dark:bg-neutral-600">
-              <div
-                className="bg-black p-1 text-center text-xs font-medium leading-none text-primary-100 rounded-full"
+              <div className="bg-orange-800 p-1.5 text-center text-xs font-medium leading-none text-primary-100 rounded-full"
                 style={{ width: progressBarWidth }}
               ></div>
             </div>
 
             {/* Descripción */}
-            <Typography variant="caption" font="poppins" className="mt-4 mb-6 text-sm">
+            <Typography className="mt-7 text-base md:text-base font-normal text-[#003049]">
               Selecciona los tipos de eventos que te gustaría ver:
             </Typography>
 
@@ -112,18 +111,19 @@ const InterestsPage = () => {
                   return (
                     <li
                       key={index}
-                      className={`p-2 border border-gray-400 rounded-lg cursor-pointer hover:bg-back-100 ${
-                        selectedInterests.includes(interest.nombre) ? 'bg-gray-900 text-white' : ''
+                      className={`p-2 border border-gray-400 rounded-lg cursor-pointer hover:bg-orange-800 ${
+                        selectedInterests.includes(interest.nombre) ? 'bg-orange-800 text-white' : ''
                       }`}
                       onClick={() => toggleInterest(interest.nombre)}
                     >
-                     <div className="flex items-center">
-                        {Icon && <Icon className="h-4 w-4 mr-2" />}
-                        {/* Nombre del interés */}
-                        <Typography variant="paragraph" font="poppins" className="text-xs">
-                          {interest.nombre}
-                        </Typography>
-                      </div>
+                   <div className="flex items-center">
+  {Icon && <Icon className="h-4 w-4 mr-2 text-[#003049]" />}
+  {/* Nombre del interés */}
+  <Typography className="text-sm font-normal text-[#003049]">
+    {interest.nombre}
+  </Typography>
+</div>
+
                     </li>
                   );
                 })}
@@ -134,28 +134,26 @@ const InterestsPage = () => {
       </div>
 
       {/* Botones para avanzar y retroceder */}
-      <div className="mt-4 flex justify-end space-x-2">
+      <div className="mt-8 md:mr-8 flex justify-end space-x-2">
         <Button
-          color="black"
           buttonType="filled"
           size="small"
           rounded
           block={false}
           ripple="light"
           onClick={handlePrevButtonClick}
-          className="hover:bg-gray-900 active:bg-gray-900"
+          className="bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300" 
         >
           Anterior
         </Button>
         <Button
-          color="black"
           buttonType="filled"
           size="small"
           rounded
           block={false}
           ripple="light"
           onClick={handleNextButtonClick}
-          className="hover:bg-gray-900 active:bg-gray-900"
+          className="bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300" 
         >
           Finalizar y guardar
         </Button>
