@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setEventSelected } from "../redux/sliceTickets";
 import useEvents from "../hooks/useEvents";
 import calendar from "../assets/icons/calendar.svg";
+import { FooterWithSocialLinks } from "../components/Footer/Footer";
 
 import ticketPrice from "../assets/icons/ticket_price.svg";
 
@@ -47,26 +48,26 @@ export default function EventInformation() {
           />
         </div>
       </div>
-      <div className="md:w-10/12 m-auto">
-        <h1 className="text-6xl text-left py-10	">{event.name}</h1>
-        <p className="text-left">{event.description}</p>
+      <div className="md:w-10/12 mb-5 m-auto">
+        <h1 className="text-6xl text-left py-10 [font-family:'Lato-Bold',Helvetica] font-bold text-[#003049] tracking-[0] leading-[normal]	">{event.name}</h1>
+        <p className="text-left text-2xl [font-family:'Lato-Light',Helvetica]  font-ligth text-[#003049]">{event.description}</p>
       </div>
       <div className="flex flex-col md:flex-row w-full md:w-10/12 m-auto">
         <div className="w-full md:w-4/12">
-          <h3 className="text-4xl	text-left py-10">Datos del Evento</h3>
+          <h3 className="text-4xl	text-left [font-family:'Lato-SemiBold',Helvetica] font-semibold text-[#003049] whitespace-nowrapp y-10">Datos del Evento</h3>
           <div className=" text-left">
-            <h5 className="text-left text-2xl">Fecha y hora</h5>
+            <h5 className="mt-10 text-left text-2xl [font-family:'Lato-Medium',Helvetica] font-medium text-[#003049]">Fecha y hora</h5>
             <div className="flex items-center py-4">
               {" "}
-              <img src={calendar} alt="Calendario" className="mr-2" />{" "}
-              <p className="text-xl text-left" type="date">
+              <img src={calendar} alt="Calendario" className="mr-2 text-[#003049]" />{" "}
+              <p className="text-xl [font-family:'Lato-Light',Helvetica] font-light text-[#003049] text-left" type="date">
                 {event.date.slice(0, 10)} ⚫{" "}
                 {event.date.slice(11, event.date.length - 1)}
               </p>
             </div>
             <p className="text-left"></p>
           </div>
-          <div>{event.location}</div>
+          <div className="mt-10 [font-family:'Lato-Light',Helvetica] font-light text-[#003049] text-[18px] tracking-[0] leading-[24px] whitespace-nowrap">{event.location}</div>
         </div>
         <div className="flex flex-col justify-between items-center  w-10/12">
           <div className="w-full md:w-6/12 flex flex-col ml-auto  rounded-lg">
@@ -120,8 +121,13 @@ export default function EventInformation() {
           </div>
         </div>
       </div>
+     <div>
+        <FooterWithSocialLinks className="w-full" />
+      </div>
     </div>
+    
   ) : (
     <div>El evento no se encuentra disponible</div>
+    
   );
 }

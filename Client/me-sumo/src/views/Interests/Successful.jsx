@@ -32,22 +32,22 @@ const ScreenLoadedSuccessful = () => {
   return (
     <div className="flex flex-col items-center justify-center mt-20">
       {/* Icono de marca de verificación */}
-      <BiSolidCheckCircle className="text-black-900 text-9xl mb-2" />
+      <BiSolidCheckCircle className="text-green-900 w-[250px] h-[250px] mb-2" />
 
       {/* Texto informativo */}
-      <Typography variant="h4" font="poppins" weight="semibold" className="mt-10 mb-2 text-sm">
+      <Typography  className="mt-10 mb-2 [font-family:'Lato-Bold',Helvetica] font-bold text-[#003049] text-[32px]">
         ¡Tus intereses fueron cargados con éxito!
       </Typography>
 
       {/* Botón */}
       <div className="justify-end space-x-2 mt-4">
       <Button
-        color="black"
+   
         buttonType="filled"
         size="regular"
         rounded={false}
         ripple="light"
-        className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 active:bg-gray-900 mt-10"
+        className="bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300 mt-10"
         onClick={handlePrevtInterests2 }
       >
         Anterior
@@ -60,7 +60,7 @@ const ScreenLoadedSuccessful = () => {
         size="regular"
         rounded={false}
         ripple="light"
-        className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 active:bg-gray-900 mt-10"
+        className="bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300 mt-10"
         onClick={handleGoToHome}
       >
         Ir al Home
