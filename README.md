@@ -52,7 +52,3 @@ Los organizadores pueden administrar la información del evento, como ubicacione
 - [**Juan Cruz Carrizo**](#https://www.linkedin.com/in/juancruzcarrizoastiazaran/)
 - [**Leonel Rodriguez**](#https://www.linkedin.com/in/leonel-rodriguez-6729b5211/)
 - [**Lucas Gabriel Simoes**](#https://www.linkedin.com/in/lucas-gabriel-simoes/)
-- [**Juan Pablo Bianchi**](#https://www.linkedin.com/in/juan-pablo-bianchi/)
-- [**Juan Cruz Carrizo**](#https://www.linkedin.com/in/juancruzcarrizoastiazaran/)
-- [**Leonel Rodriguez**](#https://www.linkedin.com/in/leonel-rodriguez-6729b5211/)
-- [**Lucas Gabriel Simoes**](#https://www.linkedin.com/in/lucas-gabriel-simoes/)
