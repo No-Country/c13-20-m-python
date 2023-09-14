@@ -1,4 +1,4 @@
-import { Button, Typography } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import { isLogged } from "../redux/sliceLogin";
 import { setEventSelected } from "../redux/sliceTickets";
 import useEvents from "../hooks/useEvents";
 
+import { Typography } from "@material-tailwind/react";
 import { FooterWithSocialLinks } from "../components/Footer/Footer";
 import Cards from "../components/Home/Cards";
 
@@ -56,18 +57,33 @@ export default function EventInformation() {
         </div>
       </div>
       <div className="md:w-10/12 mb-12 m-auto">
-        <h1 className="text-5xl text-left py-10 [font-family:'Lato-Bold',Helvetica] font-bold text-[#003049] tracking-[0] leading-[normal]	">{event.name}</h1>
-        <p className="text-left text-[18px] [font-family:'Lato-Light',Helvetica] font-light text-[#003049]">{event.description}</p>
+        <h1 className="text-5xl text-left py-10 [font-family:'Lato-Bold',Helvetica] font-bold text-[#003049] tracking-[0] leading-[normal]	">
+          {event.name}
+        </h1>
+        <p className="text-left text-[18px] [font-family:'Lato-Light',Helvetica] font-light text-[#003049]">
+          {event.description}
+        </p>
       </div>
       <div className="flex flex-col md:flex-row w-full md:w-10/12 m-auto">
         <div className="w-full md:w-5/12">
-          <h3 className="text-4xl	text-left [font-family:'Lato-SemiBold',Helvetica] font-semibold text-[#003049] whitespace-nowrapp y-10">Datos del Evento</h3>
+          <h3 className="text-4xl	text-left [font-family:'Lato-SemiBold',Helvetica] font-semibold text-[#003049] whitespace-nowrapp y-10">
+            Datos del Evento
+          </h3>
           <div className=" text-left">
-            <h5 className="mt-10 text-left text-2xl [font-family:'Lato-Medium',Helvetica] font-medium text-[#003049]">Fecha y hora</h5>
+            <h5 className="mt-10 text-left text-2xl [font-family:'Lato-Medium',Helvetica] font-medium text-[#003049]">
+              Fecha y hora
+            </h5>
             <div className="flex items-center py-4">
               {" "}
-              <img src={calendar} alt="Calendario" className="mr-2 text-[#003049]" />{" "}
-              <p className="text-xl [font-family:'Lato-Light',Helvetica] font-light text-[#003049] text-left" type="date">
+              <img
+                src={calendar}
+                alt="Calendario"
+                className="mr-2 text-[#003049]"
+              />{" "}
+              <p
+                className="text-xl [font-family:'Lato-Light',Helvetica] font-light text-[#003049] text-left"
+                type="date"
+              >
                 {event.date.slice(0, 10)} ⚫{" "}
                 {event.date.slice(11, event.date.length - 1)}
               </p>
@@ -75,11 +91,16 @@ export default function EventInformation() {
             <p className="text-left"></p>
           </div>
           <div className="md:py-6 text-left">
-            <h5 className="text-left text-2xl [font-family:'Lato-Light',Helvetica] font-normal text-[#003049]">Ubicación</h5>
+            <h5 className="text-left text-2xl [font-family:'Lato-Light',Helvetica] font-normal text-[#003049]">
+              Ubicación
+            </h5>
             <div className="flex items-center py-4">
               {" "}
               <img src={locationSign} alt="Calendario" className="mr-2" />{" "}
-              <p className="text-xl text-left [font-family:'Lato-Light',Helvetica] font-light text-[#003049] text-[18px] tracking-[0] leading-[24px] whitespace-nowrap" type="date">
+              <p
+                className="text-xl text-left [font-family:'Lato-Light',Helvetica] font-light text-[#003049] text-[18px] tracking-[0] leading-[24px] whitespace-nowrap"
+                type="date"
+              >
                 {event.location}
               </p>
             </div>
@@ -92,7 +113,9 @@ export default function EventInformation() {
               Organizado por:
             </h3>
             <div className="flex flex-row justify-between bg-amber-50 py-2 md:py-4 px-2 sm:px-5 my-3 	rounded-lg">
-              <p className="font-medium	[font-family:'Lato-Light',Helvetica] text-[#003049] text-lg	">{event.eventHost?.username}</p>
+              <p className="font-medium	[font-family:'Lato-Light',Helvetica] text-[#003049] text-lg	">
+                {event.eventHost?.username}
+              </p>
 
               {!siguiendo || !logged ? (
                 <Button
@@ -139,13 +162,19 @@ export default function EventInformation() {
           </div>
         </div>
       </div>
-     <div className="mt-40">
+      <div className="w-full pt-4">
+        <div className="text-left">
+          <Typography className="md:justify-start text-[#003049] [font-family:'Lato-SemiBold',_Helvetica] font-semibold  text-[40px] tracking-[0] leading-[normal] whitespace-nowrap mt-32 mb-8 ml-36">
+            Eventos Relacionados
+          </Typography>
+        </div>
+        <Cards />
+      </div>
+      <div className="mt-40">
         <FooterWithSocialLinks className="w-full" />
       </div>
     </div>
-    
   ) : (
     <div>El evento no se encuentra disponible</div>
-    
   );
 }
