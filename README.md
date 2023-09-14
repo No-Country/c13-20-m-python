@@ -8,8 +8,8 @@
 - [Integrantes del equipo](#Integrantes-del-equipo)
   - [Frontend](#Frontend-react)
   - [Backend](#Backend-Django-REST)
-  - [UX/UI](#UX/UY)
-  - [QA](#QA)
+  - [UX/UI](#UX/UI-Designer)
+  - [QA](#QA-Tester)
   - [Project Manager](#Project-Manager)
 
 ## Contexto del proyecto
@@ -52,3 +52,16 @@ Los organizadores pueden administrar la información del evento, como ubicacione
 - [**Juan Cruz Carrizo**](https://www.linkedin.com/in/juancruzcarrizoastiazaran/)
 - [**Leonel Rodriguez**](https://www.linkedin.com/in/leonel-rodriguez-6729b5211/)
 - [**Lucas Gabriel Simoes**](https://www.linkedin.com/in/lucas-gabriel-simoes/)
+
+### UX/UI Designer
+
+- [**Lucas Ostrovsky**](https://www.linkedin.com/in/lucas-ostrovsky/)
+
+
+### QA Tester
+
+- [**Pablo Lopez Chiapero**](https://www.linkedin.com/in/pablo-lopez-chiapero/)
+
+### Project Manager
+
+- [**Ivan Rovner**](https://www.linkedin.com/in/ivanjoelrovner/)
