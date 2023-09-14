@@ -12,11 +12,11 @@
   - [Nuestra App](#Nuestra-App)
   - [MeSumo - BACKEND REST API](#mesumo---backend-rest-api)
   - [Integrantes del equipo](#Integrantes-del-equipo)
-    - [Frontend](#Frontend-react)
-    - [Backend](#Backend-Django-REST)
-    - [UX/UI Designer](#uxui-Designer)
-    - [QA Tester](#QA-Tester)
-    - [Project Manager](#Project-Manager)
+    - [Frontend](#-frontend-react)
+    - [Backend](#-backend-django-rest)
+    - [UX/UI Designer](#-uxui-designer)
+    - [QA Tester](#-qa-tester)
+    - [Project Manager](#%EF%B8%8F-project-manager)
   - [Construido con](#Construido-con)
     - [Tecnologias usadas para la API](#tecnologias-usadas-para-la-api)
     - [Tecnologías usadas para la APP](#tecnologías-usadas-para-la-app)
@@ -96,7 +96,7 @@ Toda la documentacion por parte del backend, los endpoints y las respuestas de s
 
 </br>
 
-### ‍💼🧙‍♂️ 👔Project Manager
+### ‍💼🧙‍♂️ Project Manager
 | <img src="https://media.licdn.com/dms/image/C4D03AQFAlK0Ng_izTA/profile-displayphoto-shrink_800_800/0/1577347227159?e=1700092800&v=beta&t=FGKOYGdhxsdlGLlQF7xzwF_EyUckokQ8MmFCx5IPXM0" height=60>|
 |:-:|
 | **Ivan Rovner** |
