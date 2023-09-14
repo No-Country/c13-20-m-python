@@ -24,7 +24,7 @@ export default function FilteredEventsView() {
   ];
 
   return (
-    <div className="mt-7">
+    <div className="mt-7 mr-5">
       <Typography className="text-[#003049] [font-family:'Lato-Regular',_Helvetica] font-bold text-[22px] text-left ml-10">
         Resultados de eventos en {events[0].location}
       </Typography>
