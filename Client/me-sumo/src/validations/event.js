@@ -4,19 +4,18 @@ const eventSchema = Joi.object({
   name: Joi.string()
     .min(3)
     .max(35)
-    .pattern(/^[A-Za-z\s\d!@#$%^&*()_+-=[\]{};':"\\|,.<>/?]+$/)
     .messages({
-      "string.pattern.base": "Name must contains only letters.",
+      "string.pattern.base": "El nombre solo acepta letras",
       "string.min": "Name should have a minimum length of 3 characters",
       "string.empty": "Name is required",
     })
     .required(),
-  date: Joi.date(),
+  date: Joi.date().min("now"),
   description: Joi.string()
-    .min(5)
-    .max(100)
+    .min(19)
+    .max(140)
     .messages({
-      "string.min": "Description should have a minimun of 20 characters",
+      "string.min": "La descripcion tiene que tener un minimo de 20 caracteres",
       "string.empty": "Description is required",
     })
     .required(),
@@ -25,7 +24,10 @@ const eventSchema = Joi.object({
   capacity: Joi.number(),
   ticketPrice: Joi.number(),
   event_images: Joi.any(),
-  location: Joi.string(),
+  location: Joi.string().min(10).max(100).messages({
+    "string.min": "La Locacion tiene que tener un minimo de 10 caracteres",
+    "string.empty": "Description is required",
+  }),
   categories: Joi.any(),
 });
 export default eventSchema;
