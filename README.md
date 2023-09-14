@@ -10,6 +10,7 @@
   - [Objetivo](#Objetivo)
   - [Solución / MVP](#Solución-/-MVP)
   - [Nuestra App](#Nuestra-App)
+  - [MeSumo - BACKEND REST API](#MeSumo-BACKEND-REST-API)
   - [Integrantes del equipo](#Integrantes-del-equipo)
     - [Frontend](#Frontend-react)
     - [Backend](#Backend-Django-REST)
@@ -46,6 +47,13 @@ Los organizadores pueden administrar la información del evento, como ubicacione
 ## Nuestra App
 
 Para comenzar a utilizar nuestra aplicacion solo debes clickear [AQUÍ](https://me-sumo-app.vercel.app/), crear tu cuenta y listo! Ya eres un nuevo miembro de MeSumo. Podras encontrar todos los eventos disponibles en tu zona, y crear nuevos eventos. Diviertete!
+
+## MeSumo - BACKEND REST API
+
+Toda la documentacion por parte del backend, los endpoints y las respuestas de servidor se pueden encontrar clickeando en el siguiente enlace
+
+[![Deploy on Render](https://res.cloudinary.com/dbs6ntoya/image/upload/v1694705168/render-banner_et5f2c.png)](https://github.com/No-Country/c13-20-m-python/blob/main/servidor/README.md)
+
 
 ## Integrantes del equipo
 
