@@ -39,6 +39,7 @@ export default function FilteredEvents({ events }) {
         {filteredEvents.map((individualEvent) => (
           <CardEvent
             key={individualEvent.id}
+            eventId={individualEvent.id}
             image={individualEvent.event_images}
             name={individualEvent.name}
             date={individualEvent.date}
