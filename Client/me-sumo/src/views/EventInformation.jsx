@@ -1,16 +1,23 @@
-import { Button } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { isLogged } from "../redux/sliceLogin";
 import { setEventSelected } from "../redux/sliceTickets";
 import useEvents from "../hooks/useEvents";
-import calendar from "../assets/icons/calendar.svg";
-import { FooterWithSocialLinks } from "../components/Footer/Footer";
 
+import { FooterWithSocialLinks } from "../components/Footer/Footer";
+import Cards from "../components/Home/Cards";
+
+import locationSign from "../assets/icons/location_sign.svg";
+import calendar from "../assets/icons/calendar.svg";
 import ticketPrice from "../assets/icons/ticket_price.svg";
 
 export default function EventInformation() {
+  const logged = useSelector(isLogged);
+
   const { handleGetEvent } = useEvents();
   const pk = useParams();
   const [event, setEvent] = useState(null);
@@ -22,7 +29,7 @@ export default function EventInformation() {
     const fetchData = async () => {
       try {
         const event = await handleGetEvent(pk);
-        console.log("evento", event);
+
         setEvent(event);
       } catch (error) {
         console.log("Error en la visualizacion del evento");
@@ -48,12 +55,12 @@ export default function EventInformation() {
           />
         </div>
       </div>
-      <div className="md:w-10/12 mb-5 m-auto">
-        <h1 className="text-6xl text-left py-10 [font-family:'Lato-Bold',Helvetica] font-bold text-[#003049] tracking-[0] leading-[normal]	">{event.name}</h1>
-        <p className="text-left text-2xl [font-family:'Lato-Light',Helvetica]  font-ligth text-[#003049]">{event.description}</p>
+      <div className="md:w-10/12 mb-12 m-auto">
+        <h1 className="text-5xl text-left py-10 [font-family:'Lato-Bold',Helvetica] font-bold text-[#003049] tracking-[0] leading-[normal]	">{event.name}</h1>
+        <p className="text-left text-[18px] [font-family:'Lato-Light',Helvetica] font-light text-[#003049]">{event.description}</p>
       </div>
       <div className="flex flex-col md:flex-row w-full md:w-10/12 m-auto">
-        <div className="w-full md:w-4/12">
+        <div className="w-full md:w-5/12">
           <h3 className="text-4xl	text-left [font-family:'Lato-SemiBold',Helvetica] font-semibold text-[#003049] whitespace-nowrapp y-10">Datos del Evento</h3>
           <div className=" text-left">
             <h5 className="mt-10 text-left text-2xl [font-family:'Lato-Medium',Helvetica] font-medium text-[#003049]">Fecha y hora</h5>
@@ -67,16 +74,27 @@ export default function EventInformation() {
             </div>
             <p className="text-left"></p>
           </div>
-          <div className="mt-10 [font-family:'Lato-Light',Helvetica] font-light text-[#003049] text-[18px] tracking-[0] leading-[24px] whitespace-nowrap">{event.location}</div>
+          <div className="md:py-6 text-left">
+            <h5 className="text-left text-2xl [font-family:'Lato-Light',Helvetica] font-normal text-[#003049]">Ubicación</h5>
+            <div className="flex items-center py-4">
+              {" "}
+              <img src={locationSign} alt="Calendario" className="mr-2" />{" "}
+              <p className="text-xl text-left [font-family:'Lato-Light',Helvetica] font-light text-[#003049] text-[18px] tracking-[0] leading-[24px] whitespace-nowrap" type="date">
+                {event.location}
+              </p>
+            </div>
+            <p className="text-left"></p>
+          </div>
         </div>
         <div className="flex flex-col justify-between items-center  w-10/12">
-          <div className="w-full md:w-6/12 flex flex-col ml-auto  rounded-lg">
-            <h3 className="decoration-slate-950	py-4  text-xl sm:text-3xl font-semibold">
+          <div className="w-full md:w-6/12 flex flex-col ml-auto">
+            <h3 className="decoration-slate-950	py-4  [font-family:'Lato-Light',Helvetica]  text-[#003049] text-xl sm:text-3xl font-semibold">
               Organizado por:
             </h3>
-            <div className="flex flex-row justify-between bg-orange-50 py-2 md:py-4 px-2 sm:px-5 rounded-lg">
-              <p className="font-medium	text-lg	">{event.eventHost?.username}</p>
-              {!siguiendo ? (
+            <div className="flex flex-row justify-between bg-amber-50 py-2 md:py-4 px-2 sm:px-5 my-3 	rounded-lg">
+              <p className="font-medium	[font-family:'Lato-Light',Helvetica] text-[#003049] text-lg	">{event.eventHost?.username}</p>
+
+              {!siguiendo || !logged ? (
                 <Button
                   onClick={() => setSiguiendo(true)}
                   className="bg-orange-600"
@@ -88,11 +106,10 @@ export default function EventInformation() {
                   onClick={() => setSiguiendo(false)}
                   className="outlined"
                 >
-                  Siguiendo
+                  Seguido
                 </Button>
               )}
             </div>
-
             <>
               <div className="flex flex-row justify-between">
                 <div className="flex flex-row">
@@ -101,7 +118,7 @@ export default function EventInformation() {
                     alt="Calendario"
                     className="w-10 h-auto"
                   />
-                  <p className="p-2  text-2xl">
+                  <p className="p-2 [font-family:'Lato-Light',Helvetica] font-light text-[#003049] text-2xl">
                     {event.ticketPrice == "Gratis" ? (
                       <div>Evento Gratuito</div>
                     ) : (
@@ -109,19 +126,20 @@ export default function EventInformation() {
                     )}
                   </p>
                 </div>
-                <p className="justify-self-end	self-center">
+                <p className="justify-self-end[font-family:'Lato-Light',Helvetica] font-light text-[#003049] self-center">
                   {event.capacity} Disponibles
                 </p>
               </div>
             </>
-
-            <Button className="my-10 bg-orange-600" onClick={handleNextStep}>
-              Adquirir Entradas
-            </Button>
+            {logged && (
+              <Button className="my-10 bg-orange-600" onClick={handleNextStep}>
+                Adquirir Entradas
+              </Button>
+            )}
           </div>
         </div>
       </div>
-     <div>
+     <div className="mt-40">
         <FooterWithSocialLinks className="w-full" />
       </div>
     </div>

@@ -35,10 +35,11 @@ export default function FilteredEvents({ events }) {
 
   return (
     <Carousel perPage={4} arrow={true}>
-      <div className="flex gap-4 mt-6">
+      <div className="grid grid-cols-5 gap-4 mt-6">
         {filteredEvents.map((individualEvent) => (
           <CardEvent
             key={individualEvent.id}
+            eventId={individualEvent.id}
             image={individualEvent.event_images}
             name={individualEvent.name}
             date={individualEvent.date}
