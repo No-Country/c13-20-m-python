@@ -24,7 +24,7 @@ export default function SearchBar({ onSearch }) {
   };
 
   return (
-    <div className="flex justify-center w-2/5">
+    <div className="flex justify-center md: mr-10 mt-5 w-full">
       <div className="flex border-solid border-primary-800 w-full md:w-4/5">
         <input
           type="search"

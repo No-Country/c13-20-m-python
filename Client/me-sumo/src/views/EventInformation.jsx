@@ -1,4 +1,4 @@
-import { Button, Typography } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import { isLogged } from "../redux/sliceLogin";
 import { setEventSelected } from "../redux/sliceTickets";
 import useEvents from "../hooks/useEvents";
 
+import { Typography } from "@material-tailwind/react";
 import { FooterWithSocialLinks } from "../components/Footer/Footer";
 import Cards from "../components/Home/Cards";
 
@@ -169,9 +170,7 @@ export default function EventInformation() {
         <FooterWithSocialLinks className="w-full" />
       </div>
     </div>
-    
   ) : (
     <div>El evento no se encuentra disponible</div>
-    
   );
 }
