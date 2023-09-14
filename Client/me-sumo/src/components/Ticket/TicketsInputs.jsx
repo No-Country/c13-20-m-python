@@ -4,6 +4,7 @@ export default function TicketsInputs({
   register,
   type,
   name,
+  defaultValue,
 }) {
   return (
     <div className="flex flex-col ml-7 pl-10 pt-5">
@@ -13,6 +14,7 @@ export default function TicketsInputs({
       <input
         type={type}
         name={name}
+        defaultValue={defaultValue}
         {...register(name)}
         placeholder={placeholderText}
         className="h-10 p-2 border border-primary-800 rounded-xl shadow appearance-none w-full bg-transparent placeholder-primary-800"

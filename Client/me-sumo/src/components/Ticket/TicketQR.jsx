@@ -1,4 +1,5 @@
 import QRCode from "react-qr-code";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { getEventSelected } from "../../redux/sliceTickets";
 import { BiArrowToBottom } from 'react-icons/bi';
@@ -7,10 +8,15 @@ import { MdOutlineConfirmationNumber } from 'react-icons/md';
 import { RxAvatar } from 'react-icons/rx';
 import moment from 'moment';
 
-export default function TicketQR({onClose}) {
+export default function TicketQR() {
+  const navigate = useNavigate();
   const event = useSelector(getEventSelected)
   const value = "QR";
   const formatedDate = moment(event.date).locale('es').format('ddd. D [de] MMMM, HH:mm')
+
+  const onClick = () => {
+    navigate('/home');
+  }
   return (
     <div className='fixed inset-0 z-50 overflow-auto bg-black bg-opacity-60'>
       <div className='flex flex-col justify-between modal-content bg-white m-auto p-6 rounded-lg text-left w-1/2'>
@@ -42,10 +48,10 @@ export default function TicketQR({onClose}) {
           <p className='mt-4'>Descargalo para usarlo luego</p>
           <BiArrowToBottom className="h-8 w-8 cursor-pointer"/>
           <button
-            type='submit'
-            onClick={onClose}
+            type='onclick'
+            onClick={onClick}
             className='py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800'>
-            Volver atras
+            Volver al home
           </button>
         </div>
       </div>

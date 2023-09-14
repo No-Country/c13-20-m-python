@@ -1,18 +1,36 @@
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setBuyerData } from "../../redux/sliceTickets";
 import { useNavigate } from "react-router-dom";
+import useUserData from "../../hooks/useUserData";
 
 import Checks from "../../components/Shared/checks";
 import TicketResume from "../../components/Ticket/TicketResume";
 import TicketsInputs from "../../components/Ticket/TicketsInputs";
 
 export default function TicketStepOne() {
-  const { handleSubmit, register } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
-  //eslint-disable-next-line
+  const { handleSubmit, register, setValue } = useForm();
+
+  const { searchUserData } = useUserData();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userData = await searchUserData();
+      setUserName(userData.userName);
+      setUserEmail(userData.userEmail);
+      setValue("name", userData.userName);
+      setValue("email", userData.userEmail);
+    };
+    fetchData();
+    //eslint-disable-next-line
+  }, [setValue]);
+
   const onSubmit = (data) => {
     dispatch(setBuyerData(data));
     navigate("/ticketsStepTwo");
@@ -34,12 +52,14 @@ export default function TicketStepOne() {
               register={register}
               type="name"
               name="name"
+              defaultValue={userName}
             />
             <TicketsInputs
               labelText="Email"
               register={register}
               type="email"
               name="email"
+              defaultValue={userEmail}
             />
             <TicketsInputs
               labelText="Teléfono"

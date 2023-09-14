@@ -20,8 +20,10 @@ export default function EventInformation() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+
         const event = await handleGetEvent(pk);
-        console.log("evento", event);
+
+
         setEvent(event);
       } catch (error) {
         console.log("Error en la visualizacion del evento");

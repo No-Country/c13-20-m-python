@@ -19,7 +19,7 @@ export default function NavBar() {
         <img
           src={logo}
           alt="img-login"
-          className="h-12 w-25 -ml-16 mr-28 mb-2"
+          className="h-12 w-25 -ml-16 mr-28 mb-2 cursor-pointer"
           onClick={useToHome}
         />
         <Buttons />
