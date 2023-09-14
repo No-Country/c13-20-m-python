@@ -28,7 +28,7 @@ export default function FilteredEventsView() {
       <Typography className="text-[#003049] [font-family:'Lato-Regular',_Helvetica] font-bold text-[22px] text-left ml-10">
         Resultados de eventos en {events[0].location}
       </Typography>
-      <div className="flex gap-5 ml-7">
+      <div className="grid grid-cols-1 ml-8 md:flex">
         <Dropdown events={price} placeholder={"Precio"} property={"name"} />
         <Dropdown
           events={category}
