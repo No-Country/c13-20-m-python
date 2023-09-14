@@ -9,6 +9,7 @@
   - [Contexto del proyecto](#Contexto-del-proyecto)
   - [Objetivo](#Objetivo)
   - [Solución / MVP](#Solución-/-MVP)
+  - [Que es lo que podras hacer con MeSumo?](#Que-es-lo-que-podras-hacer-con-MeSumo?)
   - [Nuestra App](#Nuestra-App)
   - [MeSumo - BACKEND REST API](#mesumo---backend-rest-api)
   - [Integrantes del equipo](#Integrantes-del-equipo)
