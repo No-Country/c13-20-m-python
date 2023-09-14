@@ -6,6 +6,8 @@ import { Button } from "@material-tailwind/react";
 
 import freeSign from "../../assets/icons/free_sign.svg";
 import $sign from "../../assets/icons/$sign.svg";
+import rightArrow from "../../assets/icons/right-arrow.svg";
+
 import donationSign from "../../assets/icons/donation_sign.svg";
 import useEvents from "../../hooks/useEvents";
 import Input from "../../components/Shared/Input";
@@ -85,32 +87,44 @@ export default function CreateEventStep2() {
 
           <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-              <div className=" relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+              <div className=" relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full lg:max-w-lg">
                 <div className=" bg-orange-50 px-4 pb-4 pt-5 sm:p-6 sm:pb-4 ">
                   <div className=" bg-orange-50 sm:flex sm:items-start">
-                    <div className="bg-orange-50 mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                    <div className="cursor-pointer w-full bg-orange-50 mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                       <h3
-                        className="text-xl font-semibold leading-6 text-gray-900 py-10 "
+                        className="text-xl font-semibold leading-6 text-gray-900 pt-10 pb-4 px-5 pl-3 "
                         id="modal-title"
                       >
-                        Seleccione su entrada
+                        Entradas Para el Evento
                       </h3>
+                      <h5>
+                        Aún no tienes entradas cargadas en el sistema. Agrega un
+                        tipo de entrada para que tus asistentes puedan
+                        inscribirse a tu evento.
+                      </h5>
                       <div
                         onClick={() => handleModal()}
-                        className=" flex flex-row w-auto m-2 p-10  bg-orange-100 rounded-lg"
+                        className="cursor-pointer flex flex-row w-full m-auto my-4 pl-3 py-10  bg-orange-100 rounded-lg justify-between"
                       >
-                        <img src={$sign} className="w-7 h-auto" />
-                        <p>De Pago</p>
+                        <div className="flex flex-row">
+                          <img src={$sign} className="w-7 h-auto" />
+                          <p className="px-3">De Pago</p>
+                        </div>
+                        <img src={rightArrow} className="px-3" alt="Flecha" />
                       </div>
-                      <div className="flex flex-row w-auto m-2 p-10 bg-orange-100 rounded-lg">
-                        <img className="w-7 h-auto" src={freeSign} />
-
-                        <p>Gratis</p>
+                      <div className="cursor-pointer flex flex-row w-full m-auto my-4 pl-3 py-10 bg-orange-100 rounded-lg justify-between">
+                        <div className="flex flex-row">
+                          <img className="w-7 h-auto" src={freeSign} />
+                          <p className="px-3">Gratis</p>
+                        </div>
+                        <img src={rightArrow} className="px-3" alt="Flecha" />
                       </div>
-                      <div className="flex flex-row w-auto m-2 p-10 bg-orange-100 rounded-lg">
-                        <img className="w-7 h-auto" src={donationSign} />
-
-                        <p>Donacion</p>
+                      <div className="flex flex-row w-full m-auto my-4 py-10 pl-3 bg-orange-100 rounded-lg justify-between">
+                        <div className="flex flex-row">
+                          <img className="w-7 h-auto" src={donationSign} />
+                          <p className="px-3">Donacion</p>
+                        </div>
+                        <img src={rightArrow} className="px-3" alt="Flecha" />
                       </div>
                     </div>
                   </div>
