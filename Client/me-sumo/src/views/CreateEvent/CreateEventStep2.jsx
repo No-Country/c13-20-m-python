@@ -41,7 +41,11 @@ export default function CreateEventStep2() {
   return (
     <div className="mt-7">
       <div>
-        <Checks />
+        <Checks
+          firstCheck="Información Básica"
+          secondCheck="Entradas"
+          thirdCheck="Publicar"
+        />
       </div>
       <div className="m-4 flex flex-col">
         <h1 className="text-2xl font-bold text-left md:text-4xl py-4 my-4">

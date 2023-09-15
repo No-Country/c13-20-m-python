@@ -24,8 +24,7 @@ const eventSchema = Joi.object({
   capacity: Joi.number(),
   ticketPrice: Joi.number(),
   event_images: Joi.any(),
-  location: Joi.string().min(10).max(100).messages({
-    "string.min": "La Locacion tiene que tener un minimo de 10 caracteres",
+  location: Joi.string().max(100).messages({
     "string.empty": "Description is required",
   }),
   categories: Joi.any(),

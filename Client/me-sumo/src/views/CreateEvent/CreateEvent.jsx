@@ -4,6 +4,7 @@ import { Button } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Select from "react-select";
+import { Typography } from "@material-tailwind/react";
 
 import Input from "../../components/Shared/Input";
 import Checks from "../../components/Shared/checks";
@@ -121,12 +122,12 @@ export default function CreateEvent() {
   return (
     <div className="mt-7">
       <div>
-        <h1 className="text-2xl font-bold items-center justify-center">
-          Crear un nuevo Evento
-        </h1>
+        <Typography className="text-[#003049] [font-family:'Lato-Regular',_Helvetica] font-semibold text-[32px] text-left ml-72 pl-10 tracking-[0]  ">
+          Crear Nuevo Evento
+        </Typography>
       </div>
       <Checks
-        firstCheck="Información Báscica"
+        firstCheck="Información Básica"
         secondCheck="Entradas"
         thirdCheck="Publicar"
       />
