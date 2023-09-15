@@ -18,9 +18,9 @@ export default function CreateEventButton() {
       {logged && (
         <Button
           onClick={handleClick}
-          className="flex items-center space-x-2 w-50 h-9 bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300"
+          className="flex items-center space-x-2 w-48 h-9 bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300"
         >
-           <IoIosAddCircleOutline className="w-5 h-5 text-white" /> 
+           <IoIosAddCircleOutline className="w-6 h-6 text-white" /> 
           <span>Crear Evento</span> 
         </Button>
       )}
