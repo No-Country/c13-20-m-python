@@ -17,7 +17,7 @@ export default function LoginButton() {
   return (
     <Button
       onClick={handleClick}
-      className="w-29 h-9 md:w-29 md:h-9  bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300 -ml-9 sm:ml-0"
+      className="w-29 h-9 md:w-29 md:h-9 flex items-center bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300 -ml-9 sm:ml-0"
     >
       {login ? "Logout" : "Login"}
     </Button>

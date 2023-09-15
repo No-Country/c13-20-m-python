@@ -20,10 +20,12 @@ export default function TicketQR() {
     navigate("/home");
   };
   return (
-    <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-60">
-      <div className="flex flex-col justify-between modal-content bg-white m-auto p-6 w rounded-lg shadow text-left w-1/2">
-        <div className="flex flex-row items-center mt-4 mb-1">
-          <img src={event.event_images} />
+
+    <div className='fixed inset-0 z-50 w-full  h-screen overflow-auto pt-2 bg-black bg-opacity-60'>
+      <div className='flex flex-col justify-between  w-2/6 modal-content bg-white m-auto p-6 rounded-lg text-left '>
+        <div className='flex flex-row w-4/5 h-1/5 self-center items-center  mb-1'>
+          <img className="rounded-xl " src={event.event_images} />
+
         </div>
         <div className="flex flex-row items-center self-center mt-4 mb-1">
           <RxAvatar />
@@ -54,11 +56,13 @@ export default function TicketQR() {
             {event.location}
           </p>
         </div>
-        <div className="flex flex-col items-center">
-          <p className="mt-4 mb-3">Tu QR de la entrada del evento</p>
-          <QRCode size={220} value={value} />
-          <p className="mt-4">Descargalo para usarlo luego</p>
-          <BiArrowToBottom className="h-8 w-8 cursor-pointer" />
+
+        <div className='flex flex-col items-center'>
+          <p className='mt-4 mb-3'>Tu QR de la entrada del evento</p>
+          <QRCode size={170} value={value} />
+          <p className='mt-4'>Descargalo para usarlo luego</p>
+          <BiArrowToBottom className="h-8 w-8 cursor-pointer"/>
+
           <button
             type="onclick"
             onClick={onClick}

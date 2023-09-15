@@ -7,6 +7,7 @@ import { Typography } from "@material-tailwind/react";
 
 import FilteredEvents from "../components/FilteredEvents/FilteredEvents";
 import Dropdown from "../components/FilteredEvents/Dropdown";
+import { FooterWithSocialLinks } from "../components/Footer/Footer";
 
 export default function FilteredEventsView() {
   const events = useSelector(getFilteredEvents);
@@ -24,7 +25,7 @@ export default function FilteredEventsView() {
   ];
 
   return (
-    <div className="mt-7 mr-5">
+    <div className="mt-7  mr-5">
       <Typography className="text-[#003049] [font-family:'Lato-Regular',_Helvetica] font-bold text-[22px] text-left ml-10">
         Resultados de eventos en {events[0].location}
       </Typography>
@@ -38,6 +39,9 @@ export default function FilteredEventsView() {
         <Dropdown events={date} placeholder={"Fecha"} property={"date"} />
       </div>
       <FilteredEvents events={events} />
+     <div className="mt-40">
+      <FooterWithSocialLinks />
+     </div>
     </div>
   );
 }

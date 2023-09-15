@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Typography } from "@material-tailwind/react";
 import useUserData from "../hooks/useUserData";
 import EventDetail from "../components/OrganizatorProfile/EventDetail";
-
+import { FooterWithSocialLinks } from "../components/Footer/Footer";
 export default function OrganizProfile() {
   const { searchUserEventsData } = useUserData();
   const [events, setEvents] = useState([]);
@@ -80,6 +80,9 @@ export default function OrganizProfile() {
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
           </div>
         )}
+        <div className="mt-40">
+      <FooterWithSocialLinks />
+     </div>
       </div>
     </div>
   );

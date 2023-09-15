@@ -8,20 +8,31 @@ Bienvenido a la documentación de la API de Me Sumo App. Aquí encontrarás info
   - [Usuario](#usuario)
     - [Registro de Usuario](#registro-de-usuario)
     - [Inicio de Sesión](#inicio-de-sesión)
-    - [Información del usuario con sesión iniciada](#Información-del-usuario-con-sesión-iniciada)
+    - [Información del usuario con sesión iniciada](#información-del-usuario-con-sesión-iniciada)
     - [Cerrar Sesión](#cerrar-sesión)
-  - [Evento](#evento)
-    - [Crear eventos](#Crear-eventos)
+  - [Evento](#evento) 
+  
+    - [Crear eventos](#crear-eventos)
     - [Mostrar eventos](#mostrar-eventos)
-    - [Mostrar evento específico por ID](#Mostrar-evento-específico-por-ID)
-    - [Eliminar un evento](#Eliminar-un-evento)
-    - [Editar TODAS las variables de un evento en específico](#Editar-TODAS-las-variables-de-un-evento-en-específico)
-    - [Editar una variable de un evento en específico](#Editar-una-variable-de-un-evento-en-específico)
-    - [Categorías disponibles](#Categorías-disponibles)
-    - [Filtrado por categoría](#Filtrado-por-categoría)
-    - [Filtrado por nombre de usuario de organizador](#Filtrado-por-nombre-de-usuario-de-organizador)
-    - [Filtrado por localidad](#Filtrado-por-localidad)
-    - [Filtrado por fecha y hora](#Filtrado-por-fecha-y-hora)
+    - [Mostrar evento específico por ID](#mostrar-evento-específico-por-ID)
+    - [Comprar entrada a evento](#comprar-entrada-a-evento)
+    - [Ver mis tickets comprados](#ver-mis-tickets-comprados)
+    - [Categorías disponibles](#categorías-disponibles)
+    - [Filtrado por categoría](#filtrado-por-categoría)
+    - [Filtrado por nombre de usuario de organizador](#filtrado-por-nombre-de-usuario-de-organizador)
+    - [Filtrado por localidad](#filtrado-por-localidad)
+    - [Filtrado por fecha y hora](#filtrado-por-fecha-y-hora)
+
+    - **Organizador**
+      - [Mostrar eventos creados](#mostrar-eventos-creados)
+      - [Mostrar datos especificos del evento creado](#mostrar-datos-especificos-del-evento-creado)
+      - [Editar TODAS las variables de un evento en específico](#editar-todas-las-variables-de-un-evento-en-específico)
+      - [Editar una variable de un evento en específico](#editar-una-variable-de-un-evento-en-específico)
+      - [Eliminar un evento](#eliminar-un-evento)
+
+
+  - [Ticket](#ticket)
+    - [Mostrar tickets](#mostrar-tickets-comprados)
 
 # Endpoints 
 
@@ -91,14 +102,17 @@ Bienvenido a la documentación de la API de Me Sumo App. Aquí encontrarás info
 - **Parámetros de Entrada**:
   - `name` (string): Nombre del evento.
   - `description` (string): Descripción del evento.
-  - `capacity` (integer): Capacidad total del evento.
+  - `capacity` (integer)(opcional): Capacidad total del evento.
   - `date` (date): Fecha del evento.
+  - `finish_date` (date)(opcional): Fecha de finalización del evento.
   - `virtual` (boolean)(opcional): Decide si el evento sera virtual o presencial.
-  - `state` (boolean)(opcional): Decide si el evento se encuentra activo o finalizó
+  - `state` (boolean)(opcional): Decide si el evento se encuentra activo o finalizó.
   - `categories` (list): Listado con todas las categorías a las que pertenece el evento.
   - `ticketPrice` (float): Precio del ticket de venta.
   - `event_images` (image)(opcional): Imagen del evento.
   - `location` (string): Localidad donde se realiza el evento.
+  - `tickets_sold` (integer)(opcional): Tickets vendidos del evento.
+
 - **Respuesta Exitosa**:
   - Código de estado: 201 (Created)
   - Cuerpo de respuesta: `{'message': 'Event was created successfully!','event':`Datos del evento `}`
@@ -116,7 +130,7 @@ Bienvenido a la documentación de la API de Me Sumo App. Aquí encontrarás info
 
 ### Mostrar evento específico por ID
 
-- **URL**: `/api/events/<pk>`
+- **URL**: `/api/events/<pk>/`
 - **Método HTTP**: `GET`
 - **Descripción**: Este endpoint permite mostrar un evento especificando su id.
 - **Respuesta Exitosa**:
@@ -128,57 +142,36 @@ Bienvenido a la documentación de la API de Me Sumo App. Aquí encontrarás info
   - Código de estado: 400 (Bad request)
     - Cuerpo de respuesta: `{'error': 'ID user not valid'}`
 
-### Eliminar un evento
 
-- **URL**: `/api/events/<pk>/`
-- **Método HTTP**: `DELETE`
-- **Descripción**: Este endpoint permite eliminar un evento.
+### Comprar entrada a evento
+
+- **URL**: `/api/events/<int:event_id>/buy-ticket`
+- **Método HTTP**: `POST`
+- **Descripción**: Este endpoint permite comprar entrada para el evento especificando su id.
 - **Respuesta Exitosa**:
   - Código de estado: 200 (OK)
-  - Cuerpo de respuesta: `["message: Event successfully removed!"]`
-
-### Editar TODAS las variables de un evento en específico
-
-- **URL**: `/api/events/<pk>/`
-- **Método HTTP**: `PUT`
-- **Descripción**: Este endpoint permite editar todos los valores dentro del evento.
-- **Parámetros de Entrada**:
-  - `name` (string): Nombre del evento.
-  - `description` (string): Descripción del evento.
-  - `capacity` (integer): Capacidad total del evento.
-  - `date` (date): Fecha del evento.
-  - `virtual` (boolean)(opcional): Decide si el evento sera virtual o presencial.
-  - `state` (boolean)(opcional): Decide si el evento se encuentra activo o finalizó
-  - `categories` (list): Listado con todas las categorías a las que el evento pertenece.
-  - `ticketPrice` (float): Precio del ticket de venta.
-  - `event_images` (image)(opcional): Imagen del evento.
-  - `location` (string): Localidad donde se realiza el evento.
-- **Respuesta Exitosa**:
-  - Código de estado: 200 (OK)
-  - Cuerpo de respuesta: `{"message":"Event updated successfully!","event":`Muestra el evento actualizado`}`
+  - Cuerpo de respuesta: `return Response({'message': 'Order was created successfully!','order': ...`
 - **Respuesta en Caso de Error**:
   - Código de estado: 404 (Not Found) 
     - Cuerpo de respuesta: `{"error": "Event not found"}`
-  - Codigo de estado: 400 (Bad request)
+  - Código de estado: 400 (Bad request)
+    - Cuerpo de respuesta: `{"error": "The event does not have capacity for that number of tickets"}`
 
-### Editar una variable de un evento en específico
+### Mostrar tickets comprados
 
-- **URL**: `/api/events/<pk>/`
-- **Método HTTP**: `PATCH`
-- **Descripción**: Este endpoint permite editar un valor en específico dentro del evento.
-- **Parámetros de Entrada**:
-  - Cualquier parámetro que querramos editar, por ejemplo `{"description": "Webinar dictado en vivo por los conferencistas Lucas Simoes y Juan Pablo Muñoz"}` reescribiria el texto guardado en `description` por el nuevo valor que le estamos pasando.
+- **URL**: `/api/my-tickets/`
+- **Método HTTP**: `GET`
+- **Descripción**: Este endpoint permite ver los tickets comprados.
 - **Respuesta Exitosa**:
   - Código de estado: 200 (OK)
-  - Cuerpo de respuesta: `{"detail": "Event updated successfully"}`
+  - Cuerpo de respuesta: `{"id": 8,"event": {"id": 261,"name":"Halloween","date": "2023-09-15T19:00:00Z","finish_date": null,"ticketPrice": 1500.0,...}`
 - **Respuesta en Caso de Error**:
-  - Código de estado: 404 (Not Found) 
-    - Cuerpo de respuesta: `{"error": "Event not found"}`
-  - Codigo de estado: 400 (Bad request)
+  - Código de estado: 400 (Bad request)
+
 
 ### Categorías disponibles
 
-- **URL**: `/api/categories`
+- **URL**: `/api/categories/`
 - **Método HTTP**: `GET`
 - **Descripción**: Este endpoint permite visualizar todas las categorías disponibles.
 - **Respuesta Exitosa**:
@@ -187,7 +180,7 @@ Bienvenido a la documentación de la API de Me Sumo App. Aquí encontrarás info
 
 ### Filtrado por categoría
 
-- **URL**: `/api/events/category/<str:category_name>`
+- **URL**: `/api/events/category/<str:category_name>/`
 - **Método HTTP**: `GET`
 - **Parámetros de URL**:
   - `<str:category_name>` (Reemplaza `category_name` con el nombre de la categoría deseada, Musica por ejemplo)
@@ -233,6 +226,85 @@ Bienvenido a la documentación de la API de Me Sumo App. Aquí encontrarás info
 - **Respuesta Exitosa**:
   - Código de estado: 200 (OK)
   - Cuerpo de respuesta: Datos de eventos filtrados por la fecha/hora específica.
+
+## Organizador
+
+### Mostrar eventos creados
+
+- **URL**: `/api/organization/events/`
+- **Método HTTP**: `GET`
+- **Descripción**: Este endpoint permite mostrar todos los eventos creados por el usuario que hace la petición hasta el momento.
+- **Respuesta Exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de respuesta: Datos del evento (ejemplo: `{"id": 269,"name": "Festival de Cine Independiente","event_images": "https://res.cloudinary.com/dbs6ntoya...","location": "Rafael Castillo, Provincia de Buenos Aires...","capacity": 500,...}`
+
+### Mostrar datos especificos del evento creado
+
+- **URL**: `/api/organization/events/<int:pk>/`
+- **Método HTTP**: `GET`
+- **Descripción**: Este endpoint permite mostrar todos los eventos creados por el usuario que hace la petición hasta el momento.
+- **Respuesta Exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de respuesta: Datos del evento (ejemplo: `{"id": 269,"name": "Festival de Cine Independiente","event_images": "https://res.cloudinary.com/dbs6ntoya...","location": "Rafael Castillo, Provincia de Buenos Aires...","capacity": 500,...}`
+
+### Editar TODAS las variables de un evento en específico
+
+- **URL**: `/api/organization/events/<int:pk>/`
+- **Método HTTP**: `PUT`
+- **Descripción**: Este endpoint permite editar todos los valores dentro del evento.
+- **Parámetros de Entrada**:
+  - `name` (string): Nombre del evento.
+  - `description` (string): Descripción del evento.
+  - `capacity` (integer): Capacidad total del evento.
+  - `date` (date): Fecha del evento.
+  - `finish_date` (date)(opcional): Fecha de finalización del evento.
+  - `virtual` (boolean)(opcional): Decide si el evento sera virtual o presencial.
+  - `state` (boolean)(opcional): Decide si el evento se encuentra activo o finalizó
+  - `categories` (list): Listado con todas las categorías a las que el evento pertenece.
+  - `ticketPrice` (float): Precio del ticket de venta.
+  - `event_images` (image)(opcional): Imagen del evento.
+  - `location` (string): Localidad donde se realiza el evento.
+  - `tickets_sold` (integer)(opcional): Tickets vendidos del evento.
+- **Respuesta Exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de respuesta: `{"message":"Event updated successfully!","event":`Muestra el evento actualizado`}`
+- **Respuesta en Caso de Error**:
+  - Código de estado: 404 (Not Found) 
+    - Cuerpo de respuesta: `{"error": "Event not found"}`
+  - Código de estado: 403 (Forbidden)
+    - Cuerpo de respuesta: `{"detail": "You don't have permission to edit this event"}`
+
+### Editar una variable de un evento en específico
+
+- **URL**: `/api/organization/events/<int:pk>/`
+- **Método HTTP**: `PATCH`
+- **Descripción**: Este endpoint permite editar un valor en específico dentro del evento.
+- **Parámetros de Entrada**:
+  - Cualquier parámetro que querramos editar, por ejemplo `{"description": "Webinar dictado en vivo por los conferencistas Lucas Simoes y Juan Pablo Muñoz"}` reescribiria el texto guardado en `description` por el nuevo valor que le estamos pasando.
+- **Respuesta Exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de respuesta: `{"detail": "Event updated successfully"}`
+- **Respuesta en Caso de Error**:
+  - Código de estado: 404 (Not Found) 
+    - Cuerpo de respuesta: `{"error": "Event not found"}`
+  - Código de estado: 403 (Forbidden)
+    - Cuerpo de respuesta: `{"detail": "You don't have permission to edit this event"}` 
+
+### Eliminar un evento
+
+- **URL**: `/api/organization/events/<int:pk>/`
+- **Método HTTP**: `DELETE`
+- **Descripción**: Este endpoint permite eliminar un evento.
+- **Respuesta Exitosa**:
+  - Código de estado: 200 (OK)
+  - Cuerpo de respuesta: `["message: Event successfully removed!"]`
+
+- **Respuesta en Caso de Error**:
+  - Código de estado: 404 (Not Found) 
+    - Cuerpo de respuesta: `{"error": "Event not found"}`
+  - Código de estado: 403 (Forbidden)
+    - Cuerpo de respuesta: `{"detail": "You don't have permission to edit this event"}`
+
 
 ## Uso
 

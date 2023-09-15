@@ -47,7 +47,7 @@ const ScreenLoadedSuccessful = () => {
         size="regular"
         rounded={false}
         ripple="light"
-        className="bg-[#f77f00] hover:bg-orange-900 active:bg-orange-300 mt-10"
+        className="border-[#003049] text-white bg-[#003049] mt-10"
         onClick={handlePrevtInterests2 }
       >
         Anterior
