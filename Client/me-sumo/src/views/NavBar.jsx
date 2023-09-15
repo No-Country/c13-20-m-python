@@ -12,10 +12,7 @@ export default function NavBar() {
   const [showButtons, setShowButtons] = useState(false);
 
   function useToHome() {
-    const result = window.confirm("¿Quiere volver a la pagina de incio?");
-    if (result) {
-      navigate("/");
-    }
+    navigate("/");
   }
 
   function toggleButtons() {
@@ -32,7 +29,7 @@ export default function NavBar() {
           onClick={useToHome}
         />
 
-        <div className="flex w-full flex-col md:flex-row w-4/5 ml-12 items-center">
+        <div className="flex w-full flex-col md:flex-row pl-5 pr-5 ml-12 items-center">
           <SearchBar onSearch={onSearch} />
           <button
             className="md:hidden text-3xl text-primary-800 absolute right-7 mt-20"
