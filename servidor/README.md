@@ -309,11 +309,3 @@ Bienvenido a la documentación de la API de Me Sumo App. Aquí encontrarás info
 ## Uso
 
 Para utilizar la API, realiza solicitudes HTTP a los endpoints correspondientes utilizando las rutas y métodos HTTP especificados anteriormente. Asegúrate de incluir los parámetros de entrada necesarios y los encabezados de autenticación cuando corresponda.
-
-## Contribuciones
-
-¡Las contribuciones son bienvenidas! Si deseas mejorar esta documentación o agregar más información sobre los endpoints, no dudes en hacerlo.
-
-## Licencia
-
-Este proyecto está bajo la licencia [Licencia de Tu Proyecto]. Consulta el archivo LICENSE.md para obtener más detalles.
