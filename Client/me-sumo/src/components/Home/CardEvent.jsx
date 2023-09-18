@@ -18,16 +18,15 @@ export default function CardEvent({
   date,
   location,
   price,
-  eventHost,
-  onActionClick,
+  eventHost
 }) {
 
   const [isClicked, setIsClicked] = useState(false);
 
   const handleCardClick = () => {
     setIsClicked(!isClicked); // Cambia el estado al hacer clic
-  }; 
-  
+  };
+
   const username = eventHost ? eventHost.username : "Desconocido";
   const formattedDate = new Date(date);
   const formattedDateString = formattedDate.toLocaleDateString("es-ES", {
@@ -49,6 +48,7 @@ export default function CardEvent({
 
 
   return (
+
     <Link to={`/event/${eventId}`}>
 <Card
   onClick={handleCardClick} // Agrega un manejador de clic
@@ -60,6 +60,7 @@ export default function CardEvent({
 >
       <CardHeader className="h-[160px]">
         <div className="items-stretch w-full h-full ">
+
 
           <img
             src={imageUrl}

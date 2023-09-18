@@ -16,23 +16,21 @@ export default function SignUpForm() {
   const { handleRegister } = useRegister();
 
   return (
-    <div className="items-center">
-      <div>
-        <h1 className="text-2xl font-bold p-5 items-center justify-center">
-          Formulario de Registro
-        </h1>
-      </div>
+    <div >
       <div className="flex justify-center h-screen gap-8">
-        <div className="text-center">
+       
           <img
             src={signUpImg}
             alt="img-login"
-            className="h-full ml-48 mr-0 rounded-2xl hidden md:block"
+            className="h-screen w-1/2 object-cover md:block"
           />
-        </div>
-        <div className="w-3/5 max-w-screen-sm p-4 md:h-screen lg:py-0">
+       
+        <div className="w-full md:w-1/2 p-4 md:h-screen lg:py-0 ">
+        <h1 className="mt-10 text-3xl md:text-4xl font-semibold text-[#003049] text-center tracking-[0] leading-[normal] mb-4">
+           Formulario de Registro
+          </h1>
           <form
-            className="space-y-1 w-4/6"
+            className=" space-y-1 w-4/5 ml-auto mr-auto"
             action="#"
             onSubmit={handleSubmit((data) => {
               handleRegister(data);

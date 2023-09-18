@@ -3,9 +3,11 @@ import {
   getFilteredEventsCategories,
 } from "../redux/sliceEvents";
 import { useSelector } from "react-redux";
+import { Typography } from "@material-tailwind/react";
 
 import FilteredEvents from "../components/FilteredEvents/FilteredEvents";
 import Dropdown from "../components/FilteredEvents/Dropdown";
+import { FooterWithSocialLinks } from "../components/Footer/Footer";
 
 export default function FilteredEventsView() {
   const events = useSelector(getFilteredEvents);
@@ -23,11 +25,11 @@ export default function FilteredEventsView() {
   ];
 
   return (
-    <div className="mt-7 ml-5">
-      <h1 className="text-2xl font-bold text-left ml-3 text-primary-800">
+    <div className="mt-7  mr-5">
+      <Typography className="text-[#003049] [font-family:'Lato-Regular',_Helvetica] font-bold text-[22px] text-left ml-10">
         Resultados de eventos en {events[0].location}
-      </h1>
-      <div className="flex gap-5">
+      </Typography>
+      <div className="grid grid-cols-1 ml-8 md:flex">
         <Dropdown events={price} placeholder={"Precio"} property={"name"} />
         <Dropdown
           events={category}
@@ -37,6 +39,9 @@ export default function FilteredEventsView() {
         <Dropdown events={date} placeholder={"Fecha"} property={"date"} />
       </div>
       <FilteredEvents events={events} />
+     <div className="mt-40">
+      <FooterWithSocialLinks />
+     </div>
     </div>
   );
 }

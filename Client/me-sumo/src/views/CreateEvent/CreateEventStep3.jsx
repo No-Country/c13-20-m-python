@@ -25,12 +25,16 @@ export default function CreateEventStep3() {
         <h1 className="text-2xl mt-3 font-bold items-center justify-center">
           Crear un nuevo Evento - Paso 3
         </h1>
-        <Checks />
+        <Checks
+          firstCheck="Información Básica"
+          secondCheck="Entradas"
+          thirdCheck="Publicar"
+        />
       </div>
       <h2 className="text-3xl mt-10 mb-7 font-bold w-2/4 text-primary-800 text-left">
         Resumen del Evento
       </h2>
-      <div className="flex items-center justify-center rounded-xl shadow-blue-gray-500 shadow-inner mt-3 mb-3 h-72 w-2/4">
+      <div className="flex items-center justify-center rounded-xl shadow-blue-gray-500 shadow-md mt-3 mb-3 h-72 w-2/4">
         <img
           src={eventInfo.event_images}
           alt="event-image"
@@ -69,7 +73,7 @@ export default function CreateEventStep3() {
       <Button
         title="Crear Evento"
         onClick={() => handleCategory(catInfo, id)}
-        className="m-2"
+        className="m-2 bg-primary-50"
       >
         Finalizar
       </Button>

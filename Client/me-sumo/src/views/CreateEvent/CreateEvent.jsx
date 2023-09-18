@@ -4,6 +4,7 @@ import { Button } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Select from "react-select";
+import { Typography } from "@material-tailwind/react";
 
 import Input from "../../components/Shared/Input";
 import Checks from "../../components/Shared/checks";
@@ -54,8 +55,8 @@ export default function CreateEvent() {
     "Negocios",
     "Cursos y Capacitaciones",
     "Teatro",
-    "Otros",
     "Cine",
+    "Otros",
   ];
   const options = categorias.map((cat, index) => ({
     value: index,
@@ -121,12 +122,12 @@ export default function CreateEvent() {
   return (
     <div className="mt-7">
       <div>
-        <h1 className="text-2xl font-bold items-center justify-center">
-          Crear un nuevo Evento
-        </h1>
+        <Typography className="text-[#003049] [font-family:'Lato-Regular',_Helvetica] font-semibold text-[32px] text-left ml-72 pl-10 tracking-[0]  ">
+          Crear Nuevo Evento
+        </Typography>
       </div>
       <Checks
-        firstCheck="Información Báscica"
+        firstCheck="Información Básica"
         secondCheck="Entradas"
         thirdCheck="Publicar"
       />
@@ -185,12 +186,12 @@ export default function CreateEvent() {
                   borderRadius: 7,
                   colors: {
                     ...theme.colors,
-                    background: "grey",
+                    background: "",
                     primary25: "grey",
                     primary: "black",
                   },
                 })}
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-transparent  text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
               <label className="flex mb-2 ml-1 text-sm font-small text-gray-600 dark:text-white">
                 Elija una categoria
@@ -207,13 +208,7 @@ export default function CreateEvent() {
                 />
               </div>
               <div className="md:w-1/2 md:pl-2">
-                <Input
-                  labelText="Fecha de Fin"
-                  type="datetime-local"
-                  // name="date-end"
-                  // register={register}
-                  // error={errors.userName?.message}
-                />
+                <Input labelText="Fecha de Fin" type="datetime-local" />
               </div>
             </div>
             <div className="mb-3">
@@ -224,9 +219,6 @@ export default function CreateEvent() {
                 placeholder="Seleccione una imagen de Portada"
                 name="event_images"
                 register={register}
-                // onChange={(e) =>
-                //   e.map((c) => setValue("event_images", [c.value]))
-                // }
                 error={errors.event_images?.message}
               />
             </div>
@@ -237,7 +229,7 @@ export default function CreateEvent() {
               <div>
                 <input
                   {...register("location")}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-primary-800 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   id="location"
                   type="text"
                   placeholder="Escriba la direccion del evento"
@@ -252,7 +244,7 @@ export default function CreateEvent() {
               </button>
               <div id="map" className="w-full h-96 my-5"></div>
             </div>
-            <div className="bg-gray-50 sticky bottom-0 left-0 right-0 flex justify-center p-4">
+            <div className="bg-primary-500 sticky bottom-0 left-0 right-0 flex justify-center p-4">
               <Button
                 variant="outlined"
                 onClick={useToHome}
@@ -261,7 +253,11 @@ export default function CreateEvent() {
               >
                 Cancelar
               </Button>
-              <Button title="Crear Evento" type="submit" className="m-2">
+              <Button
+                title="Crear Evento"
+                type="submit"
+                className="m-2 bg-primary-50"
+              >
                 Continuar →
               </Button>
             </div>

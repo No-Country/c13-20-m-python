@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CardHost from "./CardHost";
 import { useSelector } from "react-redux";
 import { getEvents } from "../../redux/sliceEvents";
-import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md";
+import {
+  MdOutlineArrowForwardIos,
+  MdOutlineArrowBackIos,
+} from "react-icons/md";
 
 export default function HostCarousel() {
   const events = useSelector(getEvents);
@@ -24,7 +27,9 @@ export default function HostCarousel() {
   }, [events]);
 
   const itemsPerPage = 4; // Número de elementos por página
-  const totalPages = Math.ceil(Object.values(groupedEvents).length / itemsPerPage);
+  const totalPages = Math.ceil(
+    Object.values(groupedEvents).length / itemsPerPage
+  );
   const activateSpinner = events.length;
   const totalSlides = Math.ceil(events.length / itemsPerPage);
 
@@ -49,17 +54,20 @@ export default function HostCarousel() {
       {activateSpinner ? (
         <div className="relative">
           <div className="flex gap-4 transition-transform transform duration-600 ease-in-out">
-            {Array.isArray(events) && events.length > 0 ? (
-              Object.values(groupedEvents)
-                .slice(currentIndex * itemsPerPage, (currentIndex + 1) * itemsPerPage)
-                .map((individualEvent) => (
-                  <CardHost
-                    key={individualEvent.eventHost.id}
-                    eventHost={individualEvent.eventHost}
-                    location={individualEvent.location}
-                  />
-                ))
-            ) : null}
+            {Array.isArray(events) && events.length > 0
+              ? Object.values(groupedEvents)
+                  .slice(
+                    currentIndex * itemsPerPage,
+                    (currentIndex + 1) * itemsPerPage
+                  )
+                  .map((individualEvent) => (
+                    <CardHost
+                      key={individualEvent.eventHost.id}
+                      eventHost={individualEvent.eventHost}
+                      location={individualEvent.location}
+                    />
+                  ))
+              : null}
           </div>
 
           <div className="absolute -top-16 right-8">
@@ -93,15 +101,3 @@ export default function HostCarousel() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-  
-  
-

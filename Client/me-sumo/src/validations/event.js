@@ -3,7 +3,7 @@ import Joi from "joi";
 const eventSchema = Joi.object({
   name: Joi.string()
     .min(3)
-    .max(35)
+    .max(60)
     .messages({
       "string.pattern.base": "El nombre solo acepta letras",
       "string.min": "Name should have a minimum length of 3 characters",
@@ -24,8 +24,7 @@ const eventSchema = Joi.object({
   capacity: Joi.number(),
   ticketPrice: Joi.number(),
   event_images: Joi.any(),
-  location: Joi.string().min(10).max(100).messages({
-    "string.min": "La Locacion tiene que tener un minimo de 10 caracteres",
+  location: Joi.string().max(100).messages({
     "string.empty": "Description is required",
   }),
   categories: Joi.any(),

@@ -22,22 +22,27 @@ export default function LoginForm() {
 
   return (
     <div className="flex -mt-10">
-      <section className="flex bg-gray-50 dark:bg-gray-900 -mt w-full rounded-xl">
+      <section className="flex bg-orange-50 w-full h-screen ">
         <img
           src={loginImg}
           alt="img-login"
-          className="h-fit mt-20 ml-48 mr-0 rounded-2xl hidden md:block"
+          className="h-full w-1/2 hidden md:block "
         />
+        
         <div className="flex flex-col items-center justify-center ml-0 mr-48 py-8 w-full md:h-screen lg:py-0">
           <a
             href="#"
-            className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+            className="flex items-center  text-2xl font-semibold text-gray-900 dark:text-white"
           >
-            <img className="w-45 h-15 mr-2" src={logo} alt="logo"></img>
+            <img className="w-64 h-40 mb-2" src={logo} alt="logo"></img>
           </a>
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <h1 className="font-family:'Lato-SemiBold',Helvetica font-semibold text-[#003049] text-[40px] text-center tracking-[0] leading-[normal] whitespace-nowrap mb-4">
+            Bienvenido!
+          </h1>
+          
+          <div className="w-full bg-orange-50 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8 h-full w-full">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+              <h1 className="font-family:'Lato-Regular',Helvetica font-normal text-[#003049] text-[24px] text-center tracking-[0] leading-[normal]">
                 Ingresa a tu Cuenta
               </h1>
               <form
@@ -55,6 +60,7 @@ export default function LoginForm() {
                     name="email"
                     register={register}
                     error={errors.email?.message}
+                    className="font-family:'Lato-SemiBold',Helvetica font-semibold text-[#003049] text-[14px] tracking-[0] leading-[norma]"
                   />
                 </div>
                 <div>
@@ -85,3 +91,6 @@ export default function LoginForm() {
     </div>
   );
 }
+
+
+ 

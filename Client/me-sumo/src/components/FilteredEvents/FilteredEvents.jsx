@@ -1,7 +1,6 @@
 import CardEvent from "../Home/CardEvent";
 import { useSelector } from "react-redux";
 import { getFilterEventsBy } from "../../redux/sliceEvents";
-import { Carousel } from "@material-tailwind/react";
 
 export default function FilteredEvents({ events }) {
   const filterStrings = useSelector(getFilterEventsBy);
@@ -34,19 +33,18 @@ export default function FilteredEvents({ events }) {
   });
 
   return (
-    <Carousel perPage={4} arrow={true}>
-      <div className="flex gap-4 mt-6">
-        {filteredEvents.map((individualEvent) => (
-          <CardEvent
-            key={individualEvent.id}
-            image={individualEvent.event_images}
-            name={individualEvent.name}
-            date={individualEvent.date}
-            location={individualEvent.location}
-            price={individualEvent.ticketPrice}
-          />
-        ))}
-      </div>
-    </Carousel>
+    <div className="grid grid-cols-1 gap-4 mt-6 mr-5 md:grid-cols-5">
+      {filteredEvents.map((individualEvent) => (
+        <CardEvent
+          key={individualEvent.id}
+          eventId={individualEvent.id}
+          image={individualEvent.event_images}
+          name={individualEvent.name}
+          date={individualEvent.date}
+          location={individualEvent.location}
+          price={individualEvent.ticketPrice}
+        />
+      ))}
+    </div>
   );
 }
