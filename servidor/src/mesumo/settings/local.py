@@ -24,3 +24,9 @@ database_url = parser.get('default', 'database_url')
 DATABASES = {
     'default': dj_database_url.parse(database_url)
 }
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': parser.get('cloudinary', 'CLOUD_NAME'),
+    'API_KEY': parser.get('cloudinary', 'API_KEY'),
+    'API_SECRET': parser.get('cloudinary', 'API_SECRET')
+}

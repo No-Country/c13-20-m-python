@@ -112,10 +112,5 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'    
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': "dbs6ntoya",
-    'API_KEY': "768877525318349",
-    'API_SECRET': "M6k-jqXYE7CER54zhLnXRrhVZ0s"
-}
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
